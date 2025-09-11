@@ -2,6 +2,7 @@
 
 import { BarChart3, Shield, Zap, TrendingUp, Coins, DollarSign, Wallet, Target, ShieldCheck, TrendingUp as Earn, Waves, Network } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { LogoCarouselDemo } from "@/components/ui/logo-carousel-demo";
 import { Timeline } from "@/components/ui/timeline";
 
 export default function Home() {
@@ -98,6 +99,13 @@ export default function Home() {
 		{/* How It Works Section */}
 		<section id="how-it-works" className="relative">
 			<TimelockWorkflowTimeline />
+		</section>
+
+		{/* Collaborations / Logos Section */}
+		<section id="collaborations" className="relative py-12 sm:py-20 px-4">
+			<div className="mx-auto max-w-7xl">
+				<LogoCarouselDemo />
+			</div>
 		</section>
 
 		{/* For Traders Section */}
