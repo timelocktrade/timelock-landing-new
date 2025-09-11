@@ -4,7 +4,9 @@ import { BarChart3, Shield, Zap, TrendingUp, Coins, DollarSign, Wallet, Target, 
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { LogoCarouselDemo } from "@/components/ui/logo-carousel-demo";
 import { Timeline } from "@/components/ui/timeline";
+import { FeatureSteps } from "@/components/blocks/feature-section";
 import Image from "next/image";
+import type React from "react";
 
 export default function Home() {
 	return (
@@ -67,7 +69,7 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full max-w-md">
+				<div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 sm:gap-4 w-full max-w-md">
 					<a
 						href="#start"
 						className="inline-flex justify-center items-center h-12 rounded-full px-6 bg-orange-500 text-white text-sm sm:text-base font-semibold hover:bg-orange-400 transition-colors shadow-[0_10px_30px_-10px_rgba(234,88,12,0.7)]"
@@ -116,60 +118,36 @@ export default function Home() {
 					<h2 className="font-display text-white text-[2rem] font-bold">Trade Without Fear</h2>
 				</div>
 				<ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-					<li className="list-none">
-						<div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4 h-full">
-							<div className="mb-3 w-fit rounded-md border border-[#333333] p-2">
-								<Shield className="h-5 w-5 text-white" />
-							</div>
-							<h4 className="text-white font-semibold mb-1">No Liquidation Risk</h4>
-							<p className="text-[#CCCCCC] text-sm">Your position can’t be liquidated — maximum loss is the premium paid.</p>
-						</div>
-					</li>
-					<li className="list-none">
-						<div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4 h-full">
-							<div className="mb-3 w-fit rounded-md border border-[#333333] p-2">
-								<TrendingUp className="h-5 w-5 text-white" />
-							</div>
-							<h4 className="text-white font-semibold mb-1">Unlimited Leverage</h4>
-							<p className="text-[#CCCCCC] text-sm">Scale your exposure without margin calls or forced deleveraging.</p>
-						</div>
-					</li>
-					<li className="list-none">
-						<div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4 h-full">
-							<div className="mb-3 w-fit rounded-md border border-[#333333] p-2">
-								<DollarSign className="h-5 w-5 text-white" />
-							</div>
-							<h4 className="text-white font-semibold mb-1">Fixed Premiums</h4>
-							<p className="text-[#CCCCCC] text-sm">Know your cost upfront with simple, transparent premium pricing.</p>
-						</div>
-					</li>
-					<li className="list-none">
-						<div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4 h-full">
-							<div className="mb-3 w-fit rounded-md border border-[#333333] p-2">
-								<Coins className="h-5 w-5 text-white" />
-							</div>
-							<h4 className="text-white font-semibold mb-1">Any ERC20 Token</h4>
-							<p className="text-[#CCCCCC] text-sm">Access blue chips and the long tail across the ERC20 universe.</p>
-						</div>
-					</li>
-					<li className="list-none">
-						<div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4 h-full">
-							<div className="mb-3 w-fit rounded-md border border-[#333333] p-2">
-								<BarChart3 className="h-5 w-5 text-white" />
-							</div>
-							<h4 className="text-white font-semibold mb-1">Real Asset Exposure</h4>
-							<p className="text-[#CCCCCC] text-sm">Positions are backed by escrowed on-chain liquidity, not IOUs.</p>
-						</div>
-					</li>
-					<li className="list-none">
-						<div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4 h-full">
-							<div className="mb-3 w-fit rounded-md border border-[#333333] p-2">
-								<Zap className="h-5 w-5 text-white" />
-							</div>
-							<h4 className="text-white font-semibold mb-1">Custom Duration</h4>
-							<p className="text-[#CCCCCC] text-sm">Choose expiries that fit your strategy — minutes to months.</p>
-						</div>
-					</li>
+					<GridItem
+						icon={<Shield className="h-4 w-4 text-white" />}
+						title="No Liquidation Risk"
+						description="Your position can’t be liquidated — maximum loss is the premium paid."
+					/>
+					<GridItem
+						icon={<TrendingUp className="h-4 w-4 text-white" />}
+						title="Unlimited Leverage"
+						description="Scale your exposure without margin calls or forced deleveraging."
+					/>
+					<GridItem
+						icon={<DollarSign className="h-4 w-4 text-white" />}
+						title="Fixed Premiums"
+						description="Know your cost upfront with simple, transparent premium pricing."
+					/>
+					<GridItem
+						icon={<Coins className="h-4 w-4 text-white" />}
+						title="Any ERC20 Token"
+						description="Access blue chips and the long tail across the ERC20 universe."
+					/>
+					<GridItem
+						icon={<BarChart3 className="h-4 w-4 text-white" />}
+						title="Real Asset Exposure"
+						description="Positions are backed by escrowed on-chain liquidity, not IOUs."
+					/>
+					<GridItem
+						icon={<Zap className="h-4 w-4 text-white" />}
+						title="Custom Duration"
+						description="Choose expiries that fit your strategy — minutes to months."
+					/>
 				</ul>
 
 				<div className="mt-10 flex justify-center">
@@ -195,61 +173,48 @@ export default function Home() {
 
 				{/* Vault Process Flow */}
 				<div className="mb-16">
-					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-						<div className="text-center">
-							<div className="mx-auto mb-4 w-16 h-16 rounded-full border border-[#333333] bg-[#1A1A1A] flex items-center justify-center">
-								<Wallet className="h-6 w-6 text-white" />
-							</div>
-							<h4 className="text-white font-semibold mb-2">Deposit</h4>
-							<p className="text-[#CCCCCC] text-sm">Provide USDC to earn vault yields</p>
-						</div>
-						
-						<div className="text-center">
-							<div className="mx-auto mb-4 w-16 h-16 rounded-full border border-[#333333] bg-[#1A1A1A] flex items-center justify-center">
-								<Target className="h-6 w-6 text-white" />
-							</div>
-							<h4 className="text-white font-semibold mb-2">Deploy</h4>
-							<p className="text-[#CCCCCC] text-sm">Capital deployed on UniV3 ranges</p>
-						</div>
-						
-						<div className="text-center">
-							<div className="mx-auto mb-4 w-16 h-16 rounded-full border border-[#333333] bg-[#1A1A1A] flex items-center justify-center">
-								<ShieldCheck className="h-6 w-6 text-white" />
-							</div>
-							<h4 className="text-white font-semibold mb-2">Hedge</h4>
-							<p className="text-[#CCCCCC] text-sm">Positions hedged via perp DEX</p>
-						</div>
-						
-						<div className="text-center">
-							<div className="mx-auto mb-4 w-16 h-16 rounded-full border border-[#333333] bg-[#1A1A1A] flex items-center justify-center">
-								<Earn className="h-6 w-6 text-white" />
-							</div>
-							<h4 className="text-white font-semibold mb-2">Earn</h4>
-							<p className="text-[#CCCCCC] text-sm">Collect premiums & LP fees</p>
-						</div>
-					</div>
+					<ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+						<GridItem
+							icon={<Wallet className="h-4 w-4 text-white" />}
+							title="Deposit"
+							description="Provide USDC to earn vault yields"
+						/>
+						<GridItem
+							icon={<Target className="h-4 w-4 text-white" />}
+							title="Deploy"
+							description="Capital deployed on UniV3 ranges"
+						/>
+						<GridItem
+							icon={<ShieldCheck className="h-4 w-4 text-white" />}
+							title="Hedge"
+							description="Positions hedged via perp DEX"
+						/>
+						<GridItem
+							icon={<Earn className="h-4 w-4 text-white" />}
+							title="Earn"
+							description="Collect premiums & LP fees"
+						/>
+					</ul>
 				</div>
 
 				{/* Yield Strategy Cards */}
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-					<div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-6">
-						<h4 className="text-white font-semibold text-lg mb-3">Conservative</h4>
-						<p className="text-[#CCCCCC] text-base mb-2">15-25% APY</p>
-						<p className="text-[#CCCCCC] text-sm italic">Low risk, stable returns</p>
-					</div>
-					
-					<div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-6">
-						<h4 className="text-white font-semibold text-lg mb-3">Balanced</h4>
-						<p className="text-[#CCCCCC] text-base mb-2">25-35% APY</p>
-						<p className="text-[#CCCCCC] text-sm italic">Moderate risk, balanced growth</p>
-					</div>
-					
-					<div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-6">
-						<h4 className="text-white font-semibold text-lg mb-3">Aggressive</h4>
-						<p className="text-[#CCCCCC] text-base mb-2">35-50% APY</p>
-						<p className="text-[#CCCCCC] text-sm italic">Higher risk, maximum returns</p>
-					</div>
-				</div>
+				<ul className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+					<GridItem
+						icon={<Coins className="h-4 w-4 text-white" />}
+						title="Conservative"
+						description="15-25% APY – Low risk, stable returns"
+					/>
+					<GridItem
+						icon={<TrendingUp className="h-4 w-4 text-white" />}
+						title="Balanced"
+						description="25-35% APY – Moderate risk, balanced growth"
+					/>
+					<GridItem
+						icon={<Zap className="h-4 w-4 text-white" />}
+						title="Aggressive"
+						description="35-50% APY – Higher risk, maximum returns"
+					/>
+				</ul>
 
 				{/* CTA Button */}
 				<div className="flex justify-center">
@@ -266,91 +231,33 @@ export default function Home() {
 		{/* Real Trading Example Section */}
 		<section id="example" className="relative py-16 sm:py-24 px-4">
 			<div className="mx-auto max-w-7xl">
-				<div className="text-center mb-8">
-					<h2 className="font-display text-white text-[2rem] font-bold">Real Trading Example</h2>
-				</div>
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-					{/* Left: Steps */}
-					<div>
-						<ul className="list-disc pl-5 space-y-3">
-							<li className="text-[#CCCCCC]">Current ETH price: $3 000</li>
-							<li className="text-[#CCCCCC]">Trader LONGs 1 ETH, pays $10</li>
-							<li className="text-[#CCCCCC]">Downside: capped at $10 if price drops to $2 000</li>
-							<li className="text-[#CCCCCC]">Upside: $1 500 profit if price rises to $4 500</li>
-						</ul>
-					</div>
-
-					{/* Right: Simple price vs PnL chart */}
-					<div>
-						<div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4">
-							<svg className="w-full h-64" viewBox="0 0 500 300" role="img" aria-label="Price vs PnL chart with capped loss and uncapped gain">
-								<defs>
-									<marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-										<path d="M 0 0 L 10 5 L 0 10 z" fill="#888" />
-									</marker>
-									<linearGradient id="gain" x1="0" y1="0" x2="0" y2="1">
-										<stop offset="0%" stopColor="#16a34a" stopOpacity="0.25"/>
-										<stop offset="100%" stopColor="#16a34a" stopOpacity="0.05"/>
-									</linearGradient>
-									<linearGradient id="loss" x1="0" y1="0" x2="0" y2="1">
-										<stop offset="0%" stopColor="#ef4444" stopOpacity="0.25"/>
-										<stop offset="100%" stopColor="#ef4444" stopOpacity="0.05"/>
-									</linearGradient>
-								</defs>
-								{/* axes */}
-								<g transform="translate(50,20)">
-									<line x1="0" y1="250" x2="420" y2="250" stroke="#888" strokeWidth="1.5" markerEnd="url(#arrow)" />
-									<line x1="0" y1="250" x2="0" y2="10" stroke="#888" strokeWidth="1.5" markerEnd="url(#arrow)" />
-									{/* labels */}
-									<text x="420" y="270" fill="#aaa" fontSize="12">Price</text>
-									<text x="-35" y="20" fill="#aaa" fontSize="12" transform="rotate(-90 -35 20)">PnL</text>
-
-									{/* reference price ticks */}
-									<g fill="#aaa" fontSize="11">
-										<text x="80" y="268">$2k</text>
-										<text x="200" y="268">$3k</text>
-										<text x="360" y="268">$4.5k</text>
-									</g>
-									<g stroke="#555">
-										<line x1="80" y1="250" x2="80" y2="40" strokeDasharray="4 4"/>
-										<line x1="200" y1="250" x2="200" y2="40" strokeDasharray="4 4"/>
-										<line x1="360" y1="250" x2="360" y2="40" strokeDasharray="4 4"/>
-										<line x1="0" y1="200" x2="420" y2="200" strokeDasharray="4 4"/>
-									</g>
-
-									{/* capped loss band */}
-									<rect x="0" y="200" width="200" height="50" fill="url(#loss)"/>
-									<text x="10" y="220" fill="#fca5a5" fontSize="12">Loss capped at -$10</text>
-
-									{/* gain area */}
-									<polygon points="200,200 360,80 420,40 420,200" fill="url(#gain)"/>
-
-									{/* payoff line: flat to 3k, then slope up */}
-									<polyline points="0,200 200,200 360,80 420,40" fill="none" stroke="#34d399" strokeWidth="3" />
-
-									{/* markers for outcomes */}
-									<circle cx="80" cy="200" r="4" fill="#ef4444"/>
-									<text x="85" y="195" fill="#fca5a5" fontSize="12">$2k</text>
-									<circle cx="360" cy="80" r="4" fill="#22c55e"/>
-									<text x="365" y="75" fill="#bbf7d0" fontSize="12">+$1,500</text>
-								</g>
-							</svg>
-							<div className="mt-2 flex items-center justify-between text-xs">
-								<span className="text-[#CCCCCC]">PnL vs price at expiry (LONG 1 ETH)</span>
-								<div className="flex items-center gap-3">
-									<div className="flex items-center gap-1">
-										<span className="inline-block h-2 w-4 bg-[#ef4444]" />
-										<span className="text-[#CCCCCC]">Capped loss</span>
-									</div>
-									<div className="flex items-center gap-1">
-										<span className="inline-block h-2 w-4 bg-[#22c55e]" />
-										<span className="text-[#CCCCCC]">Uncapped gain</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<FeatureSteps
+					title="Real Trading Example"
+					className="px-0"
+					imageHeight="h-[400px]"
+					features={[
+						{
+							step: "Current ETH price: $3,000",
+							content: "Reference spot price used for payoff calculation",
+							image: "/example-eth-price.svg",
+						},
+						{
+							step: "Trader LONGs 1 ETH, pays $10",
+							content: "Enter long exposure by paying a fixed premium",
+							image: "/example-long-premium.svg",
+						},
+						{
+							step: "Downside capped at $10 if price drops to $2,000",
+							content: "Maximum loss limited to paid premium",
+							image: "/example-downside-capped.svg",
+						},
+						{
+							step: "Upside: $1,500 profit if price rises to $4,500",
+							content: "Payoff increases with price without liquidation risk",
+							image: "/example-upside-profit.svg",
+						},
+					]}
+				/>
 			</div>
 		</section>
 
