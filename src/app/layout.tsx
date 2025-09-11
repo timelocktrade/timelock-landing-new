@@ -51,7 +51,7 @@ export default function RootLayout({
               </div>
               <div className="flex items-center gap-3">
                 {/* <a href="#signin" className="hidden sm:inline-flex h-9 items-center rounded-full border border-white/25 px-4 text-white/90 hover:bg-white/10">Sign in</a> */}
-                <a href="#cta" className="inline-flex h-9 items-center rounded-full bg-orange-500 px-4 text-white font-semibold hover:bg-orange-400">Get Started</a>
+                <a href="#traders" className="inline-flex h-9 items-center rounded-full bg-orange-500 px-4 text-white font-semibold hover:bg-orange-400">Get Started</a>
               </div>
             </div>
           </nav>
