@@ -7,7 +7,7 @@ import { Timeline } from "@/components/ui/timeline";
 export default function Home() {
 	return (
 		<main>
-			<section className="font-sans relative min-h-[calc(100vh-6rem)] w-full flex items-center justify-center">
+			<section className="font-sans relative min-h-screen w-full flex items-center justify-center">
 			{/* Background uses the whole image with no cropping or padding */}
 			<div className="absolute inset-0 bg-black" />
 			<div className="absolute inset-0 bg-[url('/bg.png')] bg-center bg-no-repeat bg-cover" />
@@ -357,42 +357,36 @@ function TimelockEcosystemGrid() {
   return (
     <ul className="grid grid-cols-1 md:grid-cols-3 grid-rows-6 md:grid-rows-2 gap-4 lg:gap-6">
       <GridItem
-        area=""
         icon={<BarChart3 className="h-4 w-4 text-white dark:text-neutral-400" />}
         title="Timelock Trade"
         description="Revolutionary leverage trading without liquidation risk. Trade with up to 1000x leverage using tick liquidity borrowing."
       />
 
       <GridItem
-        area=""
         icon={<TrendingUp className="h-4 w-4 text-white dark:text-neutral-400" />}
         title="Timelock Perps"
         description="Industry-first perpetual contracts without liquidations. Experience true DeFi trading with unlimited downside protection."
       />
 
       <GridItem
-        area=""
         icon={<Zap className="h-4 w-4 text-white dark:text-neutral-400" />}
         title="Timelock Options"
         description="Custom-strike and expiry options on any ERC20 token. Advanced derivatives trading with full customization."
       />
 
       <GridItem
-        area=""
         icon={<Shield className="h-4 w-4 text-white dark:text-neutral-400" />}
         title="Timelock Swap"
         description="UniV3-style AMM with enhanced LP vaults and premium collection. Maximize your liquidity provision returns."
       />
 
       <GridItem
-        area=""
         icon={<Coins className="h-4 w-4 text-white dark:text-neutral-400" />}
         title="Timelock Meme"
         description="Long and short memecoins with sophisticated risk management and leverage capabilities."
       />
 
       <GridItem
-        area=""
         icon={<DollarSign className="h-4 w-4 text-white dark:text-neutral-400" />}
         title="Timelock USD"
         description="Tokenized delta-neutral hedged UniV3 vaults delivering consistent 20% APY with minimal risk exposure."
