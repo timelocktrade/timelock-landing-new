@@ -8,7 +8,7 @@ type GradientHeadingSize = "sm" | "md" | "lg" | "xl" | "xxl";
 interface GradientHeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   variant?: GradientHeadingVariant;
   size?: GradientHeadingSize;
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
 }
 
 const variantToClasses: Record<GradientHeadingVariant, string> = {
@@ -34,7 +34,7 @@ export function GradientHeading({
   children,
   ...rest
 }: GradientHeadingProps) {
-  const Component = as as any;
+  const Component = as as React.ElementType;
   return (
     <Component
       className={[

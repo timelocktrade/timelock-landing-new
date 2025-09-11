@@ -1,12 +1,6 @@
 "use client"
 
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  type SVGProps,
-} from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
 interface Logo {
@@ -103,6 +97,8 @@ const LogoColumn: React.FC<LogoColumnProps> = React.memo(
     )
   }
 )
+
+LogoColumn.displayName = "LogoColumn"
 
 interface LogoCarouselProps {
   columnCount?: number

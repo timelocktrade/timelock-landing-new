@@ -416,7 +416,7 @@ function TimelockWorkflowTimeline() {
           </div>
           <div className="rounded-lg border border-orange-500/20 bg-orange-500/5 p-4">
             <h4 className="text-orange-400 font-semibold mb-2">🚀 Revolutionary Feature</h4>
-            <p className="text-white text-sm">Unlike traditional leverage, there's no liquidation risk - your maximum loss is the premium paid.</p>
+            <p className="text-white text-sm">Unlike traditional leverage, there&apos;s no liquidation risk - your maximum loss is the premium paid.</p>
           </div>
         </div>
       ),
