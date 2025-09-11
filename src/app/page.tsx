@@ -4,6 +4,7 @@ import { BarChart3, Shield, Zap, TrendingUp, Coins, DollarSign, Wallet, Target, 
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { LogoCarouselDemo } from "@/components/ui/logo-carousel-demo";
 import { Timeline } from "@/components/ui/timeline";
+import Image from "next/image";
 
 export default function Home() {
 	return (
@@ -451,12 +452,13 @@ function TimelockWorkflowTimeline() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4">
-              <h4 className="text-white font-semibold mb-2">✅ Vault Deposits</h4>
-              <p className="text-white text-sm">LPs deposit stablecoins into secure vaults</p>
-            </div>
-            <div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4">
-              <h4 className="text-white font-semibold mb-2">✅ Yield Generation</h4>
-              <p className="text-white text-sm">Earn consistent 20%+ APY from trading premiums</p>
+              <Image
+                src="/DepositUSDC.e5c78a9a.png"
+                alt="LPs deposit USDC into secure vaults"
+                width={800}
+                height={600}
+                className="w-full h-auto rounded-lg"
+              />
             </div>
           </div>
         </div>
@@ -469,23 +471,14 @@ function TimelockWorkflowTimeline() {
           <p className="mb-8 text-xs font-normal text-white md:text-sm">
             Vault managers deploy capital on Uniswap V3 in strategic price ranges, hedge positions with perpetual DEX shorts, and actively rebalance for optimal performance.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4">
-              <h4 className="text-white font-semibold mb-2">📊 Uniswap V3 Integration</h4>
-              <p className="text-white text-sm">Strategic liquidity provision in custom price ranges</p>
-            </div>
-            <div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4">
-              <h4 className="text-white font-semibold mb-2">🛡️ Hedging Strategy</h4>
-              <p className="text-white text-sm">Risk mitigation through perpetual DEX shorts</p>
-            </div>
-            <div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4">
-              <h4 className="text-white font-semibold mb-2">⚖️ Active Rebalancing</h4>
-              <p className="text-white text-sm">Continuous optimization for maximum efficiency</p>
-            </div>
-            <div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4">
-              <h4 className="text-white font-semibold mb-2">🎯 Price Range Management</h4>
-              <p className="text-white text-sm">Dynamic tick management for optimal capital utilization</p>
-            </div>
+          <div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4">
+            <Image
+              src="/vault.png"
+              alt="Vault deployment and management"
+              width={1200}
+              height={800}
+              className="w-full h-auto rounded-lg"
+            />
           </div>
         </div>
       ),
