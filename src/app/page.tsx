@@ -232,30 +232,35 @@ export default function Home() {
 		<section id="example" className="relative py-16 sm:py-24 px-4">
 			<div className="mx-auto max-w-7xl">
 				<FeatureSteps
-					title="Real Trading Example"
+					title="Start Trading in Minutes"
 					className="px-0"
 					imageHeight="h-[400px]"
 					features={[
 						{
-							step: "Current ETH price: $3,000",
-							content: "Reference spot price used for payoff calculation",
+							step: "Select Your Market",
+							content: "Choose from ETH, BTC, or any other supported tokens",
 							image: "/example-eth-price.svg",
 						},
 						{
-							step: "Trader LONGs 1 ETH, pays $10",
-							content: "Enter long exposure by paying a fixed premium",
+							step: "Pick Your Direction",
+							content: "Simply bet if ETH will go up or down",
 							image: "/example-long-premium.svg",
 						},
 						{
-							step: "Downside capped at $10 if price drops to $2,000",
-							content: "Maximum loss limited to paid premium",
+							step: "Select Your Bet Duration",
+							content: "You can bet in any timeframe from 5min to 5 days",
 							image: "/example-downside-capped.svg",
 						},
 						{
-							step: "Upside: $1,500 profit if price rises to $4,500",
-							content: "Payoff increases with price without liquidation risk",
+							step: "Place Your Bets",
+							content: "Start with as little as $5 for a 1 hour trade",
 							image: "/example-upside-profit.svg",
 						},
+						{
+							step: "Relax",
+							content: "If you're right, you get all the upside. If you're wrong, you don't pay for the loss.",
+							image: "/example-profit-calculator.svg",
+						}
 					]}
 				/>
 			</div>
