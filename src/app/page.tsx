@@ -391,58 +391,58 @@ function TimelockWorkflowTimeline() {
       ),
     },
     {
-      title: "Step 3: Trader Entry",
+      title: "Step 3: Trader Goes Long ETH",
       content: (
         <div>
-          <p className="mb-4 text-xs font-normal text-white md:text-sm">
-            Trader initiates a leveraged position by choosing direction, asset, duration, and leverage amount.
+          <p className="mb-8 text-xs font-normal text-white md:text-sm">
+            Trader LONGs 1 ETH and pays a fixed premium. Timelock borrows 1 ETH and escrows it in the protocol.
           </p>
-          <div className="mb-8">
-            <div className="flex items-center gap-2 text-xs text-white md:text-sm">
-              ✅ Choose LONG 1 ETH position
-            </div>
-            <div className="flex items-center gap-2 text-xs text-white md:text-sm">
-              ✅ Set 1 hour expiry time
-            </div>
-            <div className="flex items-center gap-2 text-xs text-white md:text-sm">
-              ✅ Pay $10 premium fee
-            </div>
-            <div className="flex items-center gap-2 text-xs text-white md:text-sm">
-              ✅ Timelock escrows 1 ETH from next out-of-range tick
-            </div>
-            <div className="flex items-center gap-2 text-xs text-white md:text-sm">
-              ✅ Position is now active with zero liquidation risk
-            </div>
-          </div>
-          <div className="rounded-lg border border-orange-500/20 bg-orange-500/5 p-4">
-            <h4 className="text-orange-400 font-semibold mb-2">🚀 Revolutionary Feature</h4>
-            <p className="text-white text-sm">Unlike traditional leverage, there&apos;s no liquidation risk - your maximum loss is the premium paid.</p>
+          <div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4">
+            <Image
+              src="/step3.png"
+              alt="Trader goes long 1 ETH; Timelock borrows and escrows 1 ETH"
+              width={1200}
+              height={800}
+              className="w-full h-auto rounded-lg"
+            />
           </div>
         </div>
       ),
     },
     {
-      title: "Step 4: Settlement",
+      title: "Step 4A: ETH Goes Down",
       content: (
         <div>
           <p className="mb-8 text-xs font-normal text-white md:text-sm">
-            At expiry, the position settles automatically based on price movement. Two possible outcomes demonstrate the power of zero-liquidation leverage.
+            Price of ETH goes to $2,000. On other platforms, the trader would face a $2,000 loss or liquidation. On Timelock, they only lose the $10 premium and the trade is closed — the protocol repays the LP using the 1 ETH held in escrow.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-4">
-              <h4 className="text-red-400 font-semibold mb-2">📉 Price Drops to $2,000</h4>
-              <p className="text-white text-sm mb-2">Trader loses only the $10 premium</p>
-              <p className="text-white text-xs">Timelock returns escrowed ETH to LP vault</p>
-            </div>
-            <div className="rounded-lg border border-green-500/20 bg-green-500/5 p-4">
-              <h4 className="text-green-400 font-semibold mb-2">📈 Price Rises to $4,500</h4>
-              <p className="text-white text-sm mb-2">Trader profits $1,500 after LP repayment</p>
-              <p className="text-white text-xs">Massive gains with limited downside risk</p>
-            </div>
+          <div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4">
+            <Image
+              src="/step4a.png"
+              alt="ETH goes down; Timelock repays the LP from escrowed 1 ETH"
+              width={1200}
+              height={800}
+              className="w-full h-auto rounded-lg"
+            />
           </div>
-          <div className="mt-6 rounded-lg border border-blue-500/20 bg-blue-500/5 p-4">
-            <h4 className="text-blue-400 font-semibold mb-2">💡 Key Innovation</h4>
-            <p className="text-white text-sm">Traditional leverage can liquidate your entire position. With Timelock, your maximum loss is always just the premium paid upfront.</p>
+        </div>
+      ),
+    },
+    {
+      title: "Step 5: ETH Goes Up (4B)",
+      content: (
+        <div>
+          <p className="mb-8 text-xs font-normal text-white md:text-sm">
+            Eg: Price of ETH goes to $4,500. Timelock swaps the escrowed 1 ETH for 4,500 USDC, repays 3,000 USDC to make the LP whole, and the remaining 1,500 USDC is paid out as the trader&apos;s profit.
+          </p>
+          <div className="rounded-lg border border-[#333333] bg-[#1A1A1A] p-4">
+            <Image
+              src="/step4b.png"
+              alt="ETH goes up; Timelock swaps escrow, repays LP, and pays trader profit"
+              width={1200}
+              height={800}
+              className="w-full h-auto rounded-lg"
+            />
           </div>
         </div>
       ),
