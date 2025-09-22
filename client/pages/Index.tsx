@@ -161,38 +161,42 @@ const EcosystemSection = () => {
       title: "Timelock Trade",
       description:
         "Revolutionary leverage trading without liquidation risk. Trade with up to 1000x leverage using tick liquidity borrowing.",
-      image:
-        "https://api.builder.io/api/v1/image/assets/TEMP/96a2dff35e1e482243e4644fd8d3e288a6f7ba16?width=1052",
+      image: "/placeholder.svg",
     },
     {
       id: "2",
       title: "Timelock Perps",
       description:
         "Industry-first perpetual contracts without liquidations. Experience true DeFi trading with unlimited downside protection.",
+      image: "/placeholder.svg",
     },
     {
       id: "3",
       title: "Timelock Options",
       description:
         "Custom-strike and expiry options on any ERC20 token. Advanced derivatives trading with full customization.",
+      image: "/placeholder.svg",
     },
     {
       id: "4",
       title: "Timelock Swap",
       description:
         "UniV3-style AMM with enhanced LP vaults and premium collection. Maximize your liquidity provision returns.",
+      image: "/placeholder.svg",
     },
     {
       id: "5",
       title: "Timelock Meme",
       description:
         "Long and short memecoins with sophisticated risk management and leverage capabilities.",
+      image: "/placeholder.svg",
     },
     {
       id: "6",
       title: "Timelock USD",
       description:
         "UniV3-style AMM with enhanced LP vaults and premium collection. Maximize your liquidity provision returns.",
+      image: "/placeholder.svg",
     },
   ];
 
@@ -217,12 +221,15 @@ const EcosystemSection = () => {
         {ecosystemItems.map((item, index) => (
           <div
             key={item.id}
-            className="relative h-[447px] rounded border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden"
+            className="group relative h-[447px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
+            style={{ willChange: "transform, opacity" }}
           >
+            {/* Soft sheen */}
+            <div className="pointer-events-none absolute inset-0 z-0 before:absolute before:inset-0 before:content-[''] before:bg-gradient-to-b before:from-white/5 before:to-transparent"></div>
             {/* Gradient Overlay */}
             <div
               className={cn(
-                "absolute top-0 w-full h-[252px] opacity-60",
+                "absolute top-0 w-full h-[252px] opacity-60 z-0",
                 index % 2 === 0
                   ? "bg-gradient-radial from-white/10 via-transparent to-transparent"
                   : "bg-gradient-radial from-white/10 via-transparent to-transparent",
@@ -230,14 +237,14 @@ const EcosystemSection = () => {
             ></div>
 
             {/* Number Badge */}
-            <div className="absolute top-6 left-6 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
+            <div className="absolute top-6 left-6 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center z-10">
               <span className="text-white font-k2d text-base font-medium">
                 {item.id}
               </span>
             </div>
 
             {/* Content */}
-            <div className="absolute top-6 left-[68px] right-6">
+            <div className="absolute top-6 left-[68px] right-6 z-10">
               <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-4">
                 {item.title}
               </h3>
@@ -246,12 +253,13 @@ const EcosystemSection = () => {
               </p>
             </div>
 
-            {/* Image for first card */}
+            {/* Image */}
             {item.image && (
               <img
-                src={item.image}
+                src={item.image || "/placeholder.svg"}
                 alt={item.title}
-                className="absolute bottom-6 left-7 w-[526px] h-[393px] object-cover"
+                loading="lazy"
+                className="absolute bottom-6 right-7 w-[480px] h-[300px] object-cover rounded-md border border-white/5 shadow-2xl shadow-black/50 opacity-90 group-hover:opacity-100 transition-opacity z-[1]"
               />
             )}
           </div>
@@ -285,30 +293,35 @@ const EnhancedYieldsSection = () => (
           title: "Timelock Meme",
           description:
             "Long and short memecoins with sophisticated risk management and leverage capabilities.",
+          image: "/placeholder.svg",
         },
         {
           id: "6",
           title: "Timelock USD",
           description:
             "UniV3-style AMM with enhanced LP vaults and premium collection. Maximize your liquidity provision returns.",
+          image: "/placeholder.svg",
         },
       ].map((item) => (
         <div
           key={item.id}
-          className="relative h-[447px] rounded border border-[#191919] bg-black/30 backdrop-blur-sm"
+          className="group relative h-[447px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
+          style={{ willChange: "transform, opacity" }}
         >
+          {/* Soft sheen */}
+          <div className="pointer-events-none absolute inset-0 z-0 before:absolute before:inset-0 before:content-[''] before:bg-gradient-to-b before:from-white/5 before:to-transparent"></div>
           {/* Gradient Overlay */}
-          <div className="absolute top-0 w-full h-[252px] opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent"></div>
+          <div className="absolute top-0 w-full h-[252px] opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent z-0"></div>
 
           {/* Number Badge */}
-          <div className="absolute top-6 left-6 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
+          <div className="absolute top-6 left-6 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center z-10">
             <span className="text-white font-k2d text-base font-medium">
               {item.id}
             </span>
           </div>
 
           {/* Content */}
-          <div className="absolute top-6 left-[68px] right-6">
+          <div className="absolute top-6 left-[68px] right-6 z-10">
             <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-4">
               {item.title}
             </h3>
@@ -316,6 +329,16 @@ const EnhancedYieldsSection = () => (
               {item.description}
             </p>
           </div>
+
+          {/* Image */}
+          {item.image && (
+            <img
+              src={item.image}
+              alt={item.title}
+              loading="lazy"
+              className="absolute bottom-6 right-7 w-[480px] h-[300px] object-cover rounded-md border border-white/5 shadow-2xl shadow-black/50 opacity-90 group-hover:opacity-100 transition-opacity z-[1]"
+            />
+          )}
         </div>
       ))}
     </div>
@@ -346,30 +369,35 @@ const FutureSection = () => (
           title: "Risk-Neutral Optionality",
           description:
             "LPs on Timelock are not coucnterparty to trader PnLs and maintain their UniV3 payoffs",
+          image: "/placeholder.svg",
         },
         {
           id: "2",
           title: "1-Click Deposit",
           description:
             "1-click deposits, zero hassle—our strategy managers handle the heavy lifting for you. Deposit and forget",
+          image: "/placeholder.svg",
         },
       ].map((item) => (
         <div
           key={item.id}
-          className="relative h-[447px] rounded border border-[#191919] bg-black/30 backdrop-blur-sm"
+          className="group relative h-[447px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
+          style={{ willChange: "transform, opacity" }}
         >
+          {/* Soft sheen */}
+          <div className="pointer-events-none absolute inset-0 z-0 before:absolute before:inset-0 before:content-[''] before:bg-gradient-to-b before:from-white/5 before:to-transparent"></div>
           {/* Gradient Overlay */}
-          <div className="absolute top-0 w-full h-[252px] opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent"></div>
+          <div className="absolute top-0 w-full h-[252px] opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent z-0"></div>
 
           {/* Number Badge */}
-          <div className="absolute top-6 left-6 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
+          <div className="absolute top-6 left-6 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center z-10">
             <span className="text-white font-k2d text-base font-medium">
               {item.id}
             </span>
           </div>
 
           {/* Content */}
-          <div className="absolute top-6 left-[68px] right-6">
+          <div className="absolute top-6 left-[68px] right-6 z-10">
             <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-4">
               {item.title}
             </h3>
@@ -377,6 +405,16 @@ const FutureSection = () => (
               {item.description}
             </p>
           </div>
+
+          {/* Image */}
+          {item.image && (
+            <img
+              src={item.image}
+              alt={item.title}
+              loading="lazy"
+              className="absolute bottom-6 right-7 w-[480px] h-[300px] object-cover rounded-md border border-white/5 shadow-2xl shadow-black/50 opacity-90 group-hover:opacity-100 transition-opacity z-[1]"
+            />
+          )}
         </div>
       ))}
     </div>
