@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 import {
   Accordion,
   AccordionItem,
@@ -41,118 +42,186 @@ const TimeLockLogo = () => (
 );
 
 // Header Component
-const Header = () => (
-  <header className="w-full px-8 lg:px-[130px] py-4 flex items-center justify-between">
-    <TimeLockLogo />
+const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    <nav className="hidden lg:flex items-center gap-3">
-      <a
-        href="https://testnet.timelock.trade"
-        className="px-2 py-1.5 text-white font-manrope text-base font-normal hover:text-white/80 transition-colors"
-      >
-        Trade
-      </a>
-      <a
-        href="https://testnet.timelock.trade/"
-        className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
-      >
-        Earn
-      </a>
-      <a
-        href="https://testnet.timelock.trade/"
-        className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
-      >
-        Dashboard
-      </a>
-      <a
-        href="http://docs.timelock.trade/"
-        className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
-      >
-        Docs
-      </a>
-    </nav>
+  return (
+    <header className="w-full px-4 sm:px-8 lg:px-[130px] py-4 flex items-center justify-between relative">
+      <TimeLockLogo />
 
-    <a href="https://testnet.timelock.trade">
-      <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] hover:bg-white/90 transition-colors">
-        Launch App
+      {/* Desktop Navigation */}
+      <nav className="hidden lg:flex items-center gap-3">
+        <a
+          href="https://testnet.timelock.trade"
+          className="px-2 py-1.5 text-white font-manrope text-base font-normal hover:text-white/80 transition-colors"
+        >
+          Trade
+        </a>
+        <a
+          href="https://testnet.timelock.trade/"
+          className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
+        >
+          Earn
+        </a>
+        <a
+          href="https://testnet.timelock.trade/"
+          className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
+        >
+          Dashboard
+        </a>
+        <a
+          href="http://docs.timelock.trade/"
+          className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
+        >
+          Docs
+        </a>
+      </nav>
+
+      {/* Mobile Menu Button */}
+      <button
+        className="lg:hidden p-2 text-white hover:text-white/80 transition-colors"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label="Toggle mobile menu"
+      >
+        {isMobileMenuOpen ? (
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        ) : (
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        )}
       </button>
-    </a>
-  </header>
-);
+
+      {/* Launch App Button */}
+      <a href="https://testnet.timelock.trade" className="hidden lg:block">
+        <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] hover:bg-white/90 transition-colors">
+          Launch App
+        </button>
+      </a>
+
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-sm border-t border-white/10 z-50">
+          <nav className="flex flex-col p-4 space-y-4">
+            <a
+              href="https://testnet.timelock.trade"
+              className="px-4 py-3 text-white font-manrope text-base font-normal hover:text-white/80 transition-colors border-b border-white/10"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Trade
+            </a>
+            <a
+              href="https://testnet.timelock.trade/"
+              className="px-4 py-3 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors border-b border-white/10"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Earn
+            </a>
+            <a
+              href="https://testnet.timelock.trade/"
+              className="px-4 py-3 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors border-b border-white/10"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Dashboard
+            </a>
+            <a
+              href="http://docs.timelock.trade/"
+              className="px-4 py-3 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors border-b border-white/10"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Docs
+            </a>
+            <a
+              href="https://testnet.timelock.trade"
+              className="mx-4 mt-4"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <button className="w-full bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[10px] rounded-[10px] hover:bg-white/90 transition-colors">
+                Launch App
+              </button>
+            </a>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+};
 
 // Hero Section Component
 const HeroSection = () => (
   <section
-    className="relative min-h-screen flex flex-col items-center justify-center px-4 lg:px-0"
+    className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-0 py-20 sm:py-32"
     style={{
       background: `radial-gradient(50% 50% at 50% 50%, rgba(123, 111, 111, 0.20) 0%, rgba(12, 12, 12, 0.20) 100%), #000`,
     }}
   >
-    <div className="flex flex-col items-center gap-10 max-w-[909px] w-full text-center">
+    <div className="flex flex-col items-center gap-6 sm:gap-8 lg:gap-10 max-w-[909px] w-full text-center">
       {/* Testnet Live Badge */}
-      <div className="inline-flex items-center px-[18px] py-2 rounded-[12px] border border-[#282324] bg-black/50 backdrop-blur-sm">
+      <div className="inline-flex items-center px-4 sm:px-[18px] py-2 rounded-[12px] border border-[#282324] bg-black/50 backdrop-blur-sm">
         <span className="text-white font-normal text-[13px] font-manrope leading-[158.7%] tracking-[-0.39px]">
           Testnet Live
         </span>
       </div>
 
       {/* Main Heading */}
-      <h1 className="text-white font-manrope text-4xl md:text-5xl lg:text-[66px] font-normal leading-[126.7%] tracking-[-1.98px] max-w-full">
+      <h1 className="text-white font-manrope text-3xl sm:text-4xl md:text-5xl lg:text-[66px] font-normal leading-[120%] sm:leading-[126.7%] tracking-[-1.5px] sm:tracking-[-1.98px] max-w-full px-2 sm:px-0">
         Unlocking Leverage without Liquidations
       </h1>
 
       {/* Subheading */}
-      <p className="text-white/70 font-manrope text-lg font-normal leading-[20px] max-w-full">
+      <p className="text-white/70 font-manrope text-base sm:text-lg font-normal leading-[22px] sm:leading-[20px] max-w-full px-2 sm:px-0">
         Powered by Uniswap V3 liquidity. Designed for DeFi traders and LPs.
       </p>
 
       {/* CTA Buttons */}
-      <div className="flex items-center gap-3 flex-wrap justify-center">
-        <a href="https://testnet.timelock.trade">
-          <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] min-w-[140px] hover:bg-white/90 transition-colors">
+      <div className="flex flex-col sm:flex-row items-center gap-3 justify-center w-full max-w-sm sm:max-w-none">
+        <a href="https://testnet.timelock.trade" className="w-full sm:w-auto">
+          <button className="w-full sm:w-auto bg-white text-black font-manrope text-[15px] font-bold px-6 sm:px-[15px] py-3 sm:py-[7.5px] rounded-[10px] min-w-[140px] hover:bg-white/90 transition-colors">
             Trade
           </button>
         </a>
-        <button className="border border-[#282324] bg-black/50 backdrop-blur-sm text-white font-manrope text-[15px] font-bold px-[15px] py-[7px] rounded-[12px] min-w-[140px] hover:bg-black/70 transition-colors">
+        <button className="w-full sm:w-auto border border-[#282324] bg-black/50 backdrop-blur-sm text-white font-manrope text-[15px] font-bold px-6 sm:px-[15px] py-3 sm:py-[7px] rounded-[12px] min-w-[140px] hover:bg-black/70 transition-colors">
           Earn
         </button>
       </div>
 
       {/* Stats Section */}
-      <div className="relative w-full max-w-[768px] mt-16">
+      <div className="relative w-full max-w-[768px] mt-12 sm:mt-16">
         {/* Horizontal Divider */}
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#444] to-transparent mb-16"></div>
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#444] to-transparent mb-12 sm:mb-16"></div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center">
           <div>
-            <div className="text-white font-manrope text-2xl lg:text-[30px] font-bold leading-[36px] mb-2">
+            <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
               $245M+
             </div>
-            <div className="text-white/70 font-manrope text-sm font-normal leading-[20px]">
+            <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
               TOTAL VOLUME
             </div>
           </div>
           <div>
-            <div className="text-white font-manrope text-2xl lg:text-[30px] font-bold leading-[36px] mb-2">
+            <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
               $42M+
             </div>
-            <div className="text-white/70 font-manrope text-sm font-normal leading-[20px]">
+            <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
               TVL
             </div>
           </div>
           <div>
-            <div className="text-white font-manrope text-2xl lg:text-[30px] font-bold leading-[36px] mb-2">
+            <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
               15K+
             </div>
-            <div className="text-white/70 font-manrope text-sm font-normal leading-[20px]">
+            <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
               TOTAL USERS
             </div>
           </div>
           <div>
-            <div className="text-white font-manrope text-2xl lg:text-[30px] font-bold leading-[36px] mb-2">
+            <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
               ZERO
             </div>
-            <div className="text-white/70 font-manrope text-sm font-normal leading-[20px]">
+            <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
               LIQUIDATIONS
             </div>
           </div>
@@ -205,16 +274,16 @@ const EcosystemSection = () => {
 
   return (
     <section
-      className="w-full py-32 px-4 lg:px-52"
+      className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 xl:px-52"
       style={{
         background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
       }}
     >
-      <div className="text-center mb-20">
-        <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
+      <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+        <h2 className="text-white font-manrope text-2xl sm:text-3xl lg:text-[48px] font-normal leading-[32px] sm:leading-[40px] lg:leading-[48px] mb-4 sm:mb-6 px-2 sm:px-0">
           Timelock Protocol Ecosystem
         </h2>
-        <p className="text-white/70 font-manrope text-lg font-normal leading-[20px] max-w-3xl mx-auto">
+        <p className="text-white/70 font-manrope text-base sm:text-lg font-normal leading-[22px] sm:leading-[20px] max-w-3xl mx-auto px-2 sm:px-0">
           Timelock Trade is one pillar of our DeFi suite. Explore the family of
           Timelock products
         </p>
@@ -289,16 +358,16 @@ const TradersSection = () => {
 
   return (
     <section
-      className="w-full py-32 px-4 lg:px-52"
+      className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 xl:px-52"
       style={{
         background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
       }}
     >
-      <div className="text-center mb-16">
-        <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
+      <div className="text-center mb-12 sm:mb-16">
+        <h2 className="text-white font-manrope text-2xl sm:text-3xl lg:text-[48px] font-normal leading-[32px] sm:leading-[40px] lg:leading-[48px] mb-4 sm:mb-6 px-2 sm:px-0">
           Trade Without Fear
         </h2>
-        <p className="text-white/70 font-manrope text-lg font-normal leading-[20px]">
+        <p className="text-white/70 font-manrope text-base sm:text-lg font-normal leading-[22px] sm:leading-[20px] px-2 sm:px-0">
           Designed for traders who want maximum upside without liquidation risk
         </p>
       </div>
@@ -332,24 +401,24 @@ const TradersSection = () => {
 // Enhanced Yields Section
 const EnhancedYieldsSection = () => (
   <section
-    className="w-full py-32 px-4 lg:px-52"
+    className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 xl:px-52"
     style={{
       background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
     }}
   >
-    <div className="text-center mb-16">
-      <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
+    <div className="text-center mb-12 sm:mb-16">
+      <h2 className="text-white font-manrope text-2xl sm:text-3xl lg:text-[48px] font-normal leading-[32px] sm:leading-[40px] lg:leading-[48px] mb-4 sm:mb-6 px-2 sm:px-0">
         Enhanced Yields, Zero Additional Risk
       </h2>
-      <p className="text-white/70 font-manrope text-lg font-normal leading-[20px]">
+      <p className="text-white/70 font-manrope text-base sm:text-lg font-normal leading-[22px] sm:leading-[20px] px-2 sm:px-0">
         Earn superior returns while maintaining the same risk profile as standard Uniswap V3 positions.
       </p>
     </div>
 
-    <div className="max-w-[1216px] mx-auto space-y-12">
+    <div className="max-w-[1216px] mx-auto space-y-8 sm:space-y-12">
       <div>
-        <h3 className="text-white font-manrope text-xl font-semibold mb-6">Three Revenue Streams</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <h3 className="text-white font-manrope text-lg sm:text-xl font-semibold mb-4 sm:mb-6 px-2 sm:px-0">Three Revenue Streams</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {[
             {
               pct: "70%",
@@ -369,19 +438,19 @@ const EnhancedYieldsSection = () => (
           ].map((r, i) => (
             <div
               key={i}
-              className="rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all"
+              className="rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm p-4 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all"
             >
-              <div className="text-white font-manrope text-4xl font-bold mb-2">{r.pct}</div>
-              <div className="text-white font-manrope text-base font-medium">{r.title}</div>
-              <div className="text-white/60 font-manrope text-sm">{r.desc}</div>
+              <div className="text-white font-manrope text-3xl sm:text-4xl font-bold mb-2">{r.pct}</div>
+              <div className="text-white font-manrope text-sm sm:text-base font-medium">{r.title}</div>
+              <div className="text-white/60 font-manrope text-xs sm:text-sm">{r.desc}</div>
             </div>
           ))}
         </div>
       </div>
 
       <div>
-        <h3 className="text-white font-manrope text-xl font-semibold mb-6">Target Yields</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <h3 className="text-white font-manrope text-lg sm:text-xl font-semibold mb-4 sm:mb-6 px-2 sm:px-0">Target Yields</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {[
             { label: "Conservative Vaults", range: "15-25% APY", tone: "Minimal risk" },
             { label: "Balanced Vaults", range: "25-35% APY", tone: "Moderate risk" },
@@ -389,11 +458,11 @@ const EnhancedYieldsSection = () => (
           ].map((y, i) => (
             <div
               key={i}
-              className="rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm p-6"
+              className="rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm p-4 sm:p-6"
             >
-              <div className="text-white font-manrope text-base font-medium mb-1">{y.label}</div>
-              <div className="text-white font-manrope text-2xl font-bold">{y.range}</div>
-              <div className="text-white/60 font-manrope text-sm">{y.tone}</div>
+              <div className="text-white font-manrope text-sm sm:text-base font-medium mb-1">{y.label}</div>
+              <div className="text-white font-manrope text-xl sm:text-2xl font-bold">{y.range}</div>
+              <div className="text-white/60 font-manrope text-xs sm:text-sm">{y.tone}</div>
             </div>
           ))}
         </div>
