@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+Sitemap: https://timelock.trade/sitemap.xml
+Sitemap: https://testnet.timelock.trade/sitemap.xml

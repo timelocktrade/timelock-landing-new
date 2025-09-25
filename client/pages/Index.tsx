@@ -1,15 +1,24 @@
 import { cn } from "@/lib/utils";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 // Logo Component
 const TimeLockLogo = () => (
   <div className="flex items-center">
     <svg
+      role="img"
+      aria-label="TimeLock logo"
       width="189"
       height="30"
       viewBox="0 0 189 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
+      <title>TimeLock</title>
       <text
         fill="#F0F0F0"
         style={{ whiteSpace: "pre" }}
@@ -161,42 +170,36 @@ const EcosystemSection = () => {
       title: "Timelock Trade",
       description:
         "Revolutionary leverage trading without liquidation risk. Trade with up to 1000x leverage using tick liquidity borrowing.",
-      image: "/placeholder.svg",
     },
     {
       id: "2",
       title: "Timelock Perps",
       description:
         "Industry-first perpetual contracts without liquidations. Experience true DeFi trading with unlimited downside protection.",
-      image: "/placeholder.svg",
     },
     {
       id: "3",
       title: "Timelock Options",
       description:
         "Custom-strike and expiry options on any ERC20 token. Advanced derivatives trading with full customization.",
-      image: "/placeholder.svg",
     },
     {
       id: "4",
       title: "Timelock Swap",
       description:
         "UniV3-style AMM with enhanced LP vaults and premium collection. Maximize your liquidity provision returns.",
-      image: "/placeholder.svg",
     },
     {
       id: "5",
       title: "Timelock Meme",
       description:
         "Long and short memecoins with sophisticated risk management and leverage capabilities.",
-      image: "/placeholder.svg",
     },
     {
       id: "6",
       title: "Timelock USD",
       description:
         "UniV3-style AMM with enhanced LP vaults and premium collection. Maximize your liquidity provision returns.",
-      image: "/placeholder.svg",
     },
   ];
 
@@ -218,50 +221,107 @@ const EcosystemSection = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-[1216px] mx-auto">
-        {ecosystemItems.map((item, index) => (
+        {ecosystemItems.map((item) => (
           <div
             key={item.id}
-            className="group relative h-[447px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
+            className="group relative h-full min-h-[220px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
             style={{ willChange: "transform, opacity" }}
           >
-            {/* Soft sheen */}
-            <div className="pointer-events-none absolute inset-0 z-0 before:absolute before:inset-0 before:content-[''] before:bg-gradient-to-b before:from-white/5 before:to-transparent"></div>
-            {/* Gradient Overlay */}
-            <div
-              className={cn(
-                "absolute top-0 w-full h-[252px] opacity-60 z-0",
-                index % 2 === 0
-                  ? "bg-gradient-radial from-white/10 via-transparent to-transparent"
-                  : "bg-gradient-radial from-white/10 via-transparent to-transparent",
-              )}
-            ></div>
-
-            {/* Number Badge */}
-            <div className="absolute top-6 left-6 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center z-10">
-              <span className="text-white font-k2d text-base font-medium">
-                {item.id}
-              </span>
-            </div>
-
-            {/* Content */}
-            <div className="absolute top-6 left-[68px] right-6 z-10">
-              <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-4">
+            <div className="absolute top-0 left-0 right-0 h-32 opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent z-0" />
+            <div className="relative z-10">
+              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mb-4">
+                <span className="text-white font-k2d text-base font-medium">{item.id}</span>
+              </div>
+              <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-3">
                 {item.title}
               </h3>
-              <p className="text-white/60 font-manrope text-sm font-normal leading-normal max-w-[440px]">
+              <p className="text-white/60 font-manrope text-sm leading-normal">
                 {item.description}
               </p>
             </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
-            {/* Image */}
-            {item.image && (
-              <img
-                src={item.image || "/placeholder.svg"}
-                alt={item.title}
-                loading="lazy"
-                className="absolute bottom-6 right-7 w-[480px] h-[300px] object-cover rounded-md border border-white/5 shadow-2xl shadow-black/50 opacity-90 group-hover:opacity-100 transition-opacity z-[1]"
-              />
-            )}
+// Traders Section
+const TradersSection = () => {
+  const features = [
+    {
+      title: "No Liquidation Risk",
+      description:
+        "Your positions stay open for the full duration. Maximum loss = premium paid upfront.",
+      id: "1",
+    },
+    {
+      title: "Up to 1000x Leverage",
+      description:
+        "Access unprecedented leverage through our idle tick borrowing mechanism.",
+      id: "2",
+    },
+    {
+      title: "Fixed Premiums",
+      description:
+        "One-time upfront payment. No variable funding rates or surprise costs.",
+      id: "3",
+    },
+    {
+      title: "Any ERC20 Token",
+      description:
+        "Trade any token with a Uniswap V3 pool. Universal market access from day 0.",
+      id: "4",
+    },
+    {
+      title: "Real Asset Exposure",
+      description:
+        "Direct ownership via escrow—not synthetic contracts or IOUs.",
+      id: "5",
+    },
+    {
+      title: "Custom Duration",
+      description:
+        "Choose any timeframe: minutes, hours, days, or weeks.",
+      id: "6",
+    },
+  ];
+
+  return (
+    <section
+      className="w-full py-32 px-4 lg:px-52"
+      style={{
+        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
+      }}
+    >
+      <div className="text-center mb-16">
+        <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
+          Trade Without Fear
+        </h2>
+        <p className="text-white/70 font-manrope text-lg font-normal leading-[20px]">
+          Designed for traders who want maximum upside without liquidation risk
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1216px] mx-auto">
+        {features.map((item) => (
+          <div
+            key={item.id}
+            className="group relative h-full min-h-[220px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
+            style={{ willChange: "transform, opacity" }}
+          >
+            <div className="absolute top-0 left-0 right-0 h-32 opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent z-0" />
+            <div className="relative z-10">
+              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mb-4">
+                <span className="text-white font-k2d text-base font-medium">{item.id}</span>
+              </div>
+              <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-3">
+                {item.title}
+              </h3>
+              <p className="text-white/60 font-manrope text-sm leading-normal">
+                {item.description}
+              </p>
+            </div>
           </div>
         ))}
       </div>
@@ -277,70 +337,73 @@ const EnhancedYieldsSection = () => (
       background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
     }}
   >
-    <div className="text-center mb-20">
+    <div className="text-center mb-16">
       <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
         Enhanced Yields, Zero Additional Risk
       </h2>
       <p className="text-white/70 font-manrope text-lg font-normal leading-[20px]">
-        Earn superior returns with no extra risk vs. standard UniV3.
+        Earn superior returns while maintaining the same risk profile as standard Uniswap V3 positions.
       </p>
     </div>
 
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-[1216px] mx-auto">
-      {[
-        {
-          id: "5",
-          title: "Timelock Meme",
-          description:
-            "Long and short memecoins with sophisticated risk management and leverage capabilities.",
-          image: "/placeholder.svg",
-        },
-        {
-          id: "6",
-          title: "Timelock USD",
-          description:
-            "UniV3-style AMM with enhanced LP vaults and premium collection. Maximize your liquidity provision returns.",
-          image: "/placeholder.svg",
-        },
-      ].map((item) => (
-        <div
-          key={item.id}
-          className="group relative h-[447px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
-          style={{ willChange: "transform, opacity" }}
-        >
-          {/* Soft sheen */}
-          <div className="pointer-events-none absolute inset-0 z-0 before:absolute before:inset-0 before:content-[''] before:bg-gradient-to-b before:from-white/5 before:to-transparent"></div>
-          {/* Gradient Overlay */}
-          <div className="absolute top-0 w-full h-[252px] opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent z-0"></div>
-
-          {/* Number Badge */}
-          <div className="absolute top-6 left-6 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center z-10">
-            <span className="text-white font-k2d text-base font-medium">
-              {item.id}
-            </span>
-          </div>
-
-          {/* Content */}
-          <div className="absolute top-6 left-[68px] right-6 z-10">
-            <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-4">
-              {item.title}
-            </h3>
-            <p className="text-white/60 font-manrope text-sm font-normal leading-normal max-w-[440px]">
-              {item.description}
-            </p>
-          </div>
-
-          {/* Image */}
-          {item.image && (
-            <img
-              src={item.image}
-              alt={item.title}
-              loading="lazy"
-              className="absolute bottom-6 right-7 w-[480px] h-[300px] object-cover rounded-md border border-white/5 shadow-2xl shadow-black/50 opacity-90 group-hover:opacity-100 transition-opacity z-[1]"
-            />
-          )}
+    <div className="max-w-[1216px] mx-auto space-y-12">
+      <div>
+        <h3 className="text-white font-manrope text-xl font-semibold mb-6">Three Revenue Streams</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              pct: "70%",
+              title: "Trader Premiums",
+              desc: "Primary income from upfront fees",
+            },
+            {
+              pct: "20%",
+              title: "Uniswap Fees",
+              desc: "Auto-compounded swap fees",
+            },
+            {
+              pct: "10%",
+              title: "Yield Optimization",
+              desc: "Strategic rebalancing returns",
+            },
+          ].map((r, i) => (
+            <div
+              key={i}
+              className="rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all"
+            >
+              <div className="text-white font-manrope text-4xl font-bold mb-2">{r.pct}</div>
+              <div className="text-white font-manrope text-base font-medium">{r.title}</div>
+              <div className="text-white/60 font-manrope text-sm">{r.desc}</div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
+
+      <div>
+        <h3 className="text-white font-manrope text-xl font-semibold mb-6">Target Yields</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { label: "Conservative Vaults", range: "15-25% APY", tone: "Minimal risk" },
+            { label: "Balanced Vaults", range: "25-35% APY", tone: "Moderate risk" },
+            { label: "Aggressive Vaults", range: "35-50% APY", tone: "Higher risk" },
+          ].map((y, i) => (
+            <div
+              key={i}
+              className="rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm p-6"
+            >
+              <div className="text-white font-manrope text-base font-medium mb-1">{y.label}</div>
+              <div className="text-white font-manrope text-2xl font-bold">{y.range}</div>
+              <div className="text-white/60 font-manrope text-sm">{y.tone}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center">
+        <p className="text-white font-manrope text-base">
+          <span className="font-semibold">LP Protection Guarantee:</span> You're always made whole regardless of trader outcomes. Zero counterparty risk.
+        </p>
+      </div>
     </div>
   </section>
 );
@@ -369,54 +432,152 @@ const FutureSection = () => (
           title: "Risk-Neutral Optionality",
           description:
             "LPs on Timelock are not coucnterparty to trader PnLs and maintain their UniV3 payoffs",
-          image: "/placeholder.svg",
         },
         {
           id: "2",
           title: "1-Click Deposit",
           description:
             "1-click deposits, zero hassle—our strategy managers handle the heavy lifting for you. Deposit and forget",
-          image: "/placeholder.svg",
         },
       ].map((item) => (
         <div
           key={item.id}
-          className="group relative h-[447px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
+          className="group relative h-full min-h-[220px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
           style={{ willChange: "transform, opacity" }}
         >
-          {/* Soft sheen */}
-          <div className="pointer-events-none absolute inset-0 z-0 before:absolute before:inset-0 before:content-[''] before:bg-gradient-to-b before:from-white/5 before:to-transparent"></div>
-          {/* Gradient Overlay */}
-          <div className="absolute top-0 w-full h-[252px] opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent z-0"></div>
-
-          {/* Number Badge */}
-          <div className="absolute top-6 left-6 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center z-10">
-            <span className="text-white font-k2d text-base font-medium">
-              {item.id}
-            </span>
-          </div>
-
-          {/* Content */}
-          <div className="absolute top-6 left-[68px] right-6 z-10">
-            <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-4">
+          <div className="absolute top-0 left-0 right-0 h-32 opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent z-0" />
+          <div className="relative z-10">
+            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mb-4">
+              <span className="text-white font-k2d text-base font-medium">{item.id}</span>
+            </div>
+            <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-3">
               {item.title}
             </h3>
-            <p className="text-white/60 font-manrope text-sm font-normal leading-normal max-w-[440px]">
+            <p className="text-white/60 font-manrope text-sm leading-normal">
               {item.description}
             </p>
           </div>
-
-          {/* Image */}
-          {item.image && (
-            <img
-              src={item.image}
-              alt={item.title}
-              loading="lazy"
-              className="absolute bottom-6 right-7 w-[480px] h-[300px] object-cover rounded-md border border-white/5 shadow-2xl shadow-black/50 opacity-90 group-hover:opacity-100 transition-opacity z-[1]"
-            />
-          )}
         </div>
       ))}
+    </div>
+  </section>
+);
+
+// Builders Section
+const BuildersSection = () => (
+  <section
+    className="w-full py-32 px-4 lg:px-52"
+    style={{
+      background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
+    }}
+  >
+    <div className="text-center mb-16">
+      <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
+        Build With Us
+      </h2>
+      <p className="text-white/70 font-manrope text-lg font-normal leading-[20px] max-w-3xl mx-auto">
+        Launch your own trading frontend using Timelock's infrastructure.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[1216px] mx-auto">
+      <div className="space-y-6">
+        <h3 className="text-white font-manrope text-xl font-semibold">For Builders:</h3>
+        <ul className="space-y-3 text-white/80 font-manrope text-base list-disc list-inside">
+          <li>Access to our liquidation-free mechanism</li>
+          <li>Revenue sharing on trading fees</li>
+          <li>No infrastructure burden</li>
+          <li>Custom UI/UX for your audience</li>
+        </ul>
+      </div>
+      <div className="space-y-6">
+        <h3 className="text-white font-manrope text-xl font-semibold">Active Partners:</h3>
+        <div className="space-y-3">
+          {[
+            { name: "Gemoon", desc: "Day-0 memecoin leverage trading" },
+            { name: "Pinot DEX", desc: "Native vault integration" },
+            { name: "Streamswap", desc: "Derivatives for streamed tokens" },
+          ].map((p, i) => (
+            <div key={i} className="rounded-lg border border-[#191919] bg-black/30 p-4">
+              <div className="text-white font-manrope font-medium">{p.name}</div>
+              <div className="text-white/60 font-manrope text-sm">{p.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// FAQ Section
+const FAQSection = () => (
+  <section
+    className="w-full py-32 px-4 lg:px-52"
+    style={{
+      background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.06) 100%), #000`,
+    }}
+  >
+    <div className="text-center mb-10">
+      <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
+        Frequently Asked Questions
+      </h2>
+    </div>
+
+    <div className="max-w-3xl mx-auto border border-white/10 rounded-xl bg-black/30 backdrop-blur-sm p-4">
+      <Accordion type="single" collapsible className="w-full" defaultValue="item-1">
+        <AccordionItem value="item-1">
+          <AccordionTrigger className="text-left text-white font-manrope">
+            How is liquidation impossible?
+          </AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-4 text-balance text-white/80 font-manrope">
+            <p>
+              We borrow assets from Uniswap V3 ticks and hold them in escrow. Your
+              maximum loss is always the premium paid—never more.
+            </p>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger className="text-left text-white font-manrope">
+            What tokens can I trade?
+          </AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-4 text-balance text-white/80 font-manrope">
+            <p>
+              Any ERC20 token with a Uniswap V3 pool. No restrictions or whitelists.
+            </p>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-3">
+          <AccordionTrigger className="text-left text-white font-manrope">
+            How do LPs make money if I can't lose?
+          </AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-4 text-balance text-white/80 font-manrope">
+            <p>
+              LPs earn your premium payments plus Uniswap fees. They're never exposed to your
+              trading outcomes.
+            </p>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-4">
+          <AccordionTrigger className="text-left text-white font-manrope">
+            What leverage can I get?
+          </AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-4 text-balance text-white/80 font-manrope">
+            <p>
+              Up to 1000x effective leverage depending on the token and market conditions.
+            </p>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-5">
+          <AccordionTrigger className="text-left text-white font-manrope">
+            Can I close positions early?
+          </AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-4 text-balance text-white/80 font-manrope">
+            <p>
+              Yes, you can close positions anytime before expiry.
+            </p>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </div>
   </section>
 );
@@ -439,13 +600,12 @@ const PartnershipsSection = () => (
     </div>
 
     <div className="flex flex-wrap justify-center items-center gap-6">
-      {/* Partner logos would go here - using placeholder divs for the design */}
-      {[1, 2, 3, 4].map((i) => (
+      {["Gemoon", "Pinot DEX", "Streamswap"].map((name, i) => (
         <div
           key={i}
           className="px-6 py-4 border border-[#282324] bg-black/50 backdrop-blur-sm rounded"
         >
-          <div className="w-32 h-6 bg-white/20 rounded"></div>
+          <div className="text-white/80 font-manrope text-sm">{name}</div>
         </div>
       ))}
     </div>
@@ -495,12 +655,15 @@ const Footer = () => (
         <div className="lg:col-span-1">
           <div className="mb-5">
             <svg
+              role="img"
+              aria-label="TimeLock logo"
               width="165"
               height="27"
               viewBox="0 0 165 27"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
+              <title>TimeLock</title>
               <text
                 fill="#F0F0F0"
                 style={{ whiteSpace: "pre" }}
@@ -660,9 +823,12 @@ export default function Index() {
       <Header />
       <HeroSection />
       <EcosystemSection />
+      <TradersSection />
       <EnhancedYieldsSection />
       <FutureSection />
+      <BuildersSection />
       <PartnershipsSection />
+      <FAQSection />
       <FinalCTASection />
       <Footer />
     </div>
