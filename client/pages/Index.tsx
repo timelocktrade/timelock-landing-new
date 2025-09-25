@@ -53,24 +53,32 @@ const Header = () => {
       <nav className="hidden lg:flex items-center gap-3">
         <a
           href="https://testnet.timelock.trade"
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-2 py-1.5 text-white font-manrope text-base font-normal hover:text-white/80 transition-colors"
         >
           Trade
         </a>
         <a
           href="https://testnet.timelock.trade/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
         >
           Earn
         </a>
         <a
           href="https://testnet.timelock.trade/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
         >
           Dashboard
         </a>
         <a
-          href="http://docs.timelock.trade/"
+          href="https://docs.timelock.trade/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
         >
           Docs
@@ -95,7 +103,7 @@ const Header = () => {
       </button>
 
       {/* Launch App Button */}
-      <a href="https://testnet.timelock.trade" className="hidden lg:block">
+      <a href="https://testnet.timelock.trade" target="_blank" rel="noopener noreferrer" className="hidden lg:block">
         <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] hover:bg-white/90 transition-colors">
           Launch App
         </button>
@@ -107,6 +115,8 @@ const Header = () => {
           <nav className="flex flex-col p-4 space-y-4">
             <a
               href="https://testnet.timelock.trade"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-3 text-white font-manrope text-base font-normal hover:text-white/80 transition-colors border-b border-white/10"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -114,6 +124,8 @@ const Header = () => {
             </a>
             <a
               href="https://testnet.timelock.trade/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-3 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors border-b border-white/10"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -121,13 +133,17 @@ const Header = () => {
             </a>
             <a
               href="https://testnet.timelock.trade/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-3 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors border-b border-white/10"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Dashboard
             </a>
             <a
-              href="http://docs.timelock.trade/"
+              href="https://docs.timelock.trade/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-3 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors border-b border-white/10"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -135,6 +151,8 @@ const Header = () => {
             </a>
             <a
               href="https://testnet.timelock.trade"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mx-4 mt-4"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -177,7 +195,7 @@ const HeroSection = () => (
 
       {/* CTA Buttons */}
       <div className="flex flex-col sm:flex-row items-center gap-3 justify-center w-full max-w-sm sm:max-w-none">
-        <a href="https://testnet.timelock.trade" className="w-full sm:w-auto">
+        <a href="https://testnet.timelock.trade" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
           <button className="w-full sm:w-auto bg-white text-black font-manrope text-[15px] font-bold px-6 sm:px-[15px] py-3 sm:py-[7.5px] rounded-[10px] min-w-[140px] hover:bg-white/90 transition-colors">
             Trade
           </button>
@@ -284,7 +302,7 @@ const EcosystemSection = () => {
           Timelock Protocol Ecosystem
         </h2>
         <p className="text-white/70 font-manrope text-base sm:text-lg font-normal leading-[22px] sm:leading-[20px] max-w-3xl mx-auto px-2 sm:px-0">
-        One Engine. All Derivatives. No Liquidations. Entire Defi Suite.
+          One Engine. All Derivatives. No Liquidations. Entire Defi Suite.
         </p>
       </div>
 
@@ -407,7 +425,7 @@ const EnhancedYieldsSection = () => (
   >
     <div className="text-center mb-12 sm:mb-16">
       <h2 className="text-white font-manrope text-2xl sm:text-3xl lg:text-[48px] font-normal leading-[32px] sm:leading-[40px] lg:leading-[48px] mb-4 sm:mb-6 px-2 sm:px-0">
-      The Future of Liquidity Provision
+        The Future of Liquidity Provision
       </h2>
       <p className="text-white/70 font-manrope text-base sm:text-lg font-normal leading-[22px] sm:leading-[20px] px-2 sm:px-0">
         Earn superior returns while maintaining the same risk profile as standard Uniswap V3 positions.
@@ -522,8 +540,7 @@ const FAQSection = () => (
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-4 text-balance text-white/80 font-manrope">
             <p>
-              We borrow assets from Uniswap V3 ticks and hold them in escrow. Your
-              maximum loss is always the premium paid—never more.
+              Timelock borrows liquidity from out-of-range Uniswap V3 ticks and escrows assets so every position is fully collateralized from the start. Instead of margin calls or forced sales, your only risk is the fixed premium you pay upfront, your trade cannot be liquidated, no matter how much price moves against you. The maximum you can lose is predetermined, so liquidation, as seen in traditional leverage protocols, is mathematically impossible.
             </p>
           </AccordionContent>
         </AccordionItem>
@@ -533,7 +550,7 @@ const FAQSection = () => (
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-4 text-balance text-white/80 font-manrope">
             <p>
-              Any ERC20 token with a Uniswap V3 pool. No restrictions or whitelists.
+              You can trade any ERC20 token that has a Uniswap V3 pool on Timelock. There are no allowlists or restrictions. This means you get access to leverage and non-liquidatable trades on all major tokens, new launches, and even long-tail assets and memecoins, right from the first block.
             </p>
           </AccordionContent>
         </AccordionItem>
@@ -543,8 +560,7 @@ const FAQSection = () => (
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-4 text-balance text-white/80 font-manrope">
             <p>
-              LPs earn your premium payments plus Uniswap fees. They're never exposed to your
-              trading outcomes.
+              Liquidity providers (LPs) earn the fixed premium that every trader pays up front for their position, plus their share of Uniswap swap fees. Because positions are fully collateralized and losses are capped for traders, LPs are never exposed to trader downside, only to premium collection and normal AMM rewards. LPs’ capital is always protected and yield is generated sustainably.
             </p>
           </AccordionContent>
         </AccordionItem>
@@ -554,7 +570,7 @@ const FAQSection = () => (
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-4 text-balance text-white/80 font-manrope">
             <p>
-              Up to 1000x effective leverage depending on the token and market conditions.
+              You can access up to 1000x leverage, depending on the token and pool liquidity. Leverage is made possible by the protocol’s idle tick borrowing mechanism, with no risk of liquidation and no hidden variable funding rates, just a fixed upfront fee and clear, customisable position duration.
             </p>
           </AccordionContent>
         </AccordionItem>
@@ -564,7 +580,7 @@ const FAQSection = () => (
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-4 text-balance text-white/80 font-manrope">
             <p>
-              Yes, you can close positions anytime before expiry.
+              Yes. You can close your position at any time before its scheduled expiry. Your profit (or remaining capital after funding fees) will be settled instantly, and any unaccrued premium is automatically returned per protocol mechanics.
             </p>
           </AccordionContent>
         </AccordionItem>
@@ -635,9 +651,11 @@ const FinalCTASection = () => (
       </p>
 
       <div className="flex items-center gap-3 justify-center flex-wrap">
-        <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] min-w-[140px] hover:bg-white/90 transition-colors">
-          Trade
-        </button>
+        <a href="https://testnet.timelock.trade" target="_blank" rel="noopener noreferrer">
+          <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] min-w-[140px] hover:bg-white/90 transition-colors">
+            Trade
+          </button>
+        </a>
         <button className="border border-[#282324] bg-black/50 backdrop-blur-sm text-white font-manrope text-[15px] font-bold px-[15px] py-[7px] rounded-[12px] min-w-[140px] hover:bg-black/70 transition-colors">
           Earn
         </button>
@@ -699,18 +717,24 @@ const Footer = () => (
           <div className="space-y-3">
             <a
               href="https://testnet.timelock.trade"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block text-white/60 font-manrope text-sm leading-[20px] hover:text-white transition-colors"
             >
               Trade
             </a>
             <a
               href="https://testnet.timelock.trade/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block text-white/60 font-manrope text-sm leading-[20px] hover:text-white transition-colors"
             >
               Earn
             </a>
             <a
               href="https://testnet.timelock.trade/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block text-white/60 font-manrope text-sm leading-[20px] hover:text-white transition-colors"
             >
               Dashboard
@@ -725,7 +749,9 @@ const Footer = () => (
           </h3>
           <div className="space-y-3">
             <a
-              href="http://docs.timelock.trade/"
+              href="https://docs.timelock.trade/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block text-white/60 font-manrope text-sm leading-[20px] hover:text-white transition-colors"
             >
               Docs
@@ -742,6 +768,8 @@ const Footer = () => (
             {/* Twitter */}
             <a
               href="https://x.com/Timelock_Trade"
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-2 rounded-lg bg-gradient-to-br from-white/8 to-white/5 hover:from-white/12 hover:to-white/8 transition-all"
             >
               <svg
@@ -762,7 +790,9 @@ const Footer = () => (
             </a>
             {/* Discord */}
             <a
-              href="#"
+              href="https://discord.gg/JtRgyXC7"
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-2 rounded-lg bg-gradient-to-br from-white/8 to-white/5 hover:from-white/12 hover:to-white/8 transition-all"
             >
               <svg
@@ -785,7 +815,9 @@ const Footer = () => (
             </a>
             {/* Telegram */}
             <a
-              href="https://t.me/vedant_fav"
+              href="https://t.me/charandeep_kapoor"
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-2 rounded-lg bg-gradient-to-br from-white/8 to-white/5 hover:from-white/12 hover:to-white/8 transition-all"
             >
               <svg
