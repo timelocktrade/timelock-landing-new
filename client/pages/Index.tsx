@@ -284,12 +284,11 @@ const EcosystemSection = () => {
           Timelock Protocol Ecosystem
         </h2>
         <p className="text-white/70 font-manrope text-base sm:text-lg font-normal leading-[22px] sm:leading-[20px] max-w-3xl mx-auto px-2 sm:px-0">
-          Timelock Trade is one pillar of our DeFi suite. Explore the family of
-          Timelock products
+        One Engine. All Derivatives. No Liquidations. Entire Defi Suite.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-[1216px] mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {ecosystemItems.map((item) => (
           <div
             key={item.id}
