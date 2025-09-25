@@ -174,10 +174,11 @@ const HeroSection = () => (
     style={{
       background: `radial-gradient(50% 50% at 50% 50%, rgba(123, 111, 111, 0.20) 0%, rgba(12, 12, 12, 0.20) 100%), #000`,
     }}
+    aria-labelledby="hero-heading"
   >
     <div className="flex flex-col items-center gap-6 sm:gap-8 lg:gap-10 max-w-[909px] w-full text-center">
       {/* Testnet Live Badge */}
-      <div className="inline-flex items-center px-4 sm:px-[18px] py-2 rounded-[12px] border border-[#282324] bg-black/50 backdrop-blur-sm">
+      <div className="inline-flex items-center px-4 sm:px-[18px] py-2 rounded-[12px] border border-[#282324] bg-black/50 backdrop-blur-sm" role="status" aria-label="Testnet status">
         <span className="text-white font-normal text-[13px] font-manrope leading-[158.7%] tracking-[-0.39px]">
           Testnet Live
         </span>
@@ -206,12 +207,12 @@ const HeroSection = () => (
       </div>
 
       {/* Stats Section */}
-      <div className="relative w-full max-w-[768px] mt-12 sm:mt-16">
+      <div className="relative w-full max-w-[768px] mt-12 sm:mt-16" role="region" aria-label="Protocol statistics">
         {/* Horizontal Divider */}
         <div className="w-full h-px bg-gradient-to-r from-transparent via-[#444] to-transparent mb-12 sm:mb-16"></div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center">
-          <div>
+          <div role="img" aria-label="5 million plus total trading volume">
             <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
               $5M+
             </div>
@@ -219,7 +220,7 @@ const HeroSection = () => (
               TOTAL VOLUME
             </div>
           </div>
-          <div>
+          <div role="img" aria-label="2 million plus total value locked">
             <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
               $2M+
             </div>
@@ -227,7 +228,7 @@ const HeroSection = () => (
               TVL
             </div>
           </div>
-          <div>
+          <div role="img" aria-label="15 thousand plus total users">
             <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
               15K+
             </div>
@@ -235,7 +236,7 @@ const HeroSection = () => (
               TOTAL USERS
             </div>
           </div>
-          <div>
+          <div role="img" aria-label="Zero liquidations">
             <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
               ZERO
             </div>
@@ -296,6 +297,7 @@ const EcosystemSection = () => {
       style={{
         background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
       }}
+      aria-labelledby="ecosystem-heading"
     >
       <div className="text-center mb-12 sm:mb-16 lg:mb-20">
         <h2 className="text-white font-manrope text-2xl sm:text-3xl lg:text-[48px] font-normal leading-[32px] sm:leading-[40px] lg:leading-[48px] mb-4 sm:mb-6 px-2 sm:px-0">
@@ -379,6 +381,7 @@ const TradersSection = () => {
       style={{
         background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
       }}
+      aria-labelledby="traders-heading"
     >
       <div className="text-center mb-12 sm:mb-16">
         <h2 className="text-white font-manrope text-2xl sm:text-3xl lg:text-[48px] font-normal leading-[32px] sm:leading-[40px] lg:leading-[48px] mb-4 sm:mb-6 px-2 sm:px-0">
@@ -525,6 +528,7 @@ const FAQSection = () => (
     style={{
       background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.06) 100%), #000`,
     }}
+    aria-labelledby="faq-heading"
   >
     <div className="text-center mb-10">
       <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">

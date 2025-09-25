@@ -1,10 +1,15 @@
 {
-  "name": "TimeLock",
-  "short_name": "TimeLock",
+  "name": "Timelock Protocol - DeFi Leverage Trading",
+  "short_name": "Timelock",
+  "description": "DeFi leverage trading protocol enabling up to 1000x leverage without liquidation risk, powered by Uniswap V3 liquidity",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["finance", "business", "productivity"],
   "icons": [
     {
       "src": "/favicon.ico",
@@ -12,10 +17,24 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/placeholder.svg",
-      "sizes": "512x512",
+      "src": "/favicon.svg",
+      "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/placeholder.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ]
 }
