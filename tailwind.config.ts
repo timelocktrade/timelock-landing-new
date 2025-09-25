@@ -28,13 +28,13 @@ export default {
   				'Helvetica',
   				'sans-serif'
   			],
-  			basel: [
-  				'Basel Grotesk Trial',
-  				'-apple-system',
-  				'Roboto',
-  				'Helvetica',
-  				'sans-serif'
-  			]
+			basel: [
+				'Space Grotesk',
+				'-apple-system',
+				'Roboto',
+				'Helvetica',
+				'sans-serif'
+			]
   		},
   		colors: {
   			border: 'hsl(var(--border))',

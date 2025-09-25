@@ -20,6 +20,14 @@ const TimeLockLogo = () => (
       xmlns="http://www.w3.org/2000/svg"
     >
       <title>TimeLock</title>
+      <path
+        d="M13.0615 11.4797H6.34157V18.4919C6.63374 26.6435 14.7728 30.132 19.3067 29.9962V23.4589C14.3982 22.9037 13.0615 19.7009 13.0615 18.1566V11.4797Z"
+        fill="white"
+      />
+      <path
+        d="M0.250305 12.9944V5.83385C5.2578 5.51351 6.32607 1.81118 6.23426 6.10352e-05H13.0194C13.0194 8.5854 5.33973 12.9944 0.250305 12.9944Z"
+        fill="white"
+      />
       <text
         fill="#F0F0F0"
         style={{ whiteSpace: "pre" }}
@@ -29,14 +37,6 @@ const TimeLockLogo = () => (
           TIME LOCK
         </tspan>
       </text>
-      <path
-        d="M13.0615 11.4797H6.34157V18.4919C6.63374 26.6435 14.7728 30.132 19.3067 29.9962V23.4589C14.3982 22.9037 13.0615 19.7009 13.0615 18.1566V11.4797Z"
-        fill="white"
-      />
-      <path
-        d="M0.250305 12.9944V5.83385C5.2578 5.51351 6.32607 1.81118 6.23426 6.10352e-05H13.0194C13.0194 8.5854 5.33973 12.9944 0.250305 12.9944Z"
-        fill="white"
-      />
     </svg>
   </div>
 );
@@ -195,7 +195,7 @@ const HeroSection = () => (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center">
           <div>
             <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
-              $245M+
+              $5M+
             </div>
             <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
               TOTAL VOLUME
@@ -203,7 +203,7 @@ const HeroSection = () => (
           </div>
           <div>
             <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
-              $42M+
+              $2M+
             </div>
             <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
               TVL
@@ -732,6 +732,14 @@ const Footer = () => (
               xmlns="http://www.w3.org/2000/svg"
             >
               <title>TimeLock</title>
+              <path
+                d="M11.1868 10.1494H5.31895V16.2725C5.57408 23.3905 12.6811 26.4367 16.6402 26.3181V20.6096C12.354 20.1249 11.1868 17.3282 11.1868 15.9797V10.1494Z"
+                fill="white"
+              />
+              <path
+                d="M0 11.4717V5.21909C4.37256 4.93937 5.30538 1.70648 5.22522 0.125H11.15C11.15 7.62176 4.44411 11.4717 0 11.4717Z"
+                fill="white"
+              />
               <text
                 fill="#F0F0F0"
                 style={{ whiteSpace: "pre" }}
@@ -741,14 +749,6 @@ const Footer = () => (
                   TIME LOCK
                 </tspan>
               </text>
-              <path
-                d="M11.1868 10.1494H5.31895V16.2725C5.57408 23.3905 12.6811 26.4367 16.6402 26.3181V20.6096C12.354 20.1249 11.1868 17.3282 11.1868 15.9797V10.1494Z"
-                fill="white"
-              />
-              <path
-                d="M0 11.4717V5.21909C4.37256 4.93937 5.30538 1.70648 5.22522 0.125H11.15C11.15 7.62176 4.44411 11.4717 0 11.4717Z"
-                fill="white"
-              />
             </svg>
           </div>
           <p className="text-white/60 font-manrope text-sm leading-[20px] max-w-[227px]">
