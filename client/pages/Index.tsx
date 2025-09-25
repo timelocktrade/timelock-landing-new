@@ -47,25 +47,25 @@ const Header = () => (
 
     <nav className="hidden lg:flex items-center gap-3">
       <a
-        href="#"
+        href="https://testnet.timelock.trade"
         className="px-2 py-1.5 text-white font-manrope text-base font-normal hover:text-white/80 transition-colors"
       >
         Trade
       </a>
       <a
-        href="#"
+        href="https://testnet.timelock.trade/"
         className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
       >
         Earn
       </a>
       <a
-        href="#"
+        href="https://testnet.timelock.trade/"
         className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
       >
         Dashboard
       </a>
       <a
-        href="#"
+        href="http://docs.timelock.trade/"
         className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
       >
         Docs
@@ -695,19 +695,19 @@ const Footer = () => (
           </h3>
           <div className="space-y-3">
             <a
-              href="#"
+              href="https://testnet.timelock.trade"
               className="block text-white/60 font-manrope text-sm leading-[20px] hover:text-white transition-colors"
             >
               Trade
             </a>
             <a
-              href="#"
+              href="https://testnet.timelock.trade/"
               className="block text-white/60 font-manrope text-sm leading-[20px] hover:text-white transition-colors"
             >
               Earn
             </a>
             <a
-              href="#"
+              href="https://testnet.timelock.trade/"
               className="block text-white/60 font-manrope text-sm leading-[20px] hover:text-white transition-colors"
             >
               Dashboard
@@ -722,7 +722,7 @@ const Footer = () => (
           </h3>
           <div className="space-y-3">
             <a
-              href="#"
+              href="http://docs.timelock.trade/"
               className="block text-white/60 font-manrope text-sm leading-[20px] hover:text-white transition-colors"
             >
               Docs
@@ -738,7 +738,7 @@ const Footer = () => (
           <div className="flex items-center gap-4">
             {/* Twitter */}
             <a
-              href="#"
+              href="https://x.com/Timelock_Trade"
               className="p-2 rounded-lg bg-gradient-to-br from-white/8 to-white/5 hover:from-white/12 hover:to-white/8 transition-all"
             >
               <svg
@@ -782,7 +782,7 @@ const Footer = () => (
             </a>
             {/* Telegram */}
             <a
-              href="#"
+              href="https://t.me/vedant_fav"
               className="p-2 rounded-lg bg-gradient-to-br from-white/8 to-white/5 hover:from-white/12 hover:to-white/8 transition-all"
             >
               <svg
