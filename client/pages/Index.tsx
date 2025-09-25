@@ -236,39 +236,39 @@ const EcosystemSection = () => {
   const ecosystemItems = [
     {
       id: "1",
-      title: "Timelock Trade",
+      title: "Timelock Swap",
       description:
-        "Revolutionary leverage trading without liquidation risk. Trade with up to 1000x leverage using tick liquidity borrowing.",
+        "A UniV3-like AMM core with automated + stable vaults at the heart of everything.",
     },
     {
       id: "2",
-      title: "Timelock Perps",
+      title: "Timelock USD",
       description:
-        "Industry-first perpetual contracts without liquidations. Experience true DeFi trading with unlimited downside protection.",
+        "Hedged UniV3 vaults tokenized into delta-neutral yield-bearing stables (think 15-27% APY, on-chain like Ethena but better).",
     },
     {
       id: "3",
-      title: "Timelock Options",
+      title: "Timelock Trade",
       description:
-        "Custom-strike and expiry options on any ERC20 token. Advanced derivatives trading with full customization.",
+        "Traders pay upfront premium for fixed-duration trades long/short at high leverage.",
     },
     {
       id: "4",
-      title: "Timelock Swap",
+      title: "Timelock Perps",
       description:
-        "UniV3-style AMM with enhanced LP vaults and premium collection. Maximize your liquidity provision returns.",
+        "Traders deposit margin and Timelock deducts hourly funding for perps without losses or liquidations.",
     },
     {
       id: "5",
-      title: "Timelock Meme",
+      title: "Timelock Options",
       description:
-        "Long and short memecoins with sophisticated risk management and leverage capabilities.",
+        "Timelock Trade, but traders can unlock any strike with custom strikes + custom expiries on any token.",
     },
     {
       id: "6",
-      title: "Timelock USD",
+      title: "Timelock Meme",
       description:
-        "UniV3-style AMM with enhanced LP vaults and premium collection. Maximize your liquidity provision returns.",
+        "No loss perps for memecoins, day zero.",
     },
   ];
 
