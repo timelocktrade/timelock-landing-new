@@ -443,25 +443,6 @@ const EnhancedYieldsSection = () => (
         </div>
       </div>
 
-      <div>
-        <h3 className="text-white font-manrope text-lg sm:text-xl font-semibold mb-4 sm:mb-6 px-2 sm:px-0">Target Yields</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-          {[
-            { label: "Conservative Vaults", range: "15-25% APY", tone: "Minimal risk" },
-            { label: "Balanced Vaults", range: "25-35% APY", tone: "Moderate risk" },
-            { label: "Aggressive Vaults", range: "35-50% APY", tone: "Higher risk" },
-          ].map((y, i) => (
-            <div
-              key={i}
-              className="rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm p-4 sm:p-6"
-            >
-              <div className="text-white font-manrope text-sm sm:text-base font-medium mb-1">{y.label}</div>
-              <div className="text-white font-manrope text-xl sm:text-2xl font-bold">{y.range}</div>
-              <div className="text-white/60 font-manrope text-xs sm:text-sm">{y.tone}</div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center">
         <p className="text-white font-manrope text-base">
@@ -593,34 +574,46 @@ const FAQSection = () => (
 );
 
 // Partnerships Section
-const PartnershipsSection = () => (
-  <section
-    className="w-full py-32 px-4 lg:px-52"
-    style={{
-      background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
-    }}
-  >
-    <div className="text-center mb-16">
-      <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
-        Partnerships
-      </h2>
-      <p className="text-white/70 font-manrope text-lg font-normal leading-[20px]">
-        Creating win-win stories with every collaboration
-      </p>
-    </div>
+const PartnershipsSection = () => {
+  const partners = [
+    { name: "Gemoon", logo: "/gemoon.png" },
+    { name: "Pinot DEX", logo: "/pinot.png" },
+    { name: "Streamswap", logo: "/streamswap.png" },
+  ];
 
-    <div className="flex flex-wrap justify-center items-center gap-6">
-      {["Gemoon", "Pinot DEX", "Streamswap"].map((name, i) => (
-        <div
-          key={i}
-          className="px-6 py-4 border border-[#282324] bg-black/50 backdrop-blur-sm rounded"
-        >
-          <div className="text-white/80 font-manrope text-sm">{name}</div>
-        </div>
-      ))}
-    </div>
-  </section>
-);
+  return (
+    <section
+      className="w-full py-32 px-4 lg:px-52"
+      style={{
+        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
+      }}
+    >
+      <div className="text-center mb-16">
+        <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
+          Partnerships
+        </h2>
+        <p className="text-white/70 font-manrope text-lg font-normal leading-[20px]">
+          Creating win-win stories with every collaboration
+        </p>
+      </div>
+
+      <div className="flex flex-wrap justify-center items-center gap-8">
+        {partners.map((partner, i) => (
+          <div
+            key={i}
+            className="flex items-center justify-center px-8 py-6 border border-[#282324] bg-black/50 backdrop-blur-sm rounded-lg hover:border-white/20 transition-all duration-300"
+          >
+            <img
+              src={partner.logo}
+              alt={`${partner.name} logo`}
+              className="h-10 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 // Final CTA Section
 const FinalCTASection = () => (
