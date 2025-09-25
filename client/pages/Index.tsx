@@ -416,32 +416,28 @@ const EnhancedYieldsSection = () => (
 
     <div className="max-w-[1216px] mx-auto space-y-8 sm:space-y-12">
       <div>
-        <h3 className="text-white font-manrope text-lg sm:text-xl font-semibold mb-4 sm:mb-6 px-2 sm:px-0">Three Revenue Streams</h3>
+        <h3 className="text-white font-manrope text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 px-2 sm:px-0">Key Features</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {[
             {
-              pct: "70%",
-              title: "Trader Premiums",
-              desc: "Primary income from upfront fees",
+              title: "Simple UX",
+              desc: "1 click deposit into managed vaults with automated liquidity management.",
             },
             {
-              pct: "20%",
-              title: "Uniswap Fees",
-              desc: "Auto-compounded swap fees",
+              title: "Risk Neutral Optionality",
+              desc: "LPs are not counterparty to trader PnL and remain unaffected by trader gains or losses.",
             },
             {
-              pct: "10%",
-              title: "Yield Optimization",
-              desc: "Strategic rebalancing returns",
+              title: "Enhanced Yields",
+              desc: "Earn real yield from trader's Fee payments, on top of Uniswap swap fees and asset price increase.",
             },
-          ].map((r, i) => (
+          ].map((feature, i) => (
             <div
               key={i}
               className="rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm p-4 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all"
             >
-              <div className="text-white font-manrope text-3xl sm:text-4xl font-bold mb-2">{r.pct}</div>
-              <div className="text-white font-manrope text-sm sm:text-base font-medium">{r.title}</div>
-              <div className="text-white/60 font-manrope text-xs sm:text-sm">{r.desc}</div>
+              <div className="text-white font-manrope text-sm sm:text-base font-medium mb-2">{feature.title}</div>
+              <div className="text-white/60 font-manrope text-xs sm:text-sm">{feature.desc}</div>
             </div>
           ))}
         </div>
