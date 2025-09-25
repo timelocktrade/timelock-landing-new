@@ -407,7 +407,7 @@ const EnhancedYieldsSection = () => (
   >
     <div className="text-center mb-12 sm:mb-16">
       <h2 className="text-white font-manrope text-2xl sm:text-3xl lg:text-[48px] font-normal leading-[32px] sm:leading-[40px] lg:leading-[48px] mb-4 sm:mb-6 px-2 sm:px-0">
-        Enhanced Yields, Zero Additional Risk
+      The Future of Liquidity Provision
       </h2>
       <p className="text-white/70 font-manrope text-base sm:text-lg font-normal leading-[22px] sm:leading-[20px] px-2 sm:px-0">
         Earn superior returns while maintaining the same risk profile as standard Uniswap V3 positions.
@@ -472,60 +472,6 @@ const EnhancedYieldsSection = () => (
   </section>
 );
 
-// Future of Liquidity Section
-const FutureSection = () => (
-  <section
-    className="w-full py-32 px-4 lg:px-52"
-    style={{
-      background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
-    }}
-  >
-    <div className="text-center mb-20">
-      <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
-        The Future of Liquidity Provision
-      </h2>
-      <p className="text-white/70 font-manrope text-lg font-normal leading-[20px]">
-        Boost yield on your UniV3 positions by supplying into Timelock Vaults
-      </p>
-    </div>
-
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-[1216px] mx-auto">
-      {[
-        {
-          id: "1",
-          title: "Risk-Neutral Optionality",
-          description:
-            "LPs on Timelock are not coucnterparty to trader PnLs and maintain their UniV3 payoffs",
-        },
-        {
-          id: "2",
-          title: "1-Click Deposit",
-          description:
-            "1-click deposits, zero hassle—our strategy managers handle the heavy lifting for you. Deposit and forget",
-        },
-      ].map((item) => (
-        <div
-          key={item.id}
-          className="group relative h-full min-h-[220px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
-          style={{ willChange: "transform, opacity" }}
-        >
-          <div className="absolute top-0 left-0 right-0 h-32 opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent z-0" />
-          <div className="relative z-10">
-            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mb-4">
-              <span className="text-white font-k2d text-base font-medium">{item.id}</span>
-            </div>
-            <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-3">
-              {item.title}
-            </h3>
-            <p className="text-white/60 font-manrope text-sm leading-normal">
-              {item.description}
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-);
 
 // Builders Section
 const BuildersSection = () => (
@@ -889,7 +835,6 @@ export default function Index() {
       <EcosystemSection />
       <TradersSection />
       <EnhancedYieldsSection />
-      <FutureSection />
       <BuildersSection />
       <PartnershipsSection />
       <FAQSection />
