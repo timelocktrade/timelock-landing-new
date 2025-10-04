@@ -170,7 +170,7 @@ const Header = () => {
 // Hero Section Component
 const HeroSection = () => (
   <section
-    className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-0 py-20 sm:py-32"
+    className="relative min-h-[85vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-0 pt-8 sm:pt-12 pb-20 sm:pb-32"
     style={{
       background: `radial-gradient(50% 50% at 50% 50%, rgba(123, 111, 111, 0.20) 0%, rgba(12, 12, 12, 0.20) 100%), #000`,
     }}
@@ -195,13 +195,13 @@ const HeroSection = () => (
       </p>
 
       {/* CTA Buttons */}
-      <div className="flex flex-col sm:flex-row items-center gap-3 justify-center w-full max-w-sm sm:max-w-none">
-        <a href="https://testnet.timelock.trade" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-          <button className="w-full sm:w-auto bg-white text-black font-manrope text-[15px] font-bold px-6 sm:px-[15px] py-3 sm:py-[7.5px] rounded-[10px] min-w-[140px] hover:bg-white/90 transition-colors">
+      <div className="flex flex-row items-center gap-3 justify-center w-full">
+        <a href="https://testnet.timelock.trade" target="_blank" rel="noopener noreferrer">
+          <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] min-w-[120px] sm:min-w-[140px] hover:bg-white/90 transition-colors">
             Trade
           </button>
         </a>
-        <button className="w-full sm:w-auto border border-[#282324] bg-black/50 backdrop-blur-sm text-white font-manrope text-[15px] font-bold px-6 sm:px-[15px] py-3 sm:py-[7px] rounded-[12px] min-w-[140px] hover:bg-black/70 transition-colors">
+        <button className="border border-[#282324] bg-black/50 backdrop-blur-sm text-white font-manrope text-[15px] font-bold px-[15px] py-[7px] rounded-[12px] min-w-[120px] sm:min-w-[140px] hover:bg-black/70 transition-colors">
           Earn
         </button>
       </div>
@@ -245,6 +245,35 @@ const HeroSection = () => (
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll Down Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+        <svg
+          width="24"
+          height="36"
+          viewBox="0 0 24 36"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="opacity-60"
+        >
+          <rect
+            x="1"
+            y="1"
+            width="22"
+            height="34"
+            rx="11"
+            stroke="white"
+            strokeWidth="2"
+          />
+          <circle
+            cx="12"
+            cy="10"
+            r="3"
+            fill="white"
+            className="animate-scroll"
+          />
+        </svg>
       </div>
     </div>
   </section>
@@ -654,13 +683,13 @@ const FinalCTASection = () => (
         Join thousands of traders already using TimeLock to access leverage
       </p>
 
-      <div className="flex items-center gap-3 justify-center flex-wrap">
+      <div className="flex items-center gap-3 justify-center">
         <a href="https://testnet.timelock.trade" target="_blank" rel="noopener noreferrer">
-          <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] min-w-[140px] hover:bg-white/90 transition-colors">
+          <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] min-w-[120px] sm:min-w-[140px] hover:bg-white/90 transition-colors">
             Trade
           </button>
         </a>
-        <button className="border border-[#282324] bg-black/50 backdrop-blur-sm text-white font-manrope text-[15px] font-bold px-[15px] py-[7px] rounded-[12px] min-w-[140px] hover:bg-black/70 transition-colors">
+        <button className="border border-[#282324] bg-black/50 backdrop-blur-sm text-white font-manrope text-[15px] font-bold px-[15px] py-[7px] rounded-[12px] min-w-[120px] sm:min-w-[140px] hover:bg-black/70 transition-colors">
           Earn
         </button>
       </div>
