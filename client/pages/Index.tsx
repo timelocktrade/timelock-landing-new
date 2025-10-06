@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 
 // Logo Component
 const TimeLockLogo = () => (
@@ -170,13 +171,11 @@ const Header = () => {
 // Hero Section Component
 const HeroSection = () => (
   <section
-    className="relative min-h-[85vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-0 pt-8 sm:pt-12 pb-20 sm:pb-32"
-    style={{
-      background: `radial-gradient(50% 50% at 50% 50%, rgba(123, 111, 111, 0.20) 0%, rgba(12, 12, 12, 0.20) 100%), #000`,
-    }}
+    className="relative min-h-[85vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-0 pt-8 sm:pt-12 pb-20 sm:pb-32 overflow-hidden bg-black"
     aria-labelledby="hero-heading"
   >
-    <div className="flex flex-col items-center gap-6 sm:gap-8 lg:gap-10 max-w-[909px] w-full text-center">
+    <BackgroundRippleEffect />
+    <div className="relative z-10 flex flex-col items-center gap-6 sm:gap-8 lg:gap-10 max-w-[909px] w-full text-center">
       {/* Testnet Live Badge */}
       <div className="inline-flex items-center px-4 sm:px-[18px] py-2 rounded-[12px] border border-[#282324] bg-black/50 backdrop-blur-sm" role="status" aria-label="Testnet status">
         <span className="text-white font-normal text-[13px] font-manrope leading-[158.7%] tracking-[-0.39px]">
@@ -245,35 +244,6 @@ const HeroSection = () => (
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Scroll Down Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-        <svg
-          width="24"
-          height="36"
-          viewBox="0 0 24 36"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="opacity-60"
-        >
-          <rect
-            x="1"
-            y="1"
-            width="22"
-            height="34"
-            rx="11"
-            stroke="white"
-            strokeWidth="2"
-          />
-          <circle
-            cx="12"
-            cy="10"
-            r="3"
-            fill="white"
-            className="animate-scroll"
-          />
-        </svg>
       </div>
     </div>
   </section>
