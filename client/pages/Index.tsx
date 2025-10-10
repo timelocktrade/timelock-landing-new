@@ -793,7 +793,7 @@ const Footer = () => (
             </a>
             {/* Discord */}
             <a
-              href="https://discord.gg/JtRgyXC7"
+              href="https://discord.gg/g2UDdpJg"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-lg bg-gradient-to-br from-white/8 to-white/5 hover:from-white/12 hover:to-white/8 transition-all"
