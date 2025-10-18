@@ -6,7 +6,7 @@ import { createServer } from "./server";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
-    allowedHosts: ["localhost", "127.0.0.1", "e5b33592e550.ngrok-free.app"],
+    allowedHosts: ["localhost", "127.0.0.1", "499e44121061.ngrok-free.app"],
     host: "::",
     port: 8080,
     fs: {
