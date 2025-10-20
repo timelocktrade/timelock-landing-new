@@ -15,111 +15,34 @@
    * A different format will require also updating the theme in tailwind.config.ts.
   */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
+    --background: #0e0e0e;
+    --foreground: #e4e4e7;
+    --card: #131313;
+    --card-foreground: #e4e4e7;
+    --popover: #262626;
+    --popover-foreground: #e4e4e7;
+    --primary: #f472b6;
+    --primary-foreground: #262626;
+    --secondary: #3f3f46;
+    --secondary-foreground: #e4e4e7;
+    --muted: #3f3f46;
+    --muted-foreground: #a1a1aa;
+    --accent: #404040;
+    --accent-foreground: #fbbf24;
+    --destructive: #991b1b;
+    --destructive-foreground: #fafafa;
+    --border: #52525b;
+    --input: #52525b;
+    --ring: #f472b6;
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-
-    --color-neutral-100: #f5f5f5;
-    --color-neutral-300: #d4d4d4;
-    --color-neutral-500: #737373;
-    --color-neutral-700: #404040;
-    --color-neutral-800: #262626;
-    --color-neutral-900: #171717;
-
-    --color-magenta-50: #fae8ff;
-    --color-magenta-100: #f0abfc;
-    --color-magenta-200: #e879f9;
-    --color-magenta-300: #d946ef;
-    --color-magenta-400: #c026d3;
-    --color-magenta-500: #a21caf;
-    --color-magenta-600: #86198f;
-    --color-fuchsia-400: #e879f9;
-    --color-fuchsia-500: #d946ef;
-    --color-fuchsia-600: #c026d3;
-    --color-pink-400: #ec4899;
-    --color-pink-500: #db2777;
-    --color-purple-400: #a855f7;
-    --color-purple-500: #9333ea;
-  }
-
-  .dark {
-    --background: 240 6% 8%;
-    --foreground: 240 5% 92%;
-
-    --card: 240 7% 10%;
-    --card-foreground: 240 5% 92%;
-
-    --popover: 240 7% 10%;
-    --popover-foreground: 240 5% 92%;
-
-    --primary: 328 85% 60%;
-    --primary-foreground: 280 15% 10%;
-
-    --secondary: 240 6% 14%;
-    --secondary-foreground: 240 5% 92%;
-
-    --muted: 240 6% 14%;
-    --muted-foreground: 240 5% 65%;
-
-    --accent: 240 7% 16%;
-    --accent-foreground: 45 95% 65%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 280 5% 98%;
-
-    --border: 240 6% 18%;
-    --input: 240 6% 18%;
-    --ring: 328 85% 60%;
-    --sidebar-background: 240 7% 9%;
-    --sidebar-foreground: 240 5% 92%;
-    --sidebar-primary: 328 85% 60%;
-    --sidebar-primary-foreground: 240 6% 8%;
-    --sidebar-accent: 240 6% 14%;
-    --sidebar-accent-foreground: 240 5% 92%;
-    --sidebar-border: 240 6% 18%;
-    --sidebar-ring: 328 85% 60%;
+    --sidebar-background: #1c1c1c;
+    --sidebar-foreground: #e4e4e7;
+    --sidebar-primary: #f472b6;
+    --sidebar-primary-foreground: #1a1a1a;
+    --sidebar-accent: #3f3f46;
+    --sidebar-accent-foreground: #e4e4e7;
+    --sidebar-border: #52525b;
+    --sidebar-ring: #f472b6;
 
     --color-neutral-100: #e2e8f0;
     --color-neutral-300: #cbd5e1;
@@ -234,21 +157,81 @@
   .duration-1000 {
     animation-duration: 1000ms;
   }
-}
 
-@theme inline {
-  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
-    var(--delay, 0ms);
-
-  @keyframes cell-ripple {
-    0% {
-      opacity: 0.3;
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 0.1;
+      transform: scale(1);
     }
     50% {
-      opacity: 0.5;
+      opacity: 0.15;
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 8s ease-in-out infinite;
+  }
+
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -30px) scale(1.05);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.95);
+    }
+  }
+
+  @keyframes float-slower {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(-40px, 30px) scale(1.08);
+    }
+    66% {
+      transform: translate(25px, -25px) scale(0.92);
+    }
+  }
+
+  @keyframes float-slowest {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(20px, -40px) scale(1.1);
+    }
+  }
+
+  @keyframes scan {
+    0% {
+      transform: translateY(-100%);
     }
     100% {
-      opacity: 0.3;
+      transform: translateY(100vh);
     }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
+  }
+
+  .animate-float-slower {
+    animation: float-slower 25s ease-in-out infinite;
+  }
+
+  .animate-float-slowest {
+    animation: float-slowest 30s ease-in-out infinite;
+  }
+
+  .animate-scan {
+    animation: scan 8s linear infinite;
   }
 }
