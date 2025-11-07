@@ -1,4 +1,6 @@
 import { ChevronRight } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const PartnershipsSection = () => {
   const partners = [
@@ -30,32 +32,29 @@ const PartnershipsSection = () => {
 
   return (
     <section
-      className="relative py-20 sm:py-32 lg:py-36 px-4 sm:px-6 lg:px-[130px] bg-card overflow-hidden"
+      className="relative py-20 sm:py-32 lg:py-36 px-4 sm:px-6 md:px-32 bg-card overflow-hidden"
       aria-labelledby="partnerships-heading"
     >
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="mx-auto relative z-10">
         <div className="text-center mb-24">
           <h2
             id="partnerships-heading"
-            className="text-foreground font-manrope text-3xl sm:text-4xl font-bold mb-4"
+            className="text-foreground font-display text-3xl sm:text-4xl font-bold mb-4"
           >
             Trusted Partners
           </h2>
-          <p className="text-muted-foreground font-manrope text-base sm:text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
             Building the future of DeFi together with industry-leading protocols
           </p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {partners.map((partner, i) => (
-            <a
+            <Card
               key={i}
-              href={partner.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative"
+              className="relative bg-background/80 backdrop-blur-sm transition-all duration-300 h-full"
             >
-              <div className="bg-background/80 backdrop-blur-sm text-center rounded-lg overflow-hidden group-hover:border-primary/20 transition-all duration-300 h-full flex flex-col justify-between">
+              <CardContent className="p-6 text-center h-full flex flex-col justify-between">
                 <div className="w-full flex justify-center pb-6">
                   <div className="h-28 w-28 rounded-xl overflow-hidden">
                     <img
@@ -66,21 +65,26 @@ const PartnershipsSection = () => {
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <h3 className="text-foreground font-manrope text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-200">
+                  <h3 className="text-foreground font-display text-xl font-bold mb-2 transition-colors duration-200">
                     {partner.name}
                   </h3>
-                  <p className="text-muted-foreground font-manrope text-sm leading-relaxed group-hover:text-foreground/80 transition-colors duration-200">
+                  <p className="text-muted-foreground text-sm leading-relaxed transition-colors duration-200">
                     {partner.description}
                   </p>
-                  <div className="w-full flex justify-center items-center gap-2 text-primary/60 group-hover:text-primary transition-colors duration-200">
-                    <span className=" font-manrope text-xs font-semibold uppercase tracking-wide">
+                  <a
+                    href={partner.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex group justify-center gap-2"
+                  >
+                    <span className="text-xs font-semibold uppercase tracking-wide">
                       Learn More
                     </span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-                  </div>
+                  </a>
                 </div>
-              </div>
-            </a>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

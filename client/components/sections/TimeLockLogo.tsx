@@ -21,7 +21,7 @@ const TimeLockLogo = () => (
       <text
         fill="currentColor"
         style={{ whiteSpace: "pre" }}
-        className="font-basel font-normal text-[20.9px] tracking-[0.27em]"
+        className="font-display font-normal text-[20.9px] tracking-[0.27em]"
       >
         <tspan x="36.4841" y="21.0057">
           TIMELOCK

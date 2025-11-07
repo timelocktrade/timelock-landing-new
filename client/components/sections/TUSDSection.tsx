@@ -1,8 +1,14 @@
-import { TUSDStablecoinIllustration, CheckmarkIcon } from "@/components/illustrations";
+import {
+  TUSDStablecoinIllustration,
+  CheckmarkIcon,
+} from "@/components/illustrations";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 
 const TUSDSection = () => (
   <section
-    className="relative py-20 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-[130px] bg-background overflow-hidden"
+    className="relative py-20 sm:py-24 lg:py-28 px-4ju sm:px-6 md:px-32 bg-background overflow-hidden"
     aria-labelledby="tusd-heading"
   >
     {/* Subtle background elements */}
@@ -11,39 +17,33 @@ const TUSDSection = () => (
       <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-amber-500/4 rounded-full blur-3xl" />
     </div>
 
-    <div className="max-w-6xl mx-auto relative z-10">
+    <div className="mx-auto relative z-10">
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div className="relative order-2 lg:order-1">
-          {/* Visual Element with Illustration */}
-          <div className="relative">
-            <div className="bg-background/80 backdrop-blur-sm border border-border rounded-3xl p-6 lg:p-8">
-              <div className="flex items-center justify-center">
-                <TUSDStablecoinIllustration />
-              </div>
-              <div className="text-center mt-6 space-y-2">
-                <p className="text-muted-foreground font-manrope text-xs uppercase tracking-widest mb-2">
-                  TimeLock USD Stablecoin
-                </p>
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/15 border border-amber-500/30 rounded-full">
-                  <div className="w-2 h-2 bg-amber-400 rounded-full" />
-                  <span className="text-amber-400 font-manrope text-sm font-bold">
-                    Coming Soon
-                  </span>
-                </div>
-              </div>
-            </div>
+        {/* Visual Element with Illustration */}
+        <Card className="border-none bg-transparent order-2 lg:order-1">
+          <div className="flex items-center justify-center">
+            <TUSDStablecoinIllustration />
           </div>
-        </div>
+          <div className="text-center mt-6 space-y-2">
+            <Badge
+              variant="outline"
+              className="bg-amber-500/15 border-amber-500/30 text-amber-400 hover:bg-amber-500/15"
+            >
+              <div className="w-2 h-2 bg-amber-400 rounded-full mr-2" />
+              <span className="text-sm font-bold">Coming Soon</span>
+            </Badge>
+          </div>
+        </Card>
 
         <div className="order-1 lg:order-2">
           <h2
             id="tusd-heading"
-            className="text-foreground font-manrope text-3xl sm:text-4xl font-bold mb-6 leading-tight"
+            className="text-foreground font-display text-3xl sm:text-4xl font-bold mb-6 leading-tight"
           >
             Earn <span className="text-amber-400">15-18% APY</span> on
             Stablecoins
           </h2>
-          <p className="text-muted-foreground font-manrope text-lg leading-relaxed mb-8">
+          <p className="text-muted-foreground text-base leading-relaxed mb-8">
             Meet <span className="text-foreground font-semibold">TUSD</span>—
             yield-bearing stablecoin with institutional-grade returns while
             maintaining complete stability and security.
@@ -51,22 +51,22 @@ const TUSDSection = () => (
 
           {/* Yield Stats Grid */}
           <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-5">
-              <div className="text-3xl font-bold text-white font-manrope mb-1">
+            <Card className="bg-amber-500/10 border-amber-500/30 py-4 px-6">
+              <div className="text-3xl font-bold text-white font-display mb-1">
                 15-18%
               </div>
-              <p className="text-amber-400 font-manrope text-sm font-semibold">
+              <p className="text-amber-400 text-sm font-semibold">
                 Annual Yield
               </p>
-            </div>
-            <div className="bg-fuchsia-500/10 border border-fuchsia-500/30 rounded-xl p-5">
-              <div className="text-3xl font-bold text-white font-manrope mb-1">
+            </Card>
+            <Card className="bg-fuchsia-500/10 border-fuchsia-500/30 py-4 px-6">
+              <div className="text-3xl font-bold text-white font-display mb-1">
                 $1.00
               </div>
-              <p className="text-fuchsia-400 font-manrope text-sm font-semibold">
+              <p className="text-fuchsia-400 text-sm font-semibold">
                 Stable Peg
               </p>
-            </div>
+            </Card>
           </div>
           {/* Feature List */}
           <ul className="space-y-4 mb-8">
@@ -75,10 +75,10 @@ const TUSDSection = () => (
                 <CheckmarkIcon />
               </div>
               <div>
-                <span className="text-foreground font-manrope text-base font-semibold block mb-0.5">
+                <span className="text-foreground text-base font-semibold block mb-0.5">
                   Sustainable Yield Generation
                 </span>
-                <span className="text-muted-foreground font-manrope text-sm">
+                <span className="text-muted-foreground text-sm">
                   Powered by real trading fees and protocol revenue—not
                   inflationary emissions
                 </span>
@@ -89,10 +89,10 @@ const TUSDSection = () => (
                 <CheckmarkIcon />
               </div>
               <div>
-                <span className="text-foreground font-manrope text-base font-semibold block mb-0.5">
+                <span className="text-foreground text-base font-semibold block mb-0.5">
                   Fully Collateralized & Audited
                 </span>
-                <span className="text-muted-foreground font-manrope text-sm">
+                <span className="text-muted-foreground text-sm">
                   100% backed by real assets with transparent on-chain reserves
                 </span>
               </div>
@@ -102,10 +102,10 @@ const TUSDSection = () => (
                 <CheckmarkIcon />
               </div>
               <div>
-                <span className="text-foreground font-manrope text-base font-semibold block mb-0.5">
+                <span className="text-foreground text-base font-semibold block mb-0.5">
                   Deep Protocol Integration
                 </span>
-                <span className="text-muted-foreground font-manrope text-sm">
+                <span className="text-muted-foreground text-sm">
                   Native support across all TimeLock products and partners
                 </span>
               </div>
@@ -114,10 +114,13 @@ const TUSDSection = () => (
 
           {/* CTA */}
           <div className="flex flex-wrap gap-4 items-center">
-            <button className="px-6 py-3 bg-amber-500 text-white font-manrope font-semibold rounded-xl hover:bg-amber-600 transition-colors duration-300">
+            <Button
+              className="bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-600 transition-colors"
+              size="lg"
+            >
               Get Notified
-            </button>
-            <span className="text-white/50 font-manrope text-sm">
+            </Button>
+            <span className="text-white/50 text-sm">
               Join the waitlist for early access
             </span>
           </div>

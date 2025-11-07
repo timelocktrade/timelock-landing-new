@@ -18,7 +18,7 @@ import {
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-background font-manrope">
+    <div className="min-h-screen bg-background">
       <Header />
       <HeroSection />
       <StatsSection />

@@ -2,470 +2,599 @@ export const YieldGrowthIllustration = () => (
   <svg
     width="100%"
     height="100%"
-    viewBox="0 0 500 500"
+    viewBox="0 0 600 600"
     fill="none"
     className="w-full"
   >
-    {/* Subtle gradient background */}
     <defs>
-      <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#0a0a0a" stopOpacity="0.4" />
-        <stop offset="100%" stopColor="#1a0a1a" stopOpacity="0.2" />
+      {/* Glassmorphic card background */}
+      <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.05" />
+        <stop offset="100%" stopColor="#ffffff" stopOpacity="0.01" />
       </linearGradient>
 
-      {/* Glow effects for icons */}
-      <radialGradient id="glowPink" cx="50%" cy="50%">
-        <stop offset="0%" stopColor="#FF007A" stopOpacity="0.3" />
-        <stop offset="100%" stopColor="#FF007A" stopOpacity="0" />
-      </radialGradient>
-      <radialGradient id="glowPurple" cx="50%" cy="50%">
-        <stop offset="0%" stopColor="#d946ef" stopOpacity="0.3" />
-        <stop offset="100%" stopColor="#d946ef" stopOpacity="0" />
-      </radialGradient>
-      <radialGradient id="glowYellow" cx="50%" cy="50%">
-        <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.3" />
-        <stop offset="100%" stopColor="#fbbf24" stopOpacity="0" />
+      {/* Premium mesh gradients for cards */}
+      <radialGradient id="swapGlow" cx="50%" cy="50%">
+        <stop offset="0%" stopColor="#ec4899" stopOpacity="0.4" />
+        <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.2" />
+        <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
       </radialGradient>
 
-      {/* Bar gradients - more subtle */}
-      <linearGradient id="bar1" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.5" />
-        <stop offset="100%" stopColor="#fbbf24" stopOpacity="0.15" />
-      </linearGradient>
-      <linearGradient id="bar2" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#f87171" stopOpacity="0.6" />
-        <stop offset="100%" stopColor="#f87171" stopOpacity="0.2" />
-      </linearGradient>
-      <linearGradient id="bar3" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#d946ef" stopOpacity="0.65" />
-        <stop offset="100%" stopColor="#d946ef" stopOpacity="0.25" />
-      </linearGradient>
-      <linearGradient id="bar4" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.75" />
-        <stop offset="100%" stopColor="#fbbf24" stopOpacity="0.3" />
-      </linearGradient>
-      <linearGradient id="bar5" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#f87171" stopOpacity="0.85" />
-        <stop offset="100%" stopColor="#f87171" stopOpacity="0.35" />
+      <radialGradient id="timelockGlow" cx="50%" cy="50%">
+        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
+        <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.2" />
+        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
+      </radialGradient>
+
+      <radialGradient id="perpsGlow" cx="50%" cy="50%">
+        <stop offset="0%" stopColor="#14b8a6" stopOpacity="0.4" />
+        <stop offset="50%" stopColor="#10b981" stopOpacity="0.2" />
+        <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
+      </radialGradient>
+
+      {/* Card border gradients */}
+      <linearGradient id="swapBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#ec4899" />
+        <stop offset="100%" stopColor="#8b5cf6" />
       </linearGradient>
 
-      {/* Trend line gradient */}
-      <linearGradient id="trend" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.8" />
-        <stop offset="50%" stopColor="#d946ef" stopOpacity="0.8" />
-        <stop offset="100%" stopColor="#f87171" stopOpacity="0.8" />
+      <linearGradient id="timelockBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#3b82f6" />
+        <stop offset="100%" stopColor="#06b6d4" />
       </linearGradient>
 
-      {/* Blur filter for glow */}
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+      <linearGradient id="perpsBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#14b8a6" />
+        <stop offset="100%" stopColor="#10b981" />
+      </linearGradient>
+
+      {/* Central hub gradient */}
+      <radialGradient id="hubCore" cx="50%" cy="50%">
+        <stop offset="0%" stopColor="#6366f1" stopOpacity="0.8" />
+        <stop offset="30%" stopColor="#3b82f6" stopOpacity="0.6" />
+        <stop offset="60%" stopColor="#06b6d4" stopOpacity="0.4" />
+        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
+      </radialGradient>
+
+      <linearGradient id="hubRing" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#ec4899" />
+        <stop offset="33%" stopColor="#8b5cf6" />
+        <stop offset="66%" stopColor="#06b6d4" />
+        <stop offset="100%" stopColor="#10b981" />
+      </linearGradient>
+
+      {/* Area chart gradient */}
+      <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#6366f1" stopOpacity="0.4" />
+        <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.2" />
+        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.05" />
+      </linearGradient>
+
+      <linearGradient id="chartLine" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#ec4899" />
+        <stop offset="25%" stopColor="#8b5cf6" />
+        <stop offset="50%" stopColor="#3b82f6" />
+        <stop offset="75%" stopColor="#06b6d4" />
+        <stop offset="100%" stopColor="#10b981" />
+      </linearGradient>
+
+      {/* Flow line gradients */}
+      <linearGradient id="flow1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#ec4899" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.2" />
+      </linearGradient>
+
+      <linearGradient id="flow2" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.2" />
+      </linearGradient>
+
+      <linearGradient id="flow3" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#14b8a6" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#10b981" stopOpacity="0.2" />
+      </linearGradient>
+
+      {/* Filters */}
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="4" result="coloredBlur" />
         <feMerge>
           <feMergeNode in="coloredBlur" />
           <feMergeNode in="SourceGraphic" />
         </feMerge>
       </filter>
 
-      {/* Gradient rings for icons */}
-      <linearGradient id="swapRing" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#FF007A" />
-        <stop offset="50%" stopColor="#ec4899" />
-        <stop offset="100%" stopColor="#f87171" />
-      </linearGradient>
+      <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="8" result="coloredBlur" />
+        <feMerge>
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
 
-      <linearGradient id="premiumRing" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#8b5cf6" />
-        <stop offset="50%" stopColor="#d946ef" />
-        <stop offset="100%" stopColor="#ec4899" />
-      </linearGradient>
-
-      <linearGradient id="fundingRing" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#fbbf24" />
-        <stop offset="50%" stopColor="#f59e0b" />
-        <stop offset="100%" stopColor="#f87171" />
-      </linearGradient>
-
-      {/* Gradient for Your Yield circle */}
-      <linearGradient id="yieldRing" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#fbbf24" />
-        <stop offset="50%" stopColor="#d946ef" />
-        <stop offset="100%" stopColor="#f87171" />
-      </linearGradient>
-
-      <radialGradient id="yieldBg" cx="50%" cy="50%">
-        <stop offset="0%" stopColor="rgba(13, 13, 13, 0.95)" />
-        <stop offset="100%" stopColor="rgba(10, 10, 10, 0.98)" />
-      </radialGradient>
+      {/* Arrow marker */}
+      <marker
+        id="arrowhead"
+        markerWidth="10"
+        markerHeight="10"
+        refX="9"
+        refY="3"
+        orient="auto"
+      >
+        <polygon points="0 0, 10 3, 0 6" fill="#6366f1" opacity="0.6" />
+      </marker>
     </defs>
 
-    <rect x="0" y="0" width="500" height="500" fill="url(#bgGradient)" />
-
-    {/* Yield Source Icons - Top Section */}
-
-    {/* Uniswap - Circle with waves */}
+    {/* Swap Fees Card - Left */}
     <g>
-      {/* Outer glow */}
-      <circle cx="75" cy="70" r="38" fill="#FF007A" opacity="0.1" />
-
-      {/* Gradient ring */}
-      <circle
-        cx="75"
-        cy="70"
-        r="35"
-        fill="none"
-        stroke="url(#swapRing)"
-        strokeWidth="2.5"
-        opacity="0.9"
-      />
-
-      {/* Inner dark background */}
-      <circle cx="75" cy="70" r="31" fill="url(#yieldBg)" />
-
-      {/* Icon elements */}
-      <path
-        d="M 55 70 Q 65 62 75 70 T 95 70"
-        stroke="#FF007A"
-        strokeWidth="2.5"
-        fill="none"
-      />
-      <circle cx="65" cy="65" r="3" fill="#FF007A" />
-      <circle cx="85" cy="65" r="3" fill="#FF007A" />
-
-      <text
-        x="75"
-        y="135"
-        fontFamily="Manrope, sans-serif"
-        fontSize="16"
-        fontWeight="bold"
-        fill="#FF007A"
-        textAnchor="middle"
-      >
-        Swap Fees
-      </text>
-    </g>
-
-    {/* Timelock - Hexagon with T */}
-    <g>
-      {/* Outer glow */}
-      <circle cx="250" cy="68" r="38" fill="#d946ef" opacity="0.1" />
-
-      {/* Gradient ring - hexagon */}
-      <polygon
-        points="250,30 283,48 283,88 250,106 217,88 217,48"
-        fill="none"
-        stroke="url(#premiumRing)"
-        strokeWidth="2.5"
-        opacity="0.9"
-      />
-
-      {/* Inner dark background - hexagon */}
-      <polygon
-        points="250,35 278,51 278,85 250,101 222,85 222,51"
-        fill="url(#yieldBg)"
-      />
-
-      {/* Icon elements - T letter */}
-      <line
-        x1="250"
-        y1="52"
-        x2="250"
-        y2="84"
-        stroke="#d946ef"
-        strokeWidth="2.5"
-      />
-      <line
-        x1="237"
-        y1="52"
-        x2="263"
-        y2="52"
-        stroke="#d946ef"
-        strokeWidth="2.5"
-      />
-
-      <text
-        x="250"
-        y="135"
-        fontFamily="Manrope, sans-serif"
-        fontSize="16"
-        fontWeight="bold"
-        fill="#d946ef"
-        textAnchor="middle"
-      >
-        Trading Premium
-      </text>
-    </g>
-
-    {/* Perps - Square with diagonal */}
-    <g>
-      {/* Outer glow */}
-      <circle cx="425" cy="70" r="38" fill="#fbbf24" opacity="0.1" />
-
-      {/* Gradient ring - rounded square */}
+      {/* Card */}
       <rect
-        x="395"
-        y="40"
-        width="60"
-        height="60"
-        rx="6"
-        fill="none"
-        stroke="url(#fundingRing)"
-        strokeWidth="2.5"
+        x="30"
+        y="50"
+        width="140"
+        height="100"
+        rx="16"
+        fill="url(#cardBg)"
+        stroke="url(#swapBorder)"
+        strokeWidth="2"
         opacity="0.9"
       />
 
-      {/* Inner dark background - rounded square */}
-      <rect x="400" y="45" width="50" height="50" rx="4" fill="url(#yieldBg)" />
+      {/* Icon - Refresh/Swap symbol */}
+      <g transform="translate(100, 85)">
+        <path
+          d="M -15,-8 L -5,-8 L -5,-15 L 5,0 L -5,15 L -5,8 L -15,8"
+          fill="#ec4899"
+          opacity="0.8"
+        />
+        <path
+          d="M 15,8 L 5,8 L 5,15 L -5,0 L 5,-15 L 5,-8 L 15,-8"
+          fill="#8b5cf6"
+          opacity="0.8"
+        />
+      </g>
 
-      {/* Icon elements - X pattern */}
-      <line
-        x1="408"
-        y1="87"
-        x2="442"
-        y2="53"
-        stroke="#fbbf24"
-        strokeWidth="2.5"
-      />
-      <line
-        x1="408"
-        y1="53"
-        x2="442"
-        y2="87"
-        stroke="#fbbf24"
-        strokeWidth="2.5"
-      />
-
+      {/* Label */}
       <text
-        x="425"
-        y="135"
-        fontFamily="Manrope, sans-serif"
-        fontSize="16"
-        fontWeight="bold"
-        fill="#fbbf24"
+        x="100"
+        y="130"
+        fontFamily="Inter, system-ui, sans-serif"
+        fontSize="13"
+        fontWeight="700"
+        fill="#ec4899"
         textAnchor="middle"
+        letterSpacing="0.5"
       >
-        Perps Funding Rate
+        SWAP FEES
       </text>
     </g>
 
-    {/* Flow lines - smoother curves */}
-    <path
-      d="M 75 135 L 75 160 Q 75 175 95 185 L 220 210"
-      stroke="#FF007A"
-      strokeWidth="2"
-      fill="none"
-      opacity="0.4"
-      strokeDasharray="4,6"
-    />
-    <path
-      d="M 250 135 L 250 210"
-      stroke="#d946ef"
-      strokeWidth="2"
-      opacity="0.4"
-      strokeDasharray="4,6"
-    />
-    <path
-      d="M 425 135 L 425 160 Q 425 175 405 185 L 280 210"
-      stroke="#fbbf24"
-      strokeWidth="2"
-      fill="none"
-      opacity="0.4"
-      strokeDasharray="4,6"
-    />
-
-    {/* Convergence point - Your Yield Circle */}
+    {/* Trading Premium Card - Top Center */}
     <g>
-      {/* Outer glow */}
-      <circle cx="250" cy="220" r="52" fill="url(#yieldRing)" opacity="0.15" />
-
-      {/* Gradient ring */}
-      <circle
-        cx="250"
-        cy="220"
-        r="48"
-        fill="none"
-        stroke="url(#yieldRing)"
-        strokeWidth="3"
+      {/* Card */}
+      <rect
+        x="220"
+        y="5"
+        width="160"
+        height="100"
+        rx="16"
+        fill="url(#cardBg)"
+        stroke="url(#timelockBorder)"
+        strokeWidth="2"
         opacity="0.9"
       />
 
-      {/* Inner circle with dark background */}
-      <circle cx="250" cy="220" r="42" fill="url(#yieldBg)" />
+      {/* Icon - Diamond/Gem for premium */}
+      <g transform="translate(300, 40)">
+        <path
+          d="M 0,-18 L 12,-6 L 12,6 L 0,18 L -12,6 L -12,-6 Z"
+          fill="url(#timelockBorder)"
+          opacity="0.3"
+        />
+        <path
+          d="M 0,-15 L 10,-5 L 0,15 L -10,-5 Z"
+          fill="url(#timelockBorder)"
+          opacity="0.9"
+        />
+        <line
+          x1="-10"
+          y1="-5"
+          x2="10"
+          y2="-5"
+          stroke="#ffffff"
+          strokeWidth="2"
+          opacity="0.4"
+        />
+      </g>
 
-      {/* Text */}
+      {/* Label */}
       <text
-        x="250"
-        y="212"
-        fontFamily="Manrope, sans-serif"
-        fontSize="18"
-        fontWeight="bold"
-        fill="#fff"
+        x="300"
+        y="85"
+        fontFamily="Inter, system-ui, sans-serif"
+        fontSize="13"
+        fontWeight="700"
+        fill="#3b82f6"
         textAnchor="middle"
+        letterSpacing="0.5"
       >
-        Your
-      </text>
-      <text
-        x="250"
-        y="238"
-        fontFamily="Manrope, sans-serif"
-        fontSize="18"
-        fontWeight="bold"
-        fill="#fff"
-        textAnchor="middle"
-      >
-        Yield
+        TRADING PREMIUM
       </text>
     </g>
 
-    {/* Chart Section */}
-    <g transform="translate(0, 20)">
-      {/* Axis */}
-      <line
-        x1="60"
-        y1="470"
-        x2="440"
-        y2="470"
-        stroke="#ffffff"
-        strokeWidth="1.5"
-        opacity="0.2"
-      />
-      <line
-        x1="60"
-        y1="270"
-        x2="60"
-        y2="470"
-        stroke="#ffffff"
-        strokeWidth="1.5"
-        opacity="0.2"
+    {/* Perps Funding Rate Card - Right */}
+    <g>
+      {/* Card */}
+      <rect
+        x="430"
+        y="50"
+        width="140"
+        height="100"
+        rx="16"
+        fill="url(#cardBg)"
+        stroke="url(#perpsBorder)"
+        strokeWidth="2"
+        opacity="0.9"
       />
 
-      {/* Bars - cleaner design */}
-      <path
-        d="M 90 470 L 90 413 Q 90 405 98 405 L 142 405 Q 150 405 150 413 L 150 470"
-        fill="url(#bar1)"
-      />
-      <path
-        d="M 90 470 L 90 413 Q 90 405 98 405 L 142 405 Q 150 405 150 413 L 150 470"
-        fill="none"
-        stroke="#fbbf24"
-        strokeWidth="1.5"
-        opacity="0.5"
-      />
+      {/* Icon - Lightning bolt for fast funding */}
+      <g transform="translate(500, 85)">
+        <path
+          d="M 5,-18 L -8,2 L 2,2 L -5,18 L 8,-2 L -2,-2 Z"
+          fill="url(#perpsBorder)"
+          opacity="0.9"
+        />
+      </g>
 
-      <path
-        d="M 165 470 L 165 388 Q 165 380 173 380 L 217 380 Q 225 380 225 388 L 225 470"
-        fill="url(#bar2)"
-      />
-      <path
-        d="M 165 470 L 165 388 Q 165 380 173 380 L 217 380 Q 225 380 225 388 L 225 470"
-        fill="none"
-        stroke="#f87171"
-        strokeWidth="1.5"
-        opacity="0.5"
-      />
-
-      <path
-        d="M 240 470 L 240 353 Q 240 345 248 345 L 292 345 Q 300 345 300 353 L 300 470"
-        fill="url(#bar3)"
-      />
-      <path
-        d="M 240 470 L 240 353 Q 240 345 248 345 L 292 345 Q 300 345 300 353 L 300 470"
-        fill="none"
-        stroke="#d946ef"
-        strokeWidth="1.5"
-        opacity="0.5"
-      />
-
-      <path
-        d="M 315 470 L 315 308 Q 315 300 323 300 L 367 300 Q 375 300 375 308 L 375 470"
-        fill="url(#bar4)"
-      />
-      <path
-        d="M 315 470 L 315 308 Q 315 300 323 300 L 367 300 Q 375 300 375 308 L 375 470"
-        fill="none"
-        stroke="#fbbf24"
-        strokeWidth="1.5"
-        opacity="0.5"
-      />
-
-      <path
-        d="M 390 470 L 390 268 Q 390 260 398 260 L 442 260 Q 450 260 450 268 L 450 470"
-        fill="url(#bar5)"
-      />
-      <path
-        d="M 390 470 L 390 268 Q 390 260 398 260 L 442 260 Q 450 260 450 268 L 450 470"
-        fill="none"
-        stroke="#f87171"
-        strokeWidth="1.5"
-        opacity="0.5"
-      />
-
-      {/* Percentage labels - cleaner positioning */}
+      {/* Label */}
       <text
-        x="120"
-        y="395"
-        fontSize="16"
-        fontWeight="600"
-        fill="#fbbf24"
+        x="500"
+        y="130"
+        fontFamily="Inter, system-ui, sans-serif"
+        fontSize="13"
+        fontWeight="700"
+        fill="#14b8a6"
         textAnchor="middle"
+        letterSpacing="0.5"
       >
-        +24%
+        FUNDING RATE
       </text>
-      <text
-        x="195"
-        y="370"
-        fontSize="16"
-        fontWeight="600"
-        fill="#f87171"
-        textAnchor="middle"
-      >
-        +38%
-      </text>
-      <text
-        x="270"
-        y="335"
-        fontSize="16"
-        fontWeight="600"
-        fill="#d946ef"
-        textAnchor="middle"
-      >
-        +52%
-      </text>
-      <text
-        x="345"
-        y="290"
-        fontSize="17"
-        fontWeight="600"
-        fill="#fbbf24"
-        textAnchor="middle"
-      >
-        +71%
-      </text>
-      <text
-        x="420"
-        y="250"
-        fontSize="17"
-        fontWeight="600"
-        fill="#f87171"
-        textAnchor="middle"
-      >
-        +95%
-      </text>
+    </g>
 
-      {/* Smooth trend line */}
+    {/* Flow lines with particles */}
+    <g opacity="0.8">
+      {/* Left flow */}
       <path
-        d="M 120 450 Q 158 435 195 415 T 270 385 Q 308 360 345 330 T 420 285"
-        stroke="url(#trend)"
+        d="M 100 150 Q 150 180 220 200"
+        stroke="url(#flow1)"
         strokeWidth="3"
         fill="none"
         strokeLinecap="round"
+        // markerEnd="url(#arrowhead)"
+        filter="url(#glow)"
+      />
+      <circle cx="130" cy="165" r="3" fill="#ec4899" opacity="0.6">
+        <animate
+          attributeName="opacity"
+          values="0.6;1;0.6"
+          dur="2s"
+          repeatCount="indefinite"
+        />
+      </circle>
+
+      {/* Center flow */}
+      <path
+        d="M 300 100 L 300 140"
+        stroke="url(#flow2)"
+        strokeWidth="3"
+        fill="none"
+        strokeLinecap="round"
+        markerEnd="url(#arrowhead)"
+        filter="url(#glow)"
+      />
+      <circle cx="300" cy="150" r="3" fill="#3b82f6" opacity="0.6">
+        <animate
+          attributeName="opacity"
+          values="0.6;1;0.6"
+          dur="2s"
+          repeatCount="indefinite"
+          begin="0.5s"
+        />
+      </circle>
+
+      {/* Right flow */}
+      <path
+        d="M 500 150 Q 450 180 380 200"
+        stroke="url(#flow3)"
+        strokeWidth="3"
+        fill="none"
+        strokeLinecap="round"
+        // markerEnd="url(#arrowhead)"
+        filter="url(#glow)"
+      />
+      <circle cx="470" cy="165" r="3" fill="#14b8a6" opacity="0.6">
+        <animate
+          attributeName="opacity"
+          values="0.6;1;0.6"
+          dur="2s"
+          repeatCount="indefinite"
+          begin="1s"
+        />
+      </circle>
+    </g>
+
+    {/* Central "Your Yield" Hub */}
+    <g>
+      {/* Outer orbital rings */}
+      <circle
+        cx="300"
+        cy="240"
+        r="75"
+        fill="none"
+        stroke="url(#hubRing)"
+        strokeWidth="2"
+        opacity="0.3"
+        strokeDasharray="8,4"
+      >
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0 300 240"
+          to="360 300 240"
+          dur="20s"
+          repeatCount="indefinite"
+        />
+      </circle>
+
+      <circle
+        cx="300"
+        cy="240"
+        r="85"
+        fill="none"
+        stroke="url(#hubRing)"
+        strokeWidth="1.5"
+        opacity="0.2"
+        strokeDasharray="4,8"
+      >
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="360 300 240"
+          to="0 300 240"
+          dur="30s"
+          repeatCount="indefinite"
+        />
+      </circle>
+
+      {/* Main circle */}
+      <circle
+        cx="300"
+        cy="240"
+        r="55"
+        fill="url(#cardBg)"
+        stroke="url(#hubRing)"
+        strokeWidth="3"
+        opacity="0.95"
         filter="url(#glow)"
       />
 
-      {/* Data points on trend line */}
-      <circle cx="120" cy="450" r="4" fill="#fbbf24" opacity="0.8" />
-      <circle cx="195" cy="415" r="4" fill="#f87171" opacity="0.8" />
-      <circle cx="270" cy="385" r="4" fill="#d946ef" opacity="0.8" />
-      <circle cx="345" cy="330" r="4" fill="#fbbf24" opacity="0.8" />
-      <circle cx="420" cy="285" r="4" fill="#f87171" opacity="0.8" />
+      {/* Inner circle */}
+      <circle cx="300" cy="240" r="50" fill="#0a0a0a" opacity="0.8" />
+
+      {/* Text */}
+      <text
+        x="300"
+        y="230"
+        fontFamily="Inter, system-ui, sans-serif"
+        fontSize="14"
+        fontWeight="600"
+        fill="#94a3b8"
+        textAnchor="middle"
+        letterSpacing="2"
+      >
+        YOUR
+      </text>
+      <text
+        x="300"
+        y="260"
+        fontFamily="Inter, system-ui, sans-serif"
+        fontSize="24"
+        fontWeight="900"
+        fill="#ffffff"
+        textAnchor="middle"
+        letterSpacing="1"
+      >
+        YIELD
+      </text>
+    </g>
+
+    {/* Growth Chart Section */}
+    <g transform="translate(0, 280)">
+
+      {/* Grid lines */}
+      <line
+        x1="80"
+        y1="240"
+        x2="520"
+        y2="240"
+        stroke="#ffffff"
+        strokeWidth="1.5"
+        opacity="0.15"
+      />
+      <line
+        x1="80"
+        y1="180"
+        x2="520"
+        y2="180"
+        stroke="#ffffff"
+        strokeWidth="1"
+        opacity="0.08"
+        strokeDasharray="4,4"
+      />
+      <line
+        x1="80"
+        y1="120"
+        x2="520"
+        y2="120"
+        stroke="#ffffff"
+        strokeWidth="1"
+        opacity="0.08"
+        strokeDasharray="4,4"
+      />
+
+      {/* Area fill */}
+      <path
+        d="M 80,240 L 80,220 Q 140,200 190,180 T 300,130 Q 360,100 410,80 T 520,55 L 520,240 Z"
+        fill="url(#chartGradient)"
+        opacity="0.6"
+      />
+
+      {/* Main line */}
+      <path
+        d="M 80,220 Q 140,200 190,180 T 300,130 Q 360,100 410,80 T 520,55"
+        stroke="url(#chartLine)"
+        strokeWidth="4"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        filter="url(#glow)"
+      />
+
+      {/* Data points with values */}
+      <g>
+        {/* Point 1 */}
+        <circle cx="80" cy="220" r="6" fill="#ec4899" opacity="0.9" />
+        <circle cx="80" cy="220" r="3" fill="#ffffff" />
+        <text
+          x="80"
+          y="210"
+          fontFamily="Inter, system-ui, sans-serif"
+          fontSize="14"
+          fontWeight="700"
+          fill="#ec4899"
+          textAnchor="middle"
+        >
+          15%
+        </text>
+
+        {/* Point 2 */}
+        <circle cx="190" cy="180" r="6" fill="#8b5cf6" opacity="0.9" />
+        <circle cx="190" cy="180" r="3" fill="#ffffff" />
+        <text
+          x="190"
+          y="170"
+          fontFamily="Inter, system-ui, sans-serif"
+          fontSize="14"
+          fontWeight="700"
+          fill="#8b5cf6"
+          textAnchor="middle"
+        >
+          32%
+        </text>
+
+        {/* Point 3 */}
+        <circle cx="300" cy="130" r="6" fill="#3b82f6" opacity="0.9" />
+        <circle cx="300" cy="130" r="3" fill="#ffffff" />
+        <text
+          x="300"
+          y="120"
+          fontFamily="Inter, system-ui, sans-serif"
+          fontSize="14"
+          fontWeight="700"
+          fill="#3b82f6"
+          textAnchor="middle"
+        >
+          54%
+        </text>
+
+        {/* Point 4 */}
+        <circle cx="410" cy="80" r="6" fill="#06b6d4" opacity="0.9" />
+        <circle cx="410" cy="80" r="3" fill="#ffffff" />
+        <text
+          x="410"
+          y="70"
+          fontFamily="Inter, system-ui, sans-serif"
+          fontSize="14"
+          fontWeight="700"
+          fill="#06b6d4"
+          textAnchor="middle"
+        >
+          78%
+        </text>
+
+        {/* Point 5 */}
+        <circle cx="520" cy="55" r="7" fill="#10b981" opacity="0.9" />
+        <circle cx="520" cy="55" r="3.5" fill="#ffffff" />
+        <text
+          x="520"
+          y="45"
+          fontFamily="Inter, system-ui, sans-serif"
+          fontSize="16"
+          fontWeight="800"
+          fill="#10b981"
+          textAnchor="middle"
+        >
+          95%
+        </text>
+      </g>
+
+      {/* Time labels */}
+      <g opacity="0.5">
+        <text
+          x="80"
+          y="260"
+          fontFamily="Inter, system-ui, sans-serif"
+          fontSize="11"
+          fontWeight="600"
+          fill="#94a3b8"
+          textAnchor="middle"
+        >
+          1M
+        </text>
+        <text
+          x="190"
+          y="260"
+          fontFamily="Inter, system-ui, sans-serif"
+          fontSize="11"
+          fontWeight="600"
+          fill="#94a3b8"
+          textAnchor="middle"
+        >
+          3M
+        </text>
+        <text
+          x="300"
+          y="260"
+          fontFamily="Inter, system-ui, sans-serif"
+          fontSize="11"
+          fontWeight="600"
+          fill="#94a3b8"
+          textAnchor="middle"
+        >
+          6M
+        </text>
+        <text
+          x="410"
+          y="260"
+          fontFamily="Inter, system-ui, sans-serif"
+          fontSize="11"
+          fontWeight="600"
+          fill="#94a3b8"
+          textAnchor="middle"
+        >
+          9M
+        </text>
+        <text
+          x="520"
+          y="260"
+          fontFamily="Inter, system-ui, sans-serif"
+          fontSize="11"
+          fontWeight="600"
+          fill="#94a3b8"
+          textAnchor="middle"
+        >
+          12M
+        </text>
+      </g>
     </g>
   </svg>
 );

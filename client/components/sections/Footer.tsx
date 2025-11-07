@@ -1,7 +1,7 @@
 import TimeLockLogo from "./TimeLockLogo";
 
 const Footer = () => (
-  <footer className="w-full border-t border-border/50 px-4 sm:px-6 lg:px-[130px] py-16 bg-card">
+  <footer className="w-full border-t border-border/50 px-4 sm:px-6 md:px-32 py-16 bg-card">
     <div className="max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
         {/* Logo and Description */}
@@ -9,14 +9,14 @@ const Footer = () => (
           <div className="mb-4">
             <TimeLockLogo />
           </div>
-          <p className="text-muted-foreground font-manrope text-sm leading-relaxed">
+          <p className="text-muted-foreground text-sm leading-relaxed">
             Leverage without liquidations. Powered by Uniswap V3.
           </p>
         </div>
 
         {/* Platform Links */}
         <div>
-          <h3 className="text-foreground font-manrope text-sm font-semibold mb-4">
+          <h3 className="text-foreground text-sm font-semibold mb-4">
             Platform
           </h3>
           <div className="space-y-3">
@@ -24,7 +24,7 @@ const Footer = () => (
               href="https://testnet.timelock.trade"
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-muted-foreground font-manrope text-sm hover:text-foreground/80 transition-colors"
+              className="block text-muted-foreground text-sm hover:text-foreground/80 transition-colors"
             >
               Trade
             </a>
@@ -32,7 +32,7 @@ const Footer = () => (
               href="https://testnet.timelock.trade/"
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-muted-foreground font-manrope text-sm hover:text-foreground/80 transition-colors"
+              className="block text-muted-foreground text-sm hover:text-foreground/80 transition-colors"
             >
               Earn
             </a>
@@ -40,7 +40,7 @@ const Footer = () => (
               href="https://testnet.timelock.trade/"
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-muted-foreground font-manrope text-sm hover:text-foreground/80 transition-colors"
+              className="block text-muted-foreground text-sm hover:text-foreground/80 transition-colors"
             >
               Dashboard
             </a>
@@ -49,7 +49,7 @@ const Footer = () => (
 
         {/* Resources Links */}
         <div>
-          <h3 className="text-foreground font-manrope text-sm font-semibold mb-4">
+          <h3 className="text-foreground text-sm font-semibold mb-4">
             Resources
           </h3>
           <div className="space-y-3">
@@ -57,7 +57,7 @@ const Footer = () => (
               href="https://docs.timelock.trade/"
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-muted-foreground font-manrope text-sm hover:text-foreground/80 transition-colors"
+              className="block text-muted-foreground text-sm hover:text-foreground/80 transition-colors"
             >
               Documentation
             </a>
@@ -66,7 +66,7 @@ const Footer = () => (
 
         {/* Community Links */}
         <div>
-          <h3 className="text-foreground font-manrope text-sm font-semibold mb-4">
+          <h3 className="text-foreground text-sm font-semibold mb-4">
             Community
           </h3>
           <div className="flex items-center gap-3">
@@ -119,19 +119,19 @@ const Footer = () => (
       {/* Bottom Section */}
       <div className="pt-8 border-t border-border">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground font-manrope text-sm">
+          <p className="text-muted-foreground text-sm">
             © 2025 TimeLock. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <a
               href="#"
-              className="text-muted-foreground hover:text-muted-foreground font-manrope text-sm transition-colors"
+              className="text-muted-foreground hover:text-muted-foreground text-sm transition-colors"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-muted-foreground hover:text-muted-foreground font-manrope text-sm transition-colors"
+              className="text-muted-foreground hover:text-muted-foreground text-sm transition-colors"
             >
               Terms of Service
             </a>
