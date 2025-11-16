@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Accordion,
   AccordionItem,
@@ -7,6 +7,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
+import { gsapUtils, gsap, ScrollTrigger } from "@/lib/gsap-utils";
 
 // Logo Component
 const TimeLockLogo = () => (
@@ -45,13 +46,111 @@ const TimeLockLogo = () => (
 // Header Component
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    const ctx = gsap.context(() => {
+      // Animate logo
+      if (logoRef.current) {
+        gsap.from(logoRef.current, {
+          opacity: 0,
+          x: prefersReducedMotion ? 0 : -20,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+        });
+      }
+
+      // Animate navigation
+      if (navRef.current) {
+        gsap.from(navRef.current.children, {
+          opacity: 0,
+          y: prefersReducedMotion ? 0 : -10,
+          duration: prefersReducedMotion ? 0.2 : 0.6,
+          stagger: prefersReducedMotion ? 0 : 0.1,
+          delay: prefersReducedMotion ? 0 : 0.2,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+        });
+      }
+
+      // Animate button
+      if (buttonRef.current) {
+        gsap.from(buttonRef.current, {
+          opacity: 0,
+          scale: prefersReducedMotion ? 1 : 0.9,
+          duration: prefersReducedMotion ? 0.2 : 0.6,
+          delay: prefersReducedMotion ? 0 : 0.4,
+          ease: prefersReducedMotion ? "none" : "back.out(1.7)",
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  // Animate mobile menu
+  useEffect(() => {
+    if (!mobileMenuRef.current) return;
+    
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const menu = mobileMenuRef.current;
+    const menuItems = menu.querySelectorAll("a, button");
+    
+    if (isMobileMenuOpen) {
+      // Open animation
+      gsap.fromTo(
+        menu,
+        {
+          opacity: 0,
+          y: -20,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: prefersReducedMotion ? 0.2 : 0.3,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+        }
+      );
+      
+      gsap.fromTo(
+        menuItems,
+        {
+          opacity: 0,
+          x: -20,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: prefersReducedMotion ? 0.1 : 0.4,
+          stagger: prefersReducedMotion ? 0 : 0.05,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          delay: prefersReducedMotion ? 0 : 0.1,
+        }
+      );
+    } else {
+      // Close animation
+      gsap.to(menuItems, {
+        opacity: 0,
+        x: -20,
+        duration: prefersReducedMotion ? 0.1 : 0.2,
+        stagger: prefersReducedMotion ? 0 : 0.03,
+        ease: prefersReducedMotion ? "none" : "power2.in",
+      });
+    }
+  }, [isMobileMenuOpen]);
 
   return (
     <header className="w-full px-4 sm:px-8 lg:px-[130px] py-4 flex items-center justify-between relative">
-      <TimeLockLogo />
+      <div ref={logoRef}>
+        <TimeLockLogo />
+      </div>
 
       {/* Desktop Navigation */}
-      <nav className="hidden lg:flex items-center gap-3">
+      <nav ref={navRef} className="hidden lg:flex items-center gap-3">
         <a
           href="https://testnet.timelock.trade"
           target="_blank"
@@ -61,20 +160,12 @@ const Header = () => {
           Trade
         </a>
         <a
-          href="https://testnet.timelock.trade/"
+          href="https://perps.timelock.trade"
           target="_blank"
           rel="noopener noreferrer"
           className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
         >
-          Earn
-        </a>
-        <a
-          href="https://testnet.timelock.trade/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-2 py-1.5 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors"
-        >
-          Dashboard
+          Perps
         </a>
         <a
           href="https://docs.timelock.trade/"
@@ -104,7 +195,7 @@ const Header = () => {
       </button>
 
       {/* Launch App Button */}
-      <a href="https://testnet.timelock.trade" target="_blank" rel="noopener noreferrer" className="hidden lg:block">
+      <a ref={buttonRef} href="https://testnet.timelock.trade" target="_blank" rel="noopener noreferrer" className="hidden lg:block">
         <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] hover:bg-white/90 transition-colors">
           Launch App
         </button>
@@ -112,7 +203,7 @@ const Header = () => {
 
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-sm border-t border-white/10 z-50">
+        <div ref={mobileMenuRef} className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-sm border-t border-white/10 z-50">
           <nav className="flex flex-col p-4 space-y-4">
             <a
               href="https://testnet.timelock.trade"
@@ -124,22 +215,13 @@ const Header = () => {
               Trade
             </a>
             <a
-              href="https://testnet.timelock.trade/"
+              href="https://perps.timelock.trade"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-3 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors border-b border-white/10"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Earn
-            </a>
-            <a
-              href="https://testnet.timelock.trade/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-3 text-[#A6B0C3] font-manrope text-base font-normal hover:text-white transition-colors border-b border-white/10"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Dashboard
+              Perps
             </a>
             <a
               href="https://docs.timelock.trade/"
@@ -169,88 +251,374 @@ const Header = () => {
 };
 
 // Hero Section Component
-const HeroSection = () => (
-  <section
-    className="relative min-h-[85vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-0 pt-8 sm:pt-12 pb-20 sm:pb-32 overflow-hidden bg-black"
-    aria-labelledby="hero-heading"
-  >
-    <BackgroundRippleEffect />
-    <div className="relative z-10 flex flex-col items-center gap-6 sm:gap-8 lg:gap-10 max-w-[909px] w-full text-center">
-      {/* Testnet Live Badge */}
-      <div className="inline-flex items-center px-4 sm:px-[18px] py-2 rounded-[12px] border border-[#282324] bg-black/50 backdrop-blur-sm" role="status" aria-label="Testnet status">
-        <span className="text-white font-normal text-[13px] font-manrope leading-[158.7%] tracking-[-0.39px]">
-          Testnet Live
-        </span>
-      </div>
+const HeroSection = () => {
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const subheadingRef = useRef<HTMLParagraphElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
 
-      {/* Main Heading */}
-      <h1 className="text-white font-manrope text-3xl sm:text-4xl md:text-5xl lg:text-[66px] font-normal leading-[120%] sm:leading-[126.7%] tracking-[-1.5px] sm:tracking-[-1.98px] max-w-full px-2 sm:px-0">
-        Unlocking Leverage without Liquidations
-      </h1>
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    const ctx = gsap.context(() => {
+      // Create a timeline for hero animations with improved timing
+      const tl = gsap.timeline({ defaults: { ease: prefersReducedMotion ? "none" : "power3.out" } });
 
-      {/* Subheading */}
-      <p className="text-white/70 font-manrope text-base sm:text-lg font-normal leading-[22px] sm:leading-[20px] max-w-full px-2 sm:px-0">
-        Powered by Uniswap V3 liquidity. Designed for DeFi traders and LPs.
-      </p>
+      // Animate badge with bounce effect
+      if (badgeRef.current) {
+        tl.from(badgeRef.current, {
+          opacity: 0,
+          scale: prefersReducedMotion ? 1 : 0.8,
+          y: prefersReducedMotion ? 0 : -10,
+          duration: prefersReducedMotion ? 0.2 : 0.7,
+          ease: prefersReducedMotion ? "none" : "back.out(1.7)",
+        });
+      }
 
-      {/* CTA Buttons */}
-      <div className="flex flex-row items-center gap-3 justify-center w-full">
-        <a href="https://testnet.timelock.trade" target="_blank" rel="noopener noreferrer">
-          <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] min-w-[120px] sm:min-w-[140px] hover:bg-white/90 transition-colors">
-            Trade
-          </button>
-        </a>
-        <button className="border border-[#282324] bg-black/50 backdrop-blur-sm text-white font-manrope text-[15px] font-bold px-[15px] py-[7px] rounded-[12px] min-w-[120px] sm:min-w-[140px] hover:bg-black/70 transition-colors">
-          Earn
-        </button>
-      </div>
+      // Animate heading with split text effect simulation
+      if (headingRef.current) {
+        tl.from(
+          headingRef.current,
+          {
+            opacity: 0,
+            y: prefersReducedMotion ? 0 : 40,
+            duration: prefersReducedMotion ? 0.2 : 1,
+            ease: prefersReducedMotion ? "none" : "power3.out",
+          },
+          prefersReducedMotion ? "+=0" : "-=0.4"
+        );
+      }
 
-      {/* Stats Section */}
-      <div className="relative w-full max-w-[768px] mt-12 sm:mt-16" role="region" aria-label="Protocol statistics">
-        {/* Horizontal Divider */}
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#444] to-transparent mb-12 sm:mb-16"></div>
+      // Animate subheading
+      if (subheadingRef.current) {
+        tl.from(
+          subheadingRef.current,
+          {
+            opacity: 0,
+            y: prefersReducedMotion ? 0 : 30,
+            duration: prefersReducedMotion ? 0.2 : 0.9,
+            ease: prefersReducedMotion ? "none" : "power2.out",
+          },
+          prefersReducedMotion ? "+=0" : "-=0.5"
+        );
+      }
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center">
-          <div role="img" aria-label="5 million plus total trading volume">
-            <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
-              $5M+
+      // Animate buttons with scale effect
+      if (buttonsRef.current) {
+        tl.from(
+          buttonsRef.current.children,
+          {
+            opacity: 0,
+            y: prefersReducedMotion ? 0 : 25,
+            scale: prefersReducedMotion ? 1 : 0.95,
+            duration: prefersReducedMotion ? 0.2 : 0.7,
+            stagger: prefersReducedMotion ? 0 : 0.15,
+            ease: prefersReducedMotion ? "none" : "back.out(1.4)",
+          },
+          prefersReducedMotion ? "+=0" : "-=0.4"
+        );
+      }
+
+      // Scroll-triggered animation for stats with number counting effect
+      if (statsRef.current) {
+        const statElements = statsRef.current.querySelectorAll("div[role='img']");
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        
+        // Set initial state for stats
+        gsap.set(statElements, {
+          opacity: 0,
+          y: 40,
+          scale: 0.9,
+        });
+
+        // Animate stats on scroll with enhanced effect
+        const statsAnimation = gsap.to(statElements, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: prefersReducedMotion ? 0.3 : 0.9,
+          stagger: prefersReducedMotion ? 0 : 0.12,
+          ease: prefersReducedMotion ? "none" : "back.out(1.2)",
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        // Number counting animation for stats
+        if (!prefersReducedMotion) {
+          const statValues = [
+            { element: statElements[0]?.querySelector("div")?.firstChild as HTMLElement, target: 5, suffix: "M+", prefix: "$" },
+            { element: statElements[1]?.querySelector("div")?.firstChild as HTMLElement, target: 2, suffix: "M+", prefix: "$" },
+            { element: statElements[2]?.querySelector("div")?.firstChild as HTMLElement, target: 15, suffix: "K+", prefix: "" },
+            { element: statElements[3]?.querySelector("div")?.firstChild as HTMLElement, target: 0, suffix: "", prefix: "", isText: true, text: "ZERO" },
+          ];
+
+          statValues.forEach((stat, index) => {
+            if (!stat.element) return;
+            
+            if (stat.isText) {
+              // For text stats, just animate opacity
+              gsap.from(stat.element, {
+                opacity: 0,
+                duration: 0.6,
+                delay: 0.3 + index * 0.12,
+                scrollTrigger: {
+                  trigger: statsRef.current,
+                  start: "top 80%",
+                  toggleActions: "play none none reverse",
+                },
+              });
+            } else {
+              // For number stats, animate counting
+              const obj = { value: 0 };
+              gsap.to(obj, {
+                value: stat.target,
+                duration: 1.5,
+                delay: 0.3 + index * 0.12,
+                ease: "power2.out",
+                onUpdate: function() {
+                  if (stat.element) {
+                    stat.element.textContent = `${stat.prefix}${Math.round(obj.value)}${stat.suffix}`;
+                  }
+                },
+                scrollTrigger: {
+                  trigger: statsRef.current,
+                  start: "top 80%",
+                  toggleActions: "play none none reverse",
+                },
+              });
+            }
+          });
+        }
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      className="relative min-h-[85vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-0 pt-8 sm:pt-12 pb-20 sm:pb-32 overflow-hidden bg-black"
+      aria-labelledby="hero-heading"
+    >
+      <BackgroundRippleEffect />
+      <div className="relative z-10 flex flex-col items-center gap-6 sm:gap-8 lg:gap-10 max-w-[909px] w-full text-center">
+        {/* Testnet Live Badge */}
+        <div
+          ref={badgeRef}
+          className="inline-flex items-center px-4 sm:px-[18px] py-2 rounded-[12px] border border-[#282324] bg-black/50 backdrop-blur-sm"
+          role="status"
+          aria-label="Testnet status"
+        >
+          <span className="text-white font-normal text-[13px] font-manrope leading-[158.7%] tracking-[-0.39px]">
+            Testnet Live
+          </span>
+        </div>
+
+        {/* Main Heading */}
+        <h1
+          ref={headingRef}
+          className="text-white font-manrope text-3xl sm:text-4xl md:text-5xl lg:text-[66px] font-normal leading-[120%] sm:leading-[126.7%] tracking-[-1.5px] sm:tracking-[-1.98px] max-w-full px-2 sm:px-0"
+        >
+          Unlocking Leverage without Liquidations
+        </h1>
+
+        {/* Subheading */}
+        <p
+          ref={subheadingRef}
+          className="text-white/70 font-manrope text-base sm:text-lg font-normal leading-[22px] sm:leading-[20px] max-w-full px-2 sm:px-0"
+        >
+          Powered by Uniswap V3 liquidity. Designed for DeFi traders and LPs.
+        </p>
+
+        {/* CTA Buttons */}
+        <div ref={buttonsRef} className="flex flex-row items-center gap-3 justify-center w-full">
+          <a href="https://testnet.timelock.trade" target="_blank" rel="noopener noreferrer">
+            <button className="bg-white text-black font-manrope text-[15px] font-bold px-[15px] py-[7.5px] rounded-[10px] min-w-[120px] sm:min-w-[140px] hover:bg-white/90 transition-colors">
+              Trade
+            </button>
+          </a>
+          <a href="https://perps.timelock.trade" target="_blank" rel="noopener noreferrer">
+            <button className="border border-[#282324] bg-black/50 backdrop-blur-sm text-white font-manrope text-[15px] font-bold px-[15px] py-[7px] rounded-[12px] min-w-[120px] sm:min-w-[140px] hover:bg-black/70 transition-colors">
+              Perps
+            </button>
+          </a>
+        </div>
+
+        {/* Stats Section */}
+        <div
+          ref={statsRef}
+          className="relative w-full max-w-[768px] mt-12 sm:mt-16"
+          role="region"
+          aria-label="Protocol statistics"
+        >
+          {/* Horizontal Divider */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-[#444] to-transparent mb-12 sm:mb-16"></div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center">
+            <div role="img" aria-label="5 million plus total trading volume">
+              <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
+                $5M+
+              </div>
+              <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
+                TOTAL VOLUME
+              </div>
             </div>
-            <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
-              TOTAL VOLUME
+            <div role="img" aria-label="2 million plus total value locked">
+              <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
+                $2M+
+              </div>
+              <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
+                TVL
+              </div>
             </div>
-          </div>
-          <div role="img" aria-label="2 million plus total value locked">
-            <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
-              $2M+
+            <div role="img" aria-label="15 thousand plus total users">
+              <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
+                15K+
+              </div>
+              <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
+                TOTAL USERS
+              </div>
             </div>
-            <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
-              TVL
-            </div>
-          </div>
-          <div role="img" aria-label="15 thousand plus total users">
-            <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
-              15K+
-            </div>
-            <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
-              TOTAL USERS
-            </div>
-          </div>
-          <div role="img" aria-label="Zero liquidations">
-            <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
-              ZERO
-            </div>
-            <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
-              LIQUIDATIONS
+            <div role="img" aria-label="Zero liquidations">
+              <div className="text-white font-manrope text-xl sm:text-2xl lg:text-[30px] font-bold leading-[28px] sm:leading-[36px] mb-2">
+                ZERO
+              </div>
+              <div className="text-white/70 font-manrope text-xs sm:text-sm font-normal leading-[16px] sm:leading-[20px]">
+                LIQUIDATIONS
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
+  );
+};
+
+// Ecosystem Card Component with GSAP hover effects
+const EcosystemCard = ({ item }: { item: { id: string; title: string; description: string } }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (!cardRef.current) return;
+    
+    const card = cardRef.current;
+    const gradient = card.querySelector("div[class*='absolute top-0']");
+    
+    const handleMouseEnter = () => {
+      gsap.to(card, {
+        y: -8,
+        scale: 1.02,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+      if (gradient) {
+        gsap.to(gradient, {
+          opacity: 0.9,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      }
+    };
+    
+    const handleMouseLeave = () => {
+      gsap.to(card, {
+        y: 0,
+        scale: 1,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+      if (gradient) {
+        gsap.to(gradient, {
+          opacity: 0.6,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      }
+    };
+    
+    card.addEventListener("mouseenter", handleMouseEnter);
+    card.addEventListener("mouseleave", handleMouseLeave);
+    
+    return () => {
+      card.removeEventListener("mouseenter", handleMouseEnter);
+      card.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+  
+  return (
+    <div
+      ref={cardRef}
+      className="group relative h-full min-h-[220px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] cursor-pointer"
+      style={{ transform: "translateZ(0)" }}
+    >
+      <div className="absolute top-0 left-0 right-0 h-32 opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent z-0" />
+      <div className="relative z-10">
+        <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mb-4">
+          <span className="text-white font-k2d text-base font-medium">{item.id}</span>
+        </div>
+        <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-3">
+          {item.title}
+        </h3>
+        <p className="text-white/60 font-manrope text-sm leading-normal">
+          {item.description}
+        </p>
+      </div>
     </div>
-  </section>
-);
+  );
+};
 
 // Ecosystem Grid Component
 const EcosystemSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    const ctx = gsap.context(() => {
+      // Animate heading
+      if (headingRef.current) {
+        gsap.from(headingRef.current.children, {
+          opacity: 0,
+          y: prefersReducedMotion ? 0 : 30,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          stagger: prefersReducedMotion ? 0 : 0.2,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+
+      // Animate cards with stagger
+      if (cardsRef.current) {
+        const cards = cardsRef.current.querySelectorAll("div[class*='group']");
+        gsap.from(cards, {
+          opacity: 0,
+          y: prefersReducedMotion ? 0 : 50,
+          scale: prefersReducedMotion ? 1 : 0.95,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          stagger: prefersReducedMotion ? 0 : 0.1,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   const ecosystemItems = [
     {
       id: "1",
@@ -292,13 +660,14 @@ const EcosystemSection = () => {
 
   return (
     <section
+      ref={sectionRef}
       className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 xl:px-52"
       style={{
         background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
       }}
       aria-labelledby="ecosystem-heading"
     >
-      <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+      <div ref={headingRef} className="text-center mb-12 sm:mb-16 lg:mb-20">
         <h2 className="text-white font-manrope text-2xl sm:text-3xl lg:text-[48px] font-normal leading-[32px] sm:leading-[40px] lg:leading-[48px] mb-4 sm:mb-6 px-2 sm:px-0">
           Timelock Protocol Ecosystem
         </h2>
@@ -307,26 +676,9 @@ const EcosystemSection = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {ecosystemItems.map((item) => (
-          <div
-            key={item.id}
-            className="group relative h-full min-h-[220px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
-            style={{ willChange: "transform, opacity" }}
-          >
-            <div className="absolute top-0 left-0 right-0 h-32 opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent z-0" />
-            <div className="relative z-10">
-              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mb-4">
-                <span className="text-white font-k2d text-base font-medium">{item.id}</span>
-              </div>
-              <h3 className="text-white font-manrope text-xl font-medium leading-[28px] mb-3">
-                {item.title}
-              </h3>
-              <p className="text-white/60 font-manrope text-sm leading-normal">
-                {item.description}
-              </p>
-            </div>
-          </div>
+          <EcosystemCard key={item.id} item={item} />
         ))}
       </div>
     </section>
@@ -335,6 +687,62 @@ const EcosystemSection = () => {
 
 // Traders Section
 const TradersSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    const ctx = gsap.context(() => {
+      // Animate heading
+      if (headingRef.current) {
+        gsap.from(headingRef.current.children, {
+          opacity: 0,
+          y: prefersReducedMotion ? 0 : 30,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          stagger: prefersReducedMotion ? 0 : 0.2,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+
+      // Animate feature cards
+      if (cardsRef.current) {
+        const cards = cardsRef.current.querySelectorAll("div[class*='group']");
+        if (cards.length > 0) {
+          // Set initial state
+          gsap.set(cards, {
+            opacity: 0,
+            y: prefersReducedMotion ? 0 : 50,
+            scale: prefersReducedMotion ? 1 : 0.95,
+          });
+          // Animate on scroll
+          gsap.to(cards, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: prefersReducedMotion ? 0.2 : 0.8,
+            stagger: prefersReducedMotion ? 0 : 0.1,
+            ease: prefersReducedMotion ? "none" : "power2.out",
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        }
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   const features = [
     {
       title: "No Liquidation Risk",
@@ -376,13 +784,14 @@ const TradersSection = () => {
 
   return (
     <section
+      ref={sectionRef}
       className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 xl:px-52"
       style={{
         background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
       }}
       aria-labelledby="traders-heading"
     >
-      <div className="text-center mb-12 sm:mb-16">
+      <div ref={headingRef} className="text-center mb-12 sm:mb-16">
         <h2 className="text-white font-manrope text-2xl sm:text-3xl lg:text-[48px] font-normal leading-[32px] sm:leading-[40px] lg:leading-[48px] mb-4 sm:mb-6 px-2 sm:px-0">
           Trade Without Fear
         </h2>
@@ -391,12 +800,12 @@ const TradersSection = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1216px] mx-auto">
+      <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1216px] mx-auto">
         {features.map((item) => (
           <div
             key={item.id}
-            className="group relative h-full min-h-[220px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15 transform-gpu"
-            style={{ willChange: "transform, opacity" }}
+            className="group relative h-full min-h-[220px] rounded-xl border border-[#191919] bg-black/30 backdrop-blur-sm overflow-hidden p-6 shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/15"
+            style={{ transform: "translateZ(0)" }}
           >
             <div className="absolute top-0 left-0 right-0 h-32 opacity-60 bg-gradient-radial from-white/10 via-transparent to-transparent z-0" />
             <div className="relative z-10">
@@ -418,14 +827,86 @@ const TradersSection = () => {
 };
 
 // Enhanced Yields Section
-const EnhancedYieldsSection = () => (
-  <section
-    className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 xl:px-52"
-    style={{
-      background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
-    }}
-  >
-    <div className="text-center mb-12 sm:mb-16">
+const EnhancedYieldsSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const guaranteeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    const ctx = gsap.context(() => {
+      // Animate heading
+      if (headingRef.current) {
+        gsap.from(headingRef.current.children, {
+          opacity: 0,
+          y: prefersReducedMotion ? 0 : 30,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          stagger: prefersReducedMotion ? 0 : 0.2,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+
+      // Animate feature cards
+      if (featuresRef.current) {
+        const cards = featuresRef.current.querySelectorAll("div[class*='rounded-xl']");
+        if (cards.length > 0) {
+          // Set initial state
+          gsap.set(cards, {
+            opacity: 0,
+            y: prefersReducedMotion ? 0 : 40,
+          });
+          // Animate on scroll
+          gsap.to(cards, {
+            opacity: 1,
+            y: 0,
+            duration: prefersReducedMotion ? 0.2 : 0.7,
+            stagger: prefersReducedMotion ? 0 : 0.15,
+            ease: prefersReducedMotion ? "none" : "power2.out",
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: featuresRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        }
+      }
+
+      // Animate guarantee box
+      if (guaranteeRef.current) {
+        gsap.from(guaranteeRef.current, {
+          opacity: 0,
+          scale: prefersReducedMotion ? 1 : 0.95,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: guaranteeRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 xl:px-52"
+      style={{
+        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
+      }}
+    >
+      <div ref={headingRef} className="text-center mb-12 sm:mb-16">
       <h2 className="text-white font-manrope text-2xl sm:text-3xl lg:text-[48px] font-normal leading-[32px] sm:leading-[40px] lg:leading-[48px] mb-4 sm:mb-6 px-2 sm:px-0">
         The Future of Liquidity Provision
       </h2>
@@ -437,7 +918,7 @@ const EnhancedYieldsSection = () => (
     <div className="max-w-[1216px] mx-auto space-y-8 sm:space-y-12">
       <div>
         <h3 className="text-white font-manrope text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 px-2 sm:px-0">Key Features</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <div ref={featuresRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {[
             {
               title: "Simple UX",
@@ -464,25 +945,72 @@ const EnhancedYieldsSection = () => (
       </div>
 
 
-      <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center">
+      <div ref={guaranteeRef} className="rounded-xl border border-white/10 bg-white/5 p-6 text-center">
         <p className="text-white font-manrope text-base">
           <span className="font-semibold">LP Protection Guarantee:</span> You're always made whole regardless of trader outcomes. Zero counterparty risk.
         </p>
       </div>
     </div>
   </section>
-);
-
+  );
+};
 
 // Builders Section
-const BuildersSection = () => (
-  <section
-    className="w-full py-32 px-4 lg:px-52"
-    style={{
-      background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
-    }}
-  >
-    <div className="text-center mb-16">
+const BuildersSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    const ctx = gsap.context(() => {
+      // Animate heading
+      if (headingRef.current) {
+        gsap.from(headingRef.current.children, {
+          opacity: 0,
+          y: prefersReducedMotion ? 0 : 30,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          stagger: prefersReducedMotion ? 0 : 0.2,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+
+      // Animate content columns
+      if (contentRef.current) {
+        const columns = contentRef.current.querySelectorAll("div[class*='space-y']");
+        gsap.from(columns, {
+          opacity: 0,
+          x: prefersReducedMotion ? 0 : (index) => index === 0 ? -30 : 30,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          stagger: prefersReducedMotion ? 0 : 0.2,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: contentRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="w-full py-32 px-4 lg:px-52"
+      style={{
+        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
+      }}
+    >
+      <div ref={headingRef} className="text-center mb-16">
       <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
         Build With Us
       </h2>
@@ -491,7 +1019,7 @@ const BuildersSection = () => (
       </p>
     </div>
 
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[1216px] mx-auto">
+    <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-[1216px] mx-auto">
       <div className="space-y-6">
         <h3 className="text-white font-manrope text-xl font-semibold">For Builders:</h3>
         <ul className="space-y-3 text-white/80 font-manrope text-base list-disc list-inside">
@@ -518,24 +1046,70 @@ const BuildersSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 // FAQ Section
-const FAQSection = () => (
-  <section
-    className="w-full py-32 px-4 lg:px-52"
-    style={{
-      background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.06) 100%), #000`,
-    }}
-    aria-labelledby="faq-heading"
-  >
-    <div className="text-center mb-10">
+const FAQSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const accordionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    const ctx = gsap.context(() => {
+      // Animate heading
+      if (headingRef.current) {
+        gsap.from(headingRef.current, {
+          opacity: 0,
+          y: prefersReducedMotion ? 0 : 30,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+
+      // Animate accordion container
+      if (accordionRef.current) {
+        gsap.from(accordionRef.current, {
+          opacity: 0,
+          y: prefersReducedMotion ? 0 : 40,
+          scale: prefersReducedMotion ? 1 : 0.98,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: accordionRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="w-full py-32 px-4 lg:px-52"
+      style={{
+        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.06) 100%), #000`,
+      }}
+      aria-labelledby="faq-heading"
+    >
+      <div ref={headingRef} className="text-center mb-10">
       <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
         Frequently Asked Questions
       </h2>
     </div>
 
-    <div className="max-w-3xl mx-auto border border-white/10 rounded-xl bg-black/30 backdrop-blur-sm p-4">
+    <div ref={accordionRef} className="max-w-3xl mx-auto border border-white/10 rounded-xl bg-black/30 backdrop-blur-sm p-4">
       <Accordion type="single" collapsible className="w-full" defaultValue="item-1">
         <AccordionItem value="item-1">
           <AccordionTrigger className="text-left text-white font-manrope">
@@ -590,10 +1164,67 @@ const FAQSection = () => (
       </Accordion>
     </div>
   </section>
-);
+  );
+};
 
 // Partnerships Section
 const PartnershipsSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const partnersRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    const ctx = gsap.context(() => {
+      // Animate heading
+      if (headingRef.current) {
+        gsap.from(headingRef.current.children, {
+          opacity: 0,
+          y: prefersReducedMotion ? 0 : 30,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          stagger: prefersReducedMotion ? 0 : 0.2,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+
+      // Animate partner logos
+      if (partnersRef.current) {
+        const logos = partnersRef.current.querySelectorAll("div[class*='flex items-center']");
+        if (logos.length > 0) {
+          // Set initial state
+          gsap.set(logos, {
+            opacity: 0,
+            scale: prefersReducedMotion ? 1 : 0.8,
+            y: prefersReducedMotion ? 0 : 30,
+          });
+          // Animate on scroll
+          gsap.to(logos, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: prefersReducedMotion ? 0.2 : 0.7,
+            stagger: prefersReducedMotion ? 0 : 0.15,
+            ease: prefersReducedMotion ? "none" : "back.out(1.7)",
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: partnersRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        }
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   const partners = [
     { name: "Gemoon", logo: "/gemoon.png" },
     { name: "Pinot DEX", logo: "/pinot.png" },
@@ -602,12 +1233,13 @@ const PartnershipsSection = () => {
 
   return (
     <section
+      ref={sectionRef}
       className="w-full py-32 px-4 lg:px-52"
       style={{
         background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.05) 100%), radial-gradient(84.65% 61.96% at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.00) 50%, rgba(0, 0, 0, 0.00) 100%), #000`,
       }}
     >
-      <div className="text-center mb-16">
+      <div ref={headingRef} className="text-center mb-16">
         <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
           Partnerships
         </h2>
@@ -616,7 +1248,7 @@ const PartnershipsSection = () => {
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center items-center gap-8">
+      <div ref={partnersRef} className="flex flex-wrap justify-center items-center gap-8">
         {partners.map((partner, i) => (
           <div
             key={i}
@@ -626,6 +1258,8 @@ const PartnershipsSection = () => {
               src={partner.logo}
               alt={`${partner.name} logo`}
               className="h-10 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         ))}
@@ -635,17 +1269,63 @@ const PartnershipsSection = () => {
 };
 
 // Final CTA Section
-const FinalCTASection = () => (
-  <section
-    className="relative w-full py-32 px-4"
-    style={{
-      background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.06) 100%), #000`,
-    }}
-  >
-    {/* Gradient overlay */}
-    <div className="absolute top-0 left-0 w-full h-[340px] bg-gradient-radial from-white/10 via-transparent to-transparent"></div>
+const FinalCTASection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const gradientRef = useRef<HTMLDivElement>(null);
 
-    <div className="relative text-center max-w-[658px] mx-auto">
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    const ctx = gsap.context(() => {
+      // Animate gradient overlay
+      if (gradientRef.current) {
+        gsap.from(gradientRef.current, {
+          opacity: 0,
+          scale: prefersReducedMotion ? 1 : 1.2,
+          duration: prefersReducedMotion ? 0.2 : 1.2,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+
+      // Animate content
+      if (contentRef.current) {
+        const children = contentRef.current.children;
+        gsap.from(children, {
+          opacity: 0,
+          y: prefersReducedMotion ? 0 : 40,
+          duration: prefersReducedMotion ? 0.2 : 0.8,
+          stagger: prefersReducedMotion ? 0 : 0.2,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: contentRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative w-full py-32 px-4"
+      style={{
+        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.51%, rgba(255, 255, 255, 0.06) 100%), #000`,
+      }}
+    >
+      {/* Gradient overlay */}
+      <div ref={gradientRef} className="absolute top-0 left-0 w-full h-[340px] bg-gradient-radial from-white/10 via-transparent to-transparent"></div>
+
+      <div ref={contentRef} className="relative text-center max-w-[658px] mx-auto">
       <h2 className="text-white font-manrope text-3xl lg:text-[48px] font-normal leading-[48px] mb-6">
         Trade Without Liquidation Risk
       </h2>
@@ -659,22 +1339,55 @@ const FinalCTASection = () => (
             Trade
           </button>
         </a>
-        <button className="border border-[#282324] bg-black/50 backdrop-blur-sm text-white font-manrope text-[15px] font-bold px-[15px] py-[7px] rounded-[12px] min-w-[120px] sm:min-w-[140px] hover:bg-black/70 transition-colors">
-          Earn
-        </button>
+        <a href="https://perps.timelock.trade" target="_blank" rel="noopener noreferrer">
+          <button className="border border-[#282324] bg-black/50 backdrop-blur-sm text-white font-manrope text-[15px] font-bold px-[15px] py-[7px] rounded-[12px] min-w-[120px] sm:min-w-[140px] hover:bg-black/70 transition-colors">
+            Perps
+          </button>
+        </a>
       </div>
     </div>
   </section>
-);
+  );
+};
 
 // Footer Component
-const Footer = () => (
-  <footer
-    className="w-full border-t border-white/10 px-4 lg:px-20 py-16"
-    style={{ background: "#000" }}
-  >
+const Footer = () => {
+  const footerRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    const ctx = gsap.context(() => {
+      // Animate footer content
+      if (contentRef.current) {
+        const columns = contentRef.current.querySelectorAll("div[class*='lg:col-span']");
+        gsap.from(columns, {
+          opacity: 0,
+          y: prefersReducedMotion ? 0 : 30,
+          duration: prefersReducedMotion ? 0.2 : 0.7,
+          stagger: prefersReducedMotion ? 0 : 0.1,
+          ease: prefersReducedMotion ? "none" : "power2.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <footer
+      ref={footerRef}
+      className="w-full border-t border-white/10 px-4 lg:px-20 py-16"
+      style={{ background: "#000" }}
+    >
     <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
+      <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
         {/* Logo and Description */}
         <div className="lg:col-span-1">
           <div className="mb-5">
@@ -727,20 +1440,12 @@ const Footer = () => (
               Trade
             </a>
             <a
-              href="https://testnet.timelock.trade/"
+              href="https://perps.timelock.trade"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-white/60 font-manrope text-sm leading-[20px] hover:text-white transition-colors"
             >
-              Earn
-            </a>
-            <a
-              href="https://testnet.timelock.trade/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-white/60 font-manrope text-sm leading-[20px] hover:text-white transition-colors"
-            >
-              Dashboard
+              Perps
             </a>
           </div>
         </div>
@@ -852,12 +1557,55 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
 
 // Main Index Component
 export default function Index() {
+  // Smooth scroll behavior
+  useEffect(() => {
+    // Add smooth scroll to anchor links
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest('a[href^="#"]');
+      if (anchor) {
+        const href = anchor.getAttribute('href');
+        if (href && href !== '#') {
+          const targetElement = document.querySelector(href);
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }
+        }
+      }
+    };
+
+    document.addEventListener('click', handleAnchorClick);
+    return () => document.removeEventListener('click', handleAnchorClick);
+  }, []);
+
+  // Optimize ScrollTrigger refresh on resize
+  useEffect(() => {
+    let resizeTimer: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 250);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimer);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-black font-manrope">
+    <div className="min-h-screen bg-black font-manrope overflow-x-hidden">
       <Header />
       <HeroSection />
       <EcosystemSection />
