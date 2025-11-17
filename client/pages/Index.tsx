@@ -23,7 +23,7 @@ export default function Index() {
         <img
           src="/timelock-hero.png"
           alt="Timelock Trading Interface"
-          className="p-36 absolute inset-0 blur-[2px] opacity-30"
+          className="p-36 absolute inset-0 blur-[2px] opacity-20"
         />
         {/*<div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90" />*/}
       </div>

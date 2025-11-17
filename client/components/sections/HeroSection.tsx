@@ -5,18 +5,10 @@ import { AnimatedTextRotator } from "@/components/ui/animated-text-rotator";
 
 const HeroSection = () => (
   <section
-    className="relative flex flex-col items-center overflow-hidden bg-background h-[70vh] pt-8"
+    className="relative flex flex-col items-center overflow-hidden h-[70vh] pt-8"
     aria-labelledby="hero-heading"
   >
     {/*<BackgroundRippleEffect />*/}
-    <div className="absolute inset-0 w-full h-full">
-      <img
-        src="/timelock-hero.png"
-        alt="Timelock Trading Interface"
-        className="p-36 absolute inset-0 blur-[2px] opacity-40"
-      />
-      {/*<div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90" />*/}
-    </div>
 
     <div className="relative z-10 flex flex-col items-center gap-8 max-w-4xl w-full text-center">
       {/* Testnet Live Badge */}
