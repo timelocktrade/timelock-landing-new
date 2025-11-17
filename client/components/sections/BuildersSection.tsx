@@ -30,7 +30,7 @@ const BuildersSection = () => (
         <Card className="group relative backdrop-blur-sm border-border hover:border-fuchsia-500/30 transition-all duration-300">
           <CardContent className="p-8">
             <div className="mb-6">
-              <div className="w-12 h-12 rounded-xl bg-fuchsia-500/10 border border-fuchsia-500/30 flex items-center justify-center">
+              <div className="w-12 h-12 bg-fuchsia-500/10 border border-fuchsia-500/30 flex items-center justify-center">
                 <ComposableIcon />
               </div>
             </div>
@@ -47,7 +47,7 @@ const BuildersSection = () => (
         <Card className="group relative backdrop-blur-sm border-border hover:border-purple-500/30 transition-all duration-300">
           <CardContent className="p-8">
             <div className="mb-6">
-              <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center">
+              <div className="w-12 h-12 bg-purple-500/10 border border-purple-500/30 flex items-center justify-center">
                 <DocumentationIcon />
               </div>
             </div>

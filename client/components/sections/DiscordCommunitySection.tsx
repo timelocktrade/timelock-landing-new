@@ -120,7 +120,7 @@ const DiscordCommunitySection = () => {
                       {/* Right: Multiplier */}
                       <div className="flex-shrink-0">
                         <div
-                          className={`bg-gradient-to-br ${tier.color} px-5 py-3 rounded-lg text-center`}
+                          className={`bg-gradient-to-br ${tier.color} px-5 py-3 text-center`}
                         >
                           <div className="text-white/80 text-xs font-medium uppercase tracking-wider">
                             Airdrop
@@ -152,7 +152,7 @@ const DiscordCommunitySection = () => {
                 </div>
 
                 {/* Stats */}
-                <div className="bg-muted/50 rounded-lg p-6 space-y-3">
+                <div className="bg-muted/50  p-6 space-y-3">
                   <div className="flex items-baseline justify-between">
                     <span className="text-sm text-muted-foreground font-medium">
                       Members

@@ -36,10 +36,10 @@ export const BackgroundRippleEffect = () => {
         this.y = Math.random() * canvas.height;
         this.targetX = this.x;
         this.targetY = this.y;
-        this.size = Math.random() * 3 + 2;
+        this.size = Math.random() * 2 + 1;
         this.pulsePhase = Math.random() * Math.PI * 2;
-        this.pulseSpeed = Math.random() * 0.02 + 0.01;
-        this.opacity = Math.random() * 0.4 + 0.3;
+        this.pulseSpeed = Math.random() * 0.01 + 0.005;
+        this.opacity = Math.random() * 0.15 + 0.1;
 
         // Set new target periodically
         setInterval(
@@ -63,24 +63,24 @@ export const BackgroundRippleEffect = () => {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size * pulse, 0, Math.PI * 2);
 
-        // Core node
-        ctx.fillStyle = `rgba(244, 114, 182, ${this.opacity * pulse})`;
+        // Core node - more subtle blue-gray tones
+        ctx.fillStyle = `rgba(148, 163, 184, ${this.opacity * pulse * 0.6})`;
         ctx.fill();
 
-        // Outer glow
+        // Outer glow - minimal
         const gradient = ctx.createRadialGradient(
           this.x,
           this.y,
           0,
           this.x,
           this.y,
-          this.size * 3,
+          this.size * 2,
         );
-        gradient.addColorStop(0, `rgba(244, 114, 182, ${this.opacity * 0.3})`);
-        gradient.addColorStop(1, "rgba(244, 114, 182, 0)");
+        gradient.addColorStop(0, `rgba(148, 163, 184, ${this.opacity * 0.2})`);
+        gradient.addColorStop(1, "rgba(148, 163, 184, 0)");
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
         ctx.fill();
       }
     }
@@ -97,11 +97,11 @@ export const BackgroundRippleEffect = () => {
 
       constructor(startY: number, color: [number, number, number]) {
         this.y = startY;
-        this.amplitude = Math.random() * 40 + 30;
-        this.frequency = Math.random() * 0.002 + 0.001;
-        this.speed = Math.random() * 0.005 + 0.003;
+        this.amplitude = Math.random() * 20 + 15;
+        this.frequency = Math.random() * 0.0015 + 0.0008;
+        this.speed = Math.random() * 0.002 + 0.001;
         this.phase = Math.random() * Math.PI * 2;
-        this.opacity = Math.random() * 0.08 + 0.04;
+        this.opacity = Math.random() * 0.03 + 0.02;
         this.color = color;
       }
 
@@ -151,9 +151,9 @@ export const BackgroundRippleEffect = () => {
         ctx.fillStyle = gradient;
         ctx.fill();
 
-        // Wave line
-        ctx.strokeStyle = `rgba(${this.color.join(",")}, ${this.opacity * 2})`;
-        ctx.lineWidth = 2;
+        // Wave line - very subtle
+        ctx.strokeStyle = `rgba(${this.color.join(",")}, ${this.opacity * 1.5})`;
+        ctx.lineWidth = 1;
         ctx.beginPath();
         for (let x = 0; x <= canvas.width; x += 5) {
           const y =
@@ -182,9 +182,9 @@ export const BackgroundRippleEffect = () => {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = -50;
-        this.speed = Math.random() * 2 + 1;
-        this.length = Math.random() * 60 + 40;
-        this.opacity = Math.random() * 0.3 + 0.2;
+        this.speed = Math.random() * 1.5 + 0.8;
+        this.length = Math.random() * 40 + 25;
+        this.opacity = Math.random() * 0.15 + 0.1;
       }
 
       update() {
@@ -205,20 +205,20 @@ export const BackgroundRippleEffect = () => {
           this.x,
           this.y,
         );
-        gradient.addColorStop(0, "rgba(251, 191, 36, 0)");
-        gradient.addColorStop(0.5, `rgba(251, 191, 36, ${this.opacity})`);
-        gradient.addColorStop(1, "rgba(251, 191, 36, 0)");
+        gradient.addColorStop(0, "rgba(148, 163, 184, 0)");
+        gradient.addColorStop(0.5, `rgba(148, 163, 184, ${this.opacity})`);
+        gradient.addColorStop(1, "rgba(148, 163, 184, 0)");
 
         ctx.strokeStyle = gradient;
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(this.x, this.y - this.length);
         ctx.lineTo(this.x, this.y);
         ctx.stroke();
 
-        // Add glow
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "rgba(251, 191, 36, 0.5)";
+        // Minimal glow
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = "rgba(148, 163, 184, 0.3)";
         ctx.stroke();
         ctx.shadowBlur = 0;
       }
@@ -229,26 +229,25 @@ export const BackgroundRippleEffect = () => {
     const waves: LiquidityWave[] = [];
     const streams: DataStream[] = [];
 
-    // Create network nodes
-    for (let i = 0; i < 40; i++) {
+    // Create network nodes - fewer for cleaner look
+    for (let i = 0; i < 25; i++) {
       nodes.push(new NetworkNode());
     }
 
-    // Create liquidity waves with different colors
-    waves.push(new LiquidityWave(canvas.height * 0.6, [244, 114, 182])); // Primary pink
-    waves.push(new LiquidityWave(canvas.height * 0.7, [168, 85, 247])); // Purple
-    waves.push(new LiquidityWave(canvas.height * 0.75, [251, 191, 36])); // Gold
+    // Create liquidity waves with subtle muted colors
+    waves.push(new LiquidityWave(canvas.height * 0.65, [148, 163, 184])); // Slate gray
+    waves.push(new LiquidityWave(canvas.height * 0.75, [100, 116, 139])); // Darker slate
 
-    // Create data streams
-    for (let i = 0; i < 15; i++) {
+    // Create data streams - fewer for subtlety
+    for (let i = 0; i < 8; i++) {
       streams.push(new DataStream());
     }
 
     // Animation loop
     let animationId: number;
     const animate = () => {
-      // Clear with slight trail effect
-      ctx.fillStyle = "rgba(14, 14, 14, 0.95)";
+      // Clear with crisp transitions
+      ctx.fillStyle = "rgba(14, 14, 14, 0.98)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Draw liquidity waves
@@ -277,17 +276,17 @@ export const BackgroundRippleEffect = () => {
           const dy = node1.y - node2.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 200) {
-            const opacity = (1 - distance / 200) * 0.15;
+          if (distance < 180) {
+            const opacity = (1 - distance / 180) * 0.08;
             const gradient = ctx.createLinearGradient(
               node1.x,
               node1.y,
               node2.x,
               node2.y,
             );
-            gradient.addColorStop(0, `rgba(244, 114, 182, ${opacity})`);
-            gradient.addColorStop(0.5, `rgba(168, 85, 247, ${opacity * 0.7})`);
-            gradient.addColorStop(1, `rgba(244, 114, 182, ${opacity})`);
+            gradient.addColorStop(0, `rgba(148, 163, 184, ${opacity})`);
+            gradient.addColorStop(0.5, `rgba(100, 116, 139, ${opacity * 0.7})`);
+            gradient.addColorStop(1, `rgba(148, 163, 184, ${opacity})`);
 
             ctx.strokeStyle = gradient;
             ctx.beginPath();
@@ -298,10 +297,10 @@ export const BackgroundRippleEffect = () => {
         });
       });
 
-      // Subtle grid overlay
-      ctx.strokeStyle = "rgba(244, 114, 182, 0.02)";
-      ctx.lineWidth = 1;
-      const gridSize = 100;
+      // Very subtle grid overlay - more professional
+      ctx.strokeStyle = "rgba(148, 163, 184, 0.015)";
+      ctx.lineWidth = 0.5;
+      const gridSize = 120;
 
       for (let x = 0; x < canvas.width; x += gridSize) {
         ctx.beginPath();
@@ -317,18 +316,18 @@ export const BackgroundRippleEffect = () => {
         ctx.stroke();
       }
 
-      // Vignette overlay for focus
+      // Subtle vignette overlay for professional depth
       const vignette = ctx.createRadialGradient(
         canvas.width / 2,
         canvas.height / 3,
         0,
         canvas.width / 2,
         canvas.height / 2,
-        Math.max(canvas.width, canvas.height) * 0.7,
+        Math.max(canvas.width, canvas.height) * 0.8,
       );
       vignette.addColorStop(0, "rgba(14, 14, 14, 0)");
-      vignette.addColorStop(0.6, "rgba(14, 14, 14, 0.3)");
-      vignette.addColorStop(1, "rgba(14, 14, 14, 0.7)");
+      vignette.addColorStop(0.7, "rgba(14, 14, 14, 0.2)");
+      vignette.addColorStop(1, "rgba(14, 14, 14, 0.5)");
       ctx.fillStyle = vignette;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -347,23 +346,23 @@ export const BackgroundRippleEffect = () => {
     <div className="absolute inset-0 h-full w-full overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
-      {/* Static accent gradients */}
+      {/* Subtle static accent gradients */}
       <div
         className={cn(
-          "absolute top-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full opacity-10",
-          "bg-gradient-to-br from-primary/40 to-transparent",
-          "blur-[100px] animate-pulse-slow pointer-events-none",
+          "absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full opacity-5",
+          "bg-gradient-to-br from-primary/20 to-transparent",
+          "blur-[120px] animate-pulse-slow pointer-events-none",
         )}
-        style={{ animationDuration: "8s" }}
+        style={{ animationDuration: "12s" }}
       />
 
       <div
         className={cn(
-          "absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full opacity-8",
-          "bg-gradient-to-tl from-accent-foreground/30 to-transparent",
-          "blur-[90px] animate-pulse-slow pointer-events-none",
+          "absolute bottom-[-10%] right-[-5%] w-[450px] h-[450px] rounded-full opacity-4",
+          "bg-gradient-to-tl from-accent-foreground/15 to-transparent",
+          "blur-[100px] animate-pulse-slow pointer-events-none",
         )}
-        style={{ animationDuration: "10s", animationDelay: "3s" }}
+        style={{ animationDuration: "14s", animationDelay: "4s" }}
       />
     </div>
   );

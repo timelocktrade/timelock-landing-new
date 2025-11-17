@@ -58,7 +58,7 @@ const CustomOptionsSection = () => (
           {/* Feature List */}
           <ul className="space-y-4 mb-8">
             <li className="flex items-start gap-3 group">
-              <div className="w-6 h-6 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="w-6 h-6 bg-purple-500/10 border border-purple-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <CheckmarkIcon />
               </div>
               <div>
@@ -72,7 +72,7 @@ const CustomOptionsSection = () => (
               </div>
             </li>
             <li className="flex items-start gap-3 group">
-              <div className="w-6 h-6 rounded-lg bg-pink-500/10 border border-pink-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="w-6 h-6 bg-pink-500/10 border border-pink-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <CheckmarkIcon />
               </div>
               <div>
@@ -86,7 +86,7 @@ const CustomOptionsSection = () => (
               </div>
             </li>
             <li className="flex items-start gap-3 group">
-              <div className="w-6 h-6 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="w-6 h-6 bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <CheckmarkIcon />
               </div>
               <div>

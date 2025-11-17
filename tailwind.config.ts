@@ -14,15 +14,27 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "-apple-system", "Roboto", "Helvetica", "sans-serif"],
-        display: [
-          "Space Grotesk",
-          "-apple-system",
-          "Roboto",
-          "Helvetica",
-          "sans-serif",
+        sans: [
+          "JetBrains Mono",
+          "IBM Plex Mono",
+          "Roboto Mono",
+          "Menlo",
+          "monospace",
         ],
-        mono: ["JetBrains Mono", "Menlo", "Monaco", "Courier New", "monospace"],
+        display: [
+          "JetBrains Mono",
+          "IBM Plex Mono",
+          "Roboto Mono",
+          "Menlo",
+          "monospace",
+        ],
+        mono: [
+          "JetBrains Mono",
+          "IBM Plex Mono",
+          "Roboto Mono",
+          "Menlo",
+          "monospace",
+        ],
       },
       colors: {
         border: "var(--border)",

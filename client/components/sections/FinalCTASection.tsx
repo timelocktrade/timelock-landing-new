@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 const FinalCTASection = () => (
-  <section className="relative py-24 sm:py-28 px-4 sm:px-6 md:px-32 bg-background">
+  <section className="relative py-24 sm:py-28 px-4 sm:px-6 md:px-32 bg-card">
     <div className="max-w-4xl mx-auto text-center space-y-12">
       <Badge
         variant="secondary"

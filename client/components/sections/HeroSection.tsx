@@ -5,10 +5,19 @@ import { AnimatedTextRotator } from "@/components/ui/animated-text-rotator";
 
 const HeroSection = () => (
   <section
-    className="relative flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-36 pb-24 md:pt-40 md:pb-36 overflow-hidden bg-background"
+    className="relative flex flex-col items-center overflow-hidden bg-background h-[70vh] pt-8"
     aria-labelledby="hero-heading"
   >
-    <BackgroundRippleEffect />
+    {/*<BackgroundRippleEffect />*/}
+    <div className="absolute inset-0 w-full h-full">
+      <img
+        src="/timelock-hero.png"
+        alt="Timelock Trading Interface"
+        className="p-36 absolute inset-0 blur-[2px] opacity-40"
+      />
+      {/*<div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90" />*/}
+    </div>
+
     <div className="relative z-10 flex flex-col items-center gap-8 max-w-4xl w-full text-center">
       {/* Testnet Live Badge */}
       <Badge
@@ -21,13 +30,13 @@ const HeroSection = () => (
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
         </span>
-        <span className="text-foreground/80 font-medium text-[13px]">
+        <span className="text-foreground/80 font-medium text-sm">
           Live on Monad Testnet
         </span>
       </Badge>
 
       {/* Main Heading */}
-      <h1 className="text-foreground font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[120%] tracking-[-0.01em] max-w-full px-2 sm:px-0">
+      <h1 className="text-foreground font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-[120%] tracking-[-0.01em] max-w-full px-2 sm:px-0">
         <AnimatedTextRotator
           sentences={[
             "Unlocking Leverage without Liquidations",
@@ -39,15 +48,15 @@ const HeroSection = () => (
       </h1>
 
       {/* Subheading */}
-      <p className="text-muted-foreground text-base sm:text-lg font-normal leading-relaxed max-w-2xl px-2 sm:px-0">
-        Powered by Uniswap V3 liquidity. Designed for DeFi traders and LPs.
+      <p className="text-muted-foreground text-base sm:text-md font-normal leading-relaxed max-w-2xl px-2 sm:px-0">
+        Powered by Uniswap V4 liquidity. Designed for DeFi traders and LPs.
       </p>
 
       {/* CTA Buttons */}
-      <div className="flex items-center gap-3 justify-center w-full mt-4">
+      <div className="flex items-center gap-3 justify-center w-full mt-2">
         <Button
           size="lg"
-          className="text-sm md:text-lg font-semibold px-5 py-2 md:px-7 md:py-3 text-foreground"
+          className="text-sm md:text-md font-semibold px-5 py-2 md:px-7 md:py-3"
           asChild
         >
           <a
@@ -61,7 +70,7 @@ const HeroSection = () => (
         <Button
           variant="secondary"
           size="lg"
-          className="border border-border bg-accent/50 backdrop-blur-md text-sm md:text-lg font-semibold px-5 py-2 md:px-7 md:py-3 hover:bg-accent hover:border-border"
+          className="border border-border bg-accent/50 backdrop-blur-md text-sm md:text-md font-semibold px-5 py-2 md:px-7 md:py-3 hover:bg-accent hover:border-border"
         >
           Explore Yields
         </Button>

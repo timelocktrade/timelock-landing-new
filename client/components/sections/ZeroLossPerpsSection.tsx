@@ -80,7 +80,7 @@ const ZeroLossPerpsSection = () => (
           {/* Feature List */}
           <ul className="space-y-4 mb-8">
             <li className="flex items-start gap-3 group">
-              <div className="w-6 h-6 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="w-6 h-6  bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <CheckmarkIcon />
               </div>
               <div>
@@ -94,7 +94,7 @@ const ZeroLossPerpsSection = () => (
               </div>
             </li>
             <li className="flex items-start gap-3 group">
-              <div className="w-6 h-6 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="w-6 h-6  bg-blue-500/10 border border-blue-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <CheckmarkIcon />
               </div>
               <div>
@@ -108,7 +108,7 @@ const ZeroLossPerpsSection = () => (
               </div>
             </li>
             <li className="flex items-start gap-3 group">
-              <div className="w-6 h-6 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="w-6 h-6  bg-purple-500/10 border border-purple-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <CheckmarkIcon />
               </div>
               <div>

@@ -74,7 +74,7 @@ const Footer = () => (
               href="https://x.com/Timelock_Trade"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-accent/50 hover:bg-accent transition-colors"
+              className="p-2  bg-accent/50 hover:bg-accent transition-colors"
             >
               <svg width="18" height="18" viewBox="0 0 20 21" fill="none">
                 <path
@@ -90,7 +90,7 @@ const Footer = () => (
               href="https://discord.gg/g2UDdpJg"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-accent/50 hover:bg-accent transition-colors"
+              className="p-2  bg-accent/50 hover:bg-accent transition-colors"
             >
               <svg width="18" height="18" viewBox="0 0 20 21" fill="none">
                 <path
@@ -103,7 +103,7 @@ const Footer = () => (
               href="https://t.me/charandeep_kapoor"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-accent/50 hover:bg-accent transition-colors"
+              className="p-2  bg-accent/50 hover:bg-accent transition-colors"
             >
               <svg width="18" height="18" viewBox="0 0 20 21" fill="none">
                 <path

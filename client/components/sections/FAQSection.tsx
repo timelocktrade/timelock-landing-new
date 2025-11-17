@@ -26,7 +26,7 @@ const FAQSection = () => (
       <Accordion type="single" collapsible className="w-full space-y-4">
         <AccordionItem
           value="item-1"
-          className="border border-border rounded-lg bg-background px-6"
+          className="border border-border  bg-background px-6"
         >
           <AccordionTrigger className="text-left text-foreground text-base hover:no-underline py-5">
             How is liquidation impossible?
@@ -41,7 +41,7 @@ const FAQSection = () => (
 
         <AccordionItem
           value="item-2"
-          className="border border-border rounded-lg bg-background px-6"
+          className="border border-border  bg-background px-6"
         >
           <AccordionTrigger className="text-left text-foreground text-base hover:no-underline py-5">
             What tokens can I trade?
@@ -55,7 +55,7 @@ const FAQSection = () => (
 
         <AccordionItem
           value="item-3"
-          className="border border-border rounded-lg bg-background px-6"
+          className="border border-border  bg-background px-6"
         >
           <AccordionTrigger className="text-left text-foreground text-base hover:no-underline py-5">
             How do LPs earn yield?
@@ -70,7 +70,7 @@ const FAQSection = () => (
 
         <AccordionItem
           value="item-4"
-          className="border border-border rounded-lg bg-background px-6"
+          className="border border-border  bg-background px-6"
         >
           <AccordionTrigger className="text-left text-foreground text-base hover:no-underline py-5">
             Can I close positions early?
