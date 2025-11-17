@@ -6,13 +6,13 @@ const PartnershipsSection = () => {
   const partners = [
     {
       name: "Monad",
-      logo: "/gemoon.png",
+      logo: "/monad.png",
       url: "https://monad.xyz/",
       description: "High-performance layer-1 blockchain",
     },
     {
-      name: "STS Digital",
-      logo: "/gemoon.png",
+      name: "Memesteroid",
+      logo: "/memesteroid.png",
       url: "https://monad.xyz/",
       description: "Digital asset management platform",
     },
